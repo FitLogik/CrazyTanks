@@ -5,10 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
-    public void Scenes(int numberScenes)
+    public enum GameScenes
     {
-        SceneManager.LoadScene(numberScenes);
+        Game1Player = 1,
+        Game2Players = 2
+    }
+
+    public void LoadGame1Player()
+    {
+        LoadScene(GameScenes.Game1Player);
+    }
+
+    public void LoadGame2Players()
+    {
+        LoadScene(GameScenes.Game2Players);
+    }
+
+    public void LoadScene(GameScenes gameScene)
+    {
+        SceneManager.LoadSceneAsync((int)gameScene);
     }
 }
