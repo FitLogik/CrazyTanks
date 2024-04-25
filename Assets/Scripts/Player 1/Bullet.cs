@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             Instantiate(effectGround, transform.position, Quaternion.identity);
         }
-        else if (collision.gameObject.CompareTag("player"))
+        else if (collision.gameObject.CompareTag("Player"))
         {
             Player2Controller player = collision.gameObject.GetComponent<Player2Controller>();
             player.TakeDamage(damageBullet);

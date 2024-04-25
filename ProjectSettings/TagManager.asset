@@ -3,17 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - player
-  - Ground
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - solid
+  - 
   - 
   - 
   - 
@@ -42,13 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: BG
-    uniqueID: 2310660097
-    locked: 0
-  - name: Player
-    uniqueID: 1824200139
-    locked: 0
-  - name: FG
-    uniqueID: 4267814121
     locked: 0
