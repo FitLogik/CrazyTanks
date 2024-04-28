@@ -1,6 +1,7 @@
-using System;
+
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,13 +14,15 @@ public class PlayerController : MonoBehaviour
     [Header("Muzzle Properties")]
     [SerializeField] Transform muzzleTransform;         // объект дула
     [SerializeField] float rotationSpeed = 180f;        // скорость поворота дула
-    [SerializeField] float minMuzzleRotation = 10;      // минимальный поворот дула
-    [SerializeField] float maxMuzzleRotation = 100;     // максимальный поворот дула
+    [SerializeField] float minMuzzleRotation = 10f;      // минимальный поворот дула
+    [SerializeField] float maxMuzzleRotation = 100f;     // максимальный поворот дула
 
     [Header("Bullet Properties")]
     [SerializeField] GameObject projectilePrefab;       // префаб снаряда
     [SerializeField] Transform bulletsContainer;        // контейнер, где будут храниться объекты снарядов (чтобы не засоряло основную ветку)
-    [SerializeField] float bulletSpeed = 10;            // скорость снаряда
+    [SerializeField] float minBulletSpeed = 3f;
+    [SerializeField] float maxBulletSpeed = 15f;
+    [SerializeField] float bulletSpeedMultiplier = 10f;
     [SerializeField] float muzzleSpawnDistance = 0.7f;  // множитель дистанции от начала координаты пушки
     [SerializeField] float recoilMultiplier = 10f;
 
@@ -27,7 +30,13 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] ProjectileProperties projectileProperties;
 
-    private int health;
+    [Header("Misc")]
+    [SerializeField] GameObject bulletSpeedCanvas;
+    [SerializeField] Image bulletSpeedBarImage;
+    [SerializeField] Gradient bulletSpeedBarGradient;
+    [SerializeField] Image healthBarImage;
+
+    private float health;
 
     private string _movementAxisName;
     private string _rotateAxisName;
@@ -35,25 +44,22 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
 
     private bool _isFirePressed = false;
-
+    private float _bulletSpeed = 0f;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-
     private void OnEnable()
     {
         _rb.isKinematic = false;
     }
 
-
     private void OnDisable()
     {
         _rb.isKinematic = true;
     }
-
 
     private void Start()
     {
@@ -63,6 +69,22 @@ public class PlayerController : MonoBehaviour
         _fireAxisName = "Fire" + playerNumber;
 
         health = maxHealth;
+
+        Vector2 border = GetBorder();
+        Vector2 playerTransform = new Vector2(border.x - border.x / 5, -0.75f);
+        if (playerNumber == 1)
+        {
+            playerTransform.x *= -1;
+        }
+
+        transform.position = playerTransform;
+    }
+
+    private Vector2 GetBorder()
+    {
+        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+
+        return stageDimensions;
     }
 
 
@@ -72,22 +94,62 @@ public class PlayerController : MonoBehaviour
         Move();
         MuzzleTurn();
         #endregion
+    }
 
+    // Для более плавного изменения значений применяем Update вместо FixedUpdate
+    private void Update()
+    {
         #region Стрельба
+
+        // Если нажата кнопка атаки
         if (Input.GetAxisRaw(_fireAxisName) == 1)
         {
+            // Проверяем была ли нажата кнопка атаки только что
             if (!_isFirePressed)
             {
-                Fire();
+                _bulletSpeed = minBulletSpeed; // устанавливаем минимальную скорость пули
+                // Включаем объект с холстом прогрессбара
+                bulletSpeedCanvas.SetActive(true);
+
+                _isFirePressed = true; // разрешаем огонь при отпускании кнопки атаки
             }
-            _isFirePressed = true;
+
+            // Просчитываем изменение увеличения скорости пули с момента прошлого кадра
+            float speedIncrease = bulletSpeedMultiplier * Time.deltaTime;
+            _bulletSpeed = Mathf.Min(_bulletSpeed + speedIncrease, maxBulletSpeed);  // ограничиваем скорость до максимального значения
+            UpdateBulletSpeedBar(_bulletSpeed); // обновляем progressbar со скоростью пули
         }
+        // Если отпущена кнопка атаки
         else
         {
-            _isFirePressed = false;
+            // Проверяем была ли отпущена кнопка атаки только что
+            if (_isFirePressed)
+            {
+                Fire(); // производим выстрел
+
+                // Выключаем объект с холстом прогрессбара
+                bulletSpeedCanvas.SetActive(false);
+
+                _isFirePressed = false; // запрещаем повторный выстрел после отпускания кнопки атаки
+
+            }
+
         }
+
         #endregion
+
+        // Чтобы находящийся внутри объекта progressbar не переворачивался вместе с ним
+        bulletSpeedCanvas.transform.rotation = Quaternion.identity;
     }
+
+    #region UI
+    private void UpdateBulletSpeedBar(float speed)
+    {
+        float speedAmount = (speed - minBulletSpeed) / (maxBulletSpeed - minBulletSpeed);
+        bulletSpeedBarImage.fillAmount = speedAmount;
+        bulletSpeedBarImage.color = bulletSpeedBarGradient.Evaluate(speedAmount);
+    }
+    #endregion
 
     #region Движение танка
     // Перемещение танка
@@ -115,7 +177,6 @@ public class PlayerController : MonoBehaviour
         if (muzzleAngle > 180) muzzleAngle -= 360;
 
         float rotationAmount = rotationInput * rotationSpeed * Time.deltaTime;
-
         float muzzleRotation = Mathf.Clamp(muzzleAngle + rotationAmount, minMuzzleRotation, maxMuzzleRotation);
 
         muzzleTransform.localRotation = Quaternion.Euler(0, 0, muzzleRotation);
@@ -132,18 +193,17 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
         Projectile projectile = CreateProjectile();
 
         // Сила выстрела (также скорость увеличивается или уменьшается при движении по координате x)
-        float bulletForce = bulletSpeed + (_rb.velocity.x * transform.localScale.x) / 2;
+        float bulletForce = _bulletSpeed + (_rb.velocity.x * transform.localScale.x) / 2;
         // Направление выстрела
         Vector2 bulletDirection = muzzleTransform.right * transform.localScale.x;
 
         // Выстрел снаряда
         projectile.Fire(bulletDirection, bulletForce);
         // Отдача от выстрела
-        _rb.AddForce(-bulletDirection * recoilMultiplier * 10);
+        _rb.AddForce(-bulletDirection * recoilMultiplier * _bulletSpeed);
 
 
         Debug.Log($"Fire\nPlayer{playerNumber}");
@@ -169,7 +229,12 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        //bar.fillAmount = health / 100;
+        healthBarImage.fillAmount = health / maxHealth; // float написан чтобы вернуло значение float, а не int
+
+        if (health <= 0)
+        {
+            GameManager.instance.EndGame(playerNumber);
+        }
     }
 
     #endregion

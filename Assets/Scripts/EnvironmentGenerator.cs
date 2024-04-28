@@ -6,17 +6,27 @@ using UnityEngine.U2D;
 [ExecuteInEditMode]
 public class EnvironmentGenerator : MonoBehaviour
 {
+    public static EnvironmentGenerator instance;
+
     [SerializeField] SpriteShapeController spriteShapeController;
 
     [SerializeField, Range(3, 100)] int levelLength = 50;
     [SerializeField, Range(1, 50)] float xMultiplier = 2;
     [SerializeField, Range(1, 50)] float yMultiplier = 2;
     [SerializeField, Range(0, 1)] float curveSmoothness = 0.5f;
+    [SerializeField] bool randomGenerate = true;
     [SerializeField] float noiseStep = 0.5f;
     [SerializeField] float bottom = 10;
 
     private Vector3 _lastPos;
 
+    private void Start()
+    {
+        if (randomGenerate)
+        {
+            noiseStep = Random.Range(0, 20f);
+        }
+    }
 
     private void OnValidate()
     {
