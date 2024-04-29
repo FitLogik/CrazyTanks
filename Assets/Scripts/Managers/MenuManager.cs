@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    // TODO: давай по новой, Миша, всё...
     public enum GameScenes
     {
         Game1Player = 1,
-        Game2Players = 2
+        Game2Players = 2,
+        GeneralScene = 3
     }
 
     public void LoadGame1Player()
@@ -20,6 +20,12 @@ public class MenuManager : MonoBehaviour
     {
         LoadScene(GameScenes.Game2Players);
     }
+
+    public void LoadGeneralScene()
+    {
+        LoadScene(GameScenes.GeneralScene);
+    }
+
 
     public void LoadScene(GameScenes gameScene)
     {

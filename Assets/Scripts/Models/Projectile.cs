@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -46,6 +43,8 @@ public class Projectile : MonoBehaviour
                 //GameObject DamageTextInstance = Instantiate(damageTextPrefab, Enemy.transform);
                 //DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
                 //Debug.Log(damageBullet);
+
+                // TODO: Добавить текст нанесённого урона
 
                 Debug.Log($"Hit!\nDamaged Player: {player.playerNumber}");
             }
