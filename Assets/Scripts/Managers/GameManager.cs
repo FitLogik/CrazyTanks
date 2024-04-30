@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         if (tankPrefab == null)
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // √енерируем карту случайным образом
+        EnvironmentGenerator.instance.noiseStep = Random.Range(0, 20f);
+        EnvironmentGenerator.instance.OnValidate();
+
         // ћожет быть не будет использоватьс€ данный код
         if (game == Game.Game2Players)
         {
