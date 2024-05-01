@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3669980646293721108}
   - component: {fileID: 9123561807017096737}
+  - component: {fileID: 6783140065648125955}
   m_Layer: 0
   m_Name: TankFooter
   m_TagString: Untagged
@@ -159,6 +160,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &6783140065648125955
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197835963204128562}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.44, y: 0.48}
+    newSize: {x: 0.36, y: 0.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.6, y: 0.24}
+      - {x: -0.68, y: 0.2}
+      - {x: -0.72, y: 0.16}
+      - {x: -0.72, y: -0.12}
+      - {x: -0.71, y: -0.16}
+      - {x: -0.68, y: -0.21}
+      - {x: -0.65, y: -0.23}
+      - {x: -0.6, y: -0.24}
+      - {x: 0.48, y: -0.24}
+      - {x: 0.55, y: -0.22}
+      - {x: 0.61, y: -0.19}
+      - {x: 0.66, y: -0.15}
+      - {x: 0.69, y: -0.11}
+      - {x: 0.71, y: -0.06}
+      - {x: 0.72, y: 0}
+      - {x: 0.71999997, y: 0.12}
+      - {x: 0.6, y: 0.24}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1460057074486434499
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +264,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460057074486434499}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -273,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7792806917726502433}
   - component: {fileID: 4055742384223159971}
+  - component: {fileID: 1264665314499838623}
   m_Layer: 0
   m_Name: TankHeader
   m_TagString: Untagged
@@ -347,6 +411,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1264665314499838623
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279297737348119492}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.72, y: 0.48}
+    newSize: {x: 0.18, y: 0.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.28, y: 0.24}
+      - {x: -0.36, y: 0.16}
+      - {x: -0.36, y: -0.2}
+      - {x: -0.32, y: -0.24}
+      - {x: 0.32, y: -0.24}
+      - {x: 0.36, y: -0.2}
+      - {x: 0.36, y: 0.04}
+      - {x: 0.32, y: 0.12}
+      - {x: 0.24, y: 0.2}
+      - {x: 0.16, y: 0.24}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3468644882216556996
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4773387238648919347}
   - component: {fileID: 1477858020374268756}
+  - component: {fileID: 7601170982805179259}
   m_Layer: 0
   m_Name: TankMuzzle
   m_TagString: Untagged
@@ -534,6 +654,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &7601170982805179259
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842077031684193707}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.32, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.36, y: 1.4}
+    newSize: {x: 0.34, y: 0.35}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.72, y: 0.12}
+  m_EdgeRadius: 0
 --- !u!1 &7700578422273488247
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,8 +777,25 @@ MonoBehaviour:
   moveSpeed: 15
   maxSpeed: 5
   maxHealth: 100
+  stabilizationForce: 0.025
+  moveRotationMultiplier: 0.5
+  footerCollider: {fileID: 0}
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   muzzleTransform: {fileID: 4773387238648919347}
-  rotationSpeed: 100
+  muzzleRotationSpeed: 180
   minMuzzleRotation: -10
   maxMuzzleRotation: 60
   projectilePrefab: {fileID: 5528492389518991426, guid: 1e0a96c315aa08045b3becef8947bea5, type: 3}
@@ -660,6 +842,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  healthBarImage: {fileID: 0}
 --- !u!1 &9105738504936480256
 GameObject:
   m_ObjectHideFlags: 0

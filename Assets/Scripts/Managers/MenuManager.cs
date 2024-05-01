@@ -11,11 +11,6 @@ public class MenuManager : MonoBehaviour
         GeneralScene = 3
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     public void LoadGame1Player()
     {
         LoadScene(GameScenes.Game1Player);

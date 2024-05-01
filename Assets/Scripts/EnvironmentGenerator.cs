@@ -28,10 +28,10 @@ public class EnvironmentGenerator : MonoBehaviour
 
     private void Start()
     {
-        //if (randomGenerate)
-        //{
-        //noiseStep = Random.Range(0, 20f);
-        //}
+        if (randomGenerate)
+        {
+            noiseStep = Random.Range(0, 20f);
+        }
     }
 
     public void OnValidate()

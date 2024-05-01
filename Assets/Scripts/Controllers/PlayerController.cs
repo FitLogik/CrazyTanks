@@ -4,35 +4,38 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [Header("Tank Properties")]
-    public int playerNumber = 1;              // номер игрока
-    [SerializeField] float moveSpeed = 12f;             // скорость движения танка
-    [SerializeField] float maxSpeed = 12f;              // максимальная скорость движения танка
-    [SerializeField] int maxHealth = 100;               // максимальное значение здоровья танка
+    public int playerNumber = 1;                            // номер игрока
+    [SerializeField] float moveSpeed = 12f;                 // скорость движения танка
+    [SerializeField] ContactFilter2D contactFilter;         // 
+    [SerializeField] float maxSpeed = 12f;                  // максимальная скорость движения танка
+    [SerializeField] int maxHealth = 100;                   // максимальное значение здоровья танка
+    [SerializeField] float stabilizationForce = 0.1f;       // сила стабилизации кручения танка (чтобы он старался не переворачиваться)
+    [SerializeField] float moveRotationMultiplier = 0.05f;  // множитель переворота при нажатии на кнопку движения (поднимается перед)
 
     [Header("Muzzle Properties")]
-    [SerializeField] Transform muzzleTransform;         // объект дула
-    [SerializeField] float rotationSpeed = 180f;        // скорость поворота дула
-    [SerializeField] float minMuzzleRotation = 10f;      // минимальный поворот дула
-    [SerializeField] float maxMuzzleRotation = 100f;     // максимальный поворот дула
+    [SerializeField] Transform muzzleTransform;             // объект дула
+    [SerializeField] float muzzleRotationSpeed = 180f;      // скорость поворота дула
+    [SerializeField] float minMuzzleRotation = 10f;         // минимальный поворот дула
+    [SerializeField] float maxMuzzleRotation = 100f;        // максимальный поворот дула
 
     [Header("Bullet Properties")]
-    [SerializeField] GameObject projectilePrefab;       // префаб снаряда
-    [SerializeField] Transform bulletsContainer;        // контейнер, где будут храниться объекты снарядов (чтобы не засоряло основную ветку)
-    [SerializeField] float minBulletSpeed = 3f;
-    [SerializeField] float maxBulletSpeed = 15f;
-    [SerializeField] float bulletSpeedMultiplier = 10f;
-    [SerializeField] float muzzleSpawnDistance = 0.7f;  // множитель дистанции от начала координаты пушки
-    [SerializeField] float recoilMultiplier = 10f;
+    [SerializeField] GameObject projectilePrefab;           // префаб снаряда
+    [SerializeField] Transform bulletsContainer;            // контейнер, где будут храниться объекты снарядов (чтобы не засоряло основную ветку)
+    [SerializeField] float minBulletSpeed = 3f;             // минимальная скорость снаряда
+    [SerializeField] float maxBulletSpeed = 15f;            // максимальная скорость снаряда
+    [SerializeField] float bulletSpeedMultiplier = 10f;     // множитель скорости снаряда при зажатии кнопки
+    [SerializeField] float muzzleSpawnDistance = 0.7f;      // дистанция от начала координаты стрельбы
+    [SerializeField] float recoilMultiplier = 10f;          // множитель отдачи от выстрела
 
     [Space]
 
-    [SerializeField] ProjectileProperties projectileProperties;
+    [SerializeField] ProjectileProperties projectileProperties;     // настройки снаряда
 
     [Header("Misc")]
-    [SerializeField] GameObject bulletSpeedCanvas;
-    [SerializeField] Image bulletSpeedBarImage;
-    [SerializeField] Gradient bulletSpeedBarGradient;
-    [SerializeField] Image healthBarImage;
+    [SerializeField] GameObject bulletSpeedCanvas;          // Холст, который имеет элемент, показывающий ускорение снаряда перед выстрелом
+    [SerializeField] Image bulletSpeedBarImage;             // Прогрессбар ускорения снаряда перед выстрелом
+    [SerializeField] Gradient bulletSpeedBarGradient;       // Градиент, цвета которого устанавливаются от 0 до 100
+    [SerializeField] Image healthBarImage;                  // Прогрессбар здоровья игрока
 
     private float health;
 
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private string _rotateAxisName;
     private string _fireAxisName;
     private Rigidbody2D _rb;
+
+    private bool isGrounded => _rb.IsTouching(contactFilter);
 
     private bool _isFirePressed = false;
     private float _bulletSpeed = 0f;
@@ -68,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
         health = maxHealth;
 
-        Vector2 border = GetBorder();
+        Vector2 border = GameManager.GetBorder();
         Vector2 playerTransform = new Vector2(border.x - border.x / 5, -0.75f);
         if (playerNumber == 1)
         {
@@ -78,18 +83,12 @@ public class PlayerController : MonoBehaviour
         transform.position = playerTransform;
     }
 
-    private Vector2 GetBorder()
-    {
-        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-
-        return stageDimensions;
-    }
-
-
     private void FixedUpdate()
     {
         #region Движение танка
         Move();
+        StabilizeRotate();
+
         MuzzleTurn();
         #endregion
     }
@@ -153,13 +152,23 @@ public class PlayerController : MonoBehaviour
     // Перемещение танка
     private void Move()
     {
+        // GetAxis - плавное изменение состояния кнопки
         float moveInput = Input.GetAxis(_movementAxisName); // движение влево (-1), вправо (1), или стоим на месте (0)
 
-        // Добавляем силу для плавного увеличения скорости
-        _rb.AddForce(new Vector2(moveInput * moveSpeed, 0));
+        // Проверка, находится ли танк на поверхности
+        if (isGrounded)
+        {
+            // Добавляем силу в направлении танка для увеличения скорости
+            _rb.AddForce(transform.right * moveInput * moveSpeed);
+
+            Debug.Log($"Grounded\nPlayer{playerNumber}");
+        }
+
+
+        // Добавляем крутящий момент для поднятия переда при движении вперёд
+        _rb.AddTorque(moveInput * moveRotationMultiplier);
 
         // Ограничение скорости
-        //_rb.velocity = Vector2.ClampMagnitude(_rb.velocity, maxSpeed);
         float clampedVelocityX = Mathf.Clamp(_rb.velocity.x, -maxSpeed, maxSpeed);
 
         _rb.velocity = new Vector2(clampedVelocityX, _rb.velocity.y);
@@ -174,10 +183,26 @@ public class PlayerController : MonoBehaviour
         float muzzleAngle = muzzleTransform.localEulerAngles.z % 360;
         if (muzzleAngle > 180) muzzleAngle -= 360;
 
-        float rotationAmount = rotationInput * rotationSpeed * Time.deltaTime;
+        float rotationAmount = rotationInput * muzzleRotationSpeed * Time.deltaTime;
         float muzzleRotation = Mathf.Clamp(muzzleAngle + rotationAmount, minMuzzleRotation, maxMuzzleRotation);
 
         muzzleTransform.localRotation = Quaternion.Euler(0, 0, muzzleRotation);
+    }
+
+    private void StabilizeRotate()
+    {
+        // Получаем угол наклона танка
+        float angle = Mathf.DeltaAngle(transform.eulerAngles.z, 0f);
+
+        // Проверяем, наклонен ли танк
+        if (angle != 0)
+        {
+            // Вычисляем силу угла наклона
+            float stabilizationStrength = stabilizationForce * angle;
+
+            // Применяем силу
+            _rb.AddTorque(stabilizationStrength);
+        }
     }
 
     #endregion
