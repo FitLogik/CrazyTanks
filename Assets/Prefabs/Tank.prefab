@@ -775,11 +775,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   moveSpeed: 15
-  maxSpeed: 5
-  maxHealth: 100
-  stabilizationForce: 0.025
-  moveRotationMultiplier: 0.5
-  footerCollider: {fileID: 0}
   contactFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -794,6 +789,10 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  maxSpeed: 5
+  maxHealth: 100
+  stabilizationForce: 0.025
+  moveRotationMultiplier: 1
   muzzleTransform: {fileID: 4773387238648919347}
   muzzleRotationSpeed: 180
   minMuzzleRotation: -10

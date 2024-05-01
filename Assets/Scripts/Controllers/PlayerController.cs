@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float minBulletSpeed = 3f;             // минимальная скорость снаряда
     [SerializeField] float maxBulletSpeed = 15f;            // максимальная скорость снаряда
     [SerializeField] float bulletSpeedMultiplier = 10f;     // множитель скорости снаряда при зажатии кнопки
+    [SerializeField] float maxBulletDamage = 75f;
+    
+
     [SerializeField] float muzzleSpawnDistance = 0.7f;      // дистанция от начала координаты стрельбы
     [SerializeField] float recoilMultiplier = 10f;          // множитель отдачи от выстрела
 
@@ -47,7 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded => _rb.IsTouching(contactFilter);
 
     private bool _isFirePressed = false;
-    private float _bulletSpeed = 0f;
+    [SerializeField] private float _bulletSpeed = 0f;
+    [SerializeField] private float _bulletDamage = 0f;
 
     private void Awake()
     {
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
             if (!_isFirePressed)
             {
                 _bulletSpeed = minBulletSpeed; // устанавливаем минимальную скорость пули
+               
                 // Включаем объект с холстом прогрессбара
                 bulletSpeedCanvas.SetActive(true);
 
@@ -114,6 +119,7 @@ public class PlayerController : MonoBehaviour
             // Просчитываем изменение увеличения скорости пули с момента прошлого кадра
             float speedIncrease = bulletSpeedMultiplier * Time.deltaTime;
             _bulletSpeed = Mathf.Min(_bulletSpeed + speedIncrease, maxBulletSpeed);  // ограничиваем скорость до максимального значения
+            _bulletDamage =  maxBulletDamage * _bulletSpeed/maxBulletSpeed;
             UpdateBulletSpeedBar(_bulletSpeed); // обновляем progressbar со скоростью пули
         }
         // Если отпущена кнопка атаки
@@ -244,6 +250,7 @@ public class PlayerController : MonoBehaviour
 
         Projectile projectile = projectileGameObject.AddComponent<Projectile>();
         projectile.properties = projectileProperties;
+        projectile.properties.damage = (int)_bulletDamage;
 
         return projectile;
     }

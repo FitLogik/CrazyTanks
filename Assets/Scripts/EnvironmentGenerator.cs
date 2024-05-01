@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.U2D;
 
-[ExecuteInEditMode]
 public class EnvironmentGenerator : MonoBehaviour
 {
     public static EnvironmentGenerator instance;
@@ -32,9 +31,11 @@ public class EnvironmentGenerator : MonoBehaviour
         {
             noiseStep = Random.Range(0, 20f);
         }
+
+        Generate();
     }
 
-    public void OnValidate()
+    public void Generate()
     {
         spriteShapeController.spline.Clear();
 
