@@ -3,18 +3,26 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    enum Game
+
+    public enum GameTypes
     {
-        NoGame,
-        Game1Player,
+        Game1Player = 1,
         Game2Players
     }
 
-    [SerializeField] Game game;
-    [SerializeField] GameObject tankPrefab;
-    [SerializeField] GameObject uiObject;
+    private GameTypes game;
+
+    [Header("Prefabs")]
     [SerializeField] GameObject Player1WinsCanvas;
     [SerializeField] GameObject Player2WinsCanvas;
+
+    [Header("Players Preferences")]
+    [SerializeField] PlayerSpawnProperties player1SpawnProperties;
+    [SerializeField] PlayerSpawnProperties player2SpawnProperties;
+
+
+    private PlayerController _player1;
+    private PlayerController _player2;
 
     private int Player1Score;
     private int Player2Score;
@@ -33,9 +41,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void StartGame()
     {
-
+        _player1 = PlayerSpawner.CreatePlayer(player1SpawnProperties);
+        if (game == GameTypes.Game2Players)
+        {
+            _player2 = PlayerSpawner.CreatePlayer(player2SpawnProperties);
+        }
     }
 
     public static Vector2 GetBorder()
@@ -87,10 +99,12 @@ public class GameManager : MonoBehaviour
     private void Player1Wins()
     {
         Player1WinsCanvas.SetActive(true);
+        Player1Score++;
     }
 
     private void Player2Wins()
     {
         Player2WinsCanvas.SetActive(true);
+        Player2Score++;
     }
 }
