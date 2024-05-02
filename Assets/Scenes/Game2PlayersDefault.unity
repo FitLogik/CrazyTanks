@@ -1508,6 +1508,9 @@ MonoBehaviour:
   windMaxStrength: 150
   isWindActive: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7729a39 (Added color changing)
 --- !u!114 &1475993656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,8 +1524,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankPrefab: {fileID: 7700578422273488247, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+<<<<<<< HEAD
 =======
 >>>>>>> master
+=======
+>>>>>>> 7729a39 (Added color changing)
 --- !u!1 &1781476409
 GameObject:
   m_ObjectHideFlags: 0
