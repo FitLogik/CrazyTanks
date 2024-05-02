@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     private bool isGameEnded;
 
+    public static Vector2 windDirection = Vector2.right; // Статическое поле для направления ветра
+    public static float windStrength = 0f; // Статическое поле для силы ветра
+
     private void Awake()
     {
         if (instance == null)
@@ -41,6 +44,28 @@ public class GameManager : MonoBehaviour
 
         return stageDimensions;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            Vector2 windForce = windDirection * windStrength;
+            rb.AddForce(windForce);
+        }
+    }
+
+    public static void SetWindDirection(Vector2 newWindDirection)
+    {
+        windDirection = newWindDirection;
+    }
+
+    public static void SetWindStrength(float newWindStrength)
+    {
+        windStrength = newWindStrength;
+    }
+
 
     internal void EndGame(int defeatedPlayerNumber)
     {
