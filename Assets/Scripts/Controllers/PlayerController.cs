@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour
     private string _fireAxisName;
     private Rigidbody2D _rb;
 
+
+
+
+
     private bool isGrounded => _rb.IsTouching(contactFilter);
 
     private bool _isFirePressed = false;
@@ -119,7 +123,7 @@ public class PlayerController : MonoBehaviour
             // Просчитываем изменение увеличения скорости пули с момента прошлого кадра
             float speedIncrease = bulletSpeedMultiplier * Time.deltaTime;
             _bulletSpeed = Mathf.Min(_bulletSpeed + speedIncrease, maxBulletSpeed);  // ограничиваем скорость до максимального значения
-            _bulletDamage =  maxBulletDamage * _bulletSpeed/maxBulletSpeed;
+            _bulletDamage = maxBulletDamage * _bulletSpeed / maxBulletSpeed;
             UpdateBulletSpeedBar(_bulletSpeed); // обновляем progressbar со скоростью пули
         }
         // Если отпущена кнопка атаки
@@ -251,6 +255,7 @@ public class PlayerController : MonoBehaviour
         Projectile projectile = projectileGameObject.AddComponent<Projectile>();
         projectile.properties = projectileProperties;
         projectile.properties.damage = (int)_bulletDamage;
+
 
         return projectile;
     }
