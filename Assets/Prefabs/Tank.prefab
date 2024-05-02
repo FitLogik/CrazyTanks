@@ -802,6 +802,7 @@ MonoBehaviour:
   minBulletSpeed: 3
   maxBulletSpeed: 15
   bulletSpeedMultiplier: 10
+  maxBulletDamage: 75
   muzzleSpawnDistance: 0.7
   recoilMultiplier: 10
   projectileProperties:
@@ -842,6 +843,8 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   healthBarImage: {fileID: 0}
+  _bulletSpeed: 0
+  _bulletDamage: 0
 --- !u!1 &9105738504936480256
 GameObject:
   m_ObjectHideFlags: 0

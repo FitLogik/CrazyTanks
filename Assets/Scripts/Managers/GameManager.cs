@@ -28,17 +28,6 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        if (tankPrefab == null)
-        {
-            Debug.LogError("Префаб танка не установлен!");
-            return;
-        }
-        else if (uiObject == null)
-        {
-            Debug.LogError("Объект пользовательского интерфейса не установлен!");
-            return;
-        }
     }
 
     private void Start()
