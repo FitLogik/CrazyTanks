@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WindManager : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class WindManager : MonoBehaviour
 
     public Vector2 windDirection = Vector2.right; // Начальное направление ветра
     public float windStrength = 2f; // Начальная сила ветра
+
+    public Image windImage1;
+    public Image windImage2;
 
     public float windChangeInterval = 10f; // Интервал изменения параметров ветра
     public float windMinStrength = 50f; // Минимальная сила ветра
@@ -30,7 +35,9 @@ public class WindManager : MonoBehaviour
 
     private void Start()
     {
-        Invoke("ToggleWindWithDelay", Random.Range(5f, 15f));
+        windImage1.enabled = false;
+        windImage2.enabled = false;
+        StartCoroutine(CallMethods());
     }
 
     private void StartWind()
@@ -38,6 +45,16 @@ public class WindManager : MonoBehaviour
         isWindActive = true;
         ChangeWindParams();
         ApplyWind();
+        if (windDirection.x > 0)
+        {
+            windImage1.enabled = true;
+            windImage2.enabled = false;
+        }
+        else
+        {
+            windImage1.enabled = false;
+            windImage2.enabled = true;
+        }
         Debug.Log("Ветер пошел");
     }
 
@@ -45,6 +62,8 @@ public class WindManager : MonoBehaviour
     {
         isWindActive = false;
         ApplyWind();
+        windImage1.enabled = false;
+        windImage2.enabled = false;
         Debug.Log("Ветер не пошел");
     }
 
@@ -67,21 +86,18 @@ public class WindManager : MonoBehaviour
         }
         else
         {
-            GameManager.SetWindDirection(windDirection);
             GameManager.SetWindStrength(0);
         }
     }
 
-    private void ToggleWindWithDelay()
+    IEnumerator CallMethods()
     {
-        // Включаем ветер
-        StartWind();
-
-        // Выключаем ветер через время
-        Invoke("StopWind", Random.Range(5, 15));
-
-        // Перезапускаем цикл через время
-        Invoke("ToggleWindWithDelay", Random.Range(5, 15));
-
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(5f,20f)); // Подождем 1 секунду
+            StartWind();
+            yield return new WaitForSeconds(Random.Range(5f, 20f)); // Подождем 2 секунды
+            StopWind();
+        }
     }
 }
