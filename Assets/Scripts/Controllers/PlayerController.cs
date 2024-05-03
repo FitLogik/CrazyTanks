@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,11 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Tank Properties")]
     public int playerNumber;
-    public Color tankColor;
+    [SerializeField] bool setPlayerPrefsColor = false;      // будет ли применяться цвет из реестра
+    [SerializeField] Color tankColor;                       // цвет танка
     [SerializeField] float moveSpeed = 12f;                 // скорость движения танка
-    [SerializeField] ContactFilter2D contactFilter;         // 
+    [SerializeField] ContactFilter2D contactFilter;         // нужен для обнаружения столкновений с объектами
     [SerializeField] float maxSpeed = 12f;                  // максимальная скорость движения танка
-    [SerializeField] int maxHealth = 100;                   // максимальное значение здоровья танка
+    [SerializeField, Min(1f)] int maxHealth = 100;          // максимальное значение здоровья танка
     [SerializeField] float stabilizationForce = 0.1f;       // сила стабилизации кручения танка (чтобы он старался не переворачиваться)
     [SerializeField] float moveRotationMultiplier = 0.05f;  // множитель переворота при нажатии на кнопку движения (поднимается перед)
 
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float minBulletSpeed = 3f;             // минимальная скорость снаряда
     [SerializeField] float maxBulletSpeed = 15f;            // максимальная скорость снаряда
     [SerializeField] float bulletSpeedMultiplier = 10f;     // множитель скорости снаряда при зажатии кнопки
-    [SerializeField] float maxBulletDamage = 75f;
+    [SerializeField] float maxBulletDamage = 75f;           // максимальный урон от снаряда
     
 
     [SerializeField] float muzzleSpawnDistance = 0.7f;      // дистанция от начала координаты стрельбы
@@ -86,17 +88,31 @@ public class PlayerController : MonoBehaviour
 
         health = maxHealth;
 
+        SetColor();
+
+        SetPosition(playerNumber);
+    }
+
+    private void SetColor()
+    {
+        if (setPlayerPrefsColor == true)
+        {
+            tankColor = PrefsManager.GetPlayerColor(playerNumber);
+        }
+
         _skinManager.SetColor(tankColor);
+    }
 
-        // TODO: Удалить этот кусок кода, он заменён PlayerSpawner'ом\
-        //Vector2 border = GameManager.GetBorder();
-        //Vector2 playerTransform = new Vector2(border.x - border.x / 5, -0.75f);
-        //if (playerNumber == 1)
-        //{
-        //    playerTransform.x *= -1;
-        //}
+    void SetPosition(int playerNumber)
+    {
+        Vector2 border = GameManager.GetBorder();
+        Vector2 playerTransform = new Vector2(border.x - border.x / 5, -0.75f);
+        if (playerNumber == 1)
+        {
+            playerTransform.x *= -1;
+        }
 
-        //transform.position = playerTransform;
+        transform.position = playerTransform;
     }
 
     private void FixedUpdate()
@@ -189,7 +205,6 @@ public class PlayerController : MonoBehaviour
 
         _rb.velocity = new Vector2(clampedVelocityX, _rb.velocity.y);
     }
-
 
     // Поворот дула
     private void MuzzleTurn()

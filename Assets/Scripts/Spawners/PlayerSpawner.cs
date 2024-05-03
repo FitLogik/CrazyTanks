@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Удалить скрипт, он не используется
 public class PlayerSpawner : MonoBehaviour
 {
     public static PlayerSpawner instance;

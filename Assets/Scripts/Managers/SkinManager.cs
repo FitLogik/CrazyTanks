@@ -13,6 +13,8 @@ public class SkinManager : MonoBehaviour
 
     public void SetColor(Color color)
     {
+
+
         tankColor = color;
 
         muzzleSpriteMask.color = color;
