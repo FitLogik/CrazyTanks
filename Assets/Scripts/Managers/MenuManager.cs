@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     // TODO: давай по новой, Миша, всё...
+
+    public GameObject mainMenu;
+    public GameObject settingsMenu;
+
+
     public enum GameScenes
     {
         Game1Player = 1,
@@ -24,6 +29,18 @@ public class MenuManager : MonoBehaviour
     public void LoadGeneralScene()
     {
         LoadScene(GameScenes.GeneralScene);
+    }
+
+    public void OpenSettingsMenu()
+    {
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
+
+    public void CloseSettingsMenu()
+    {
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 
 
