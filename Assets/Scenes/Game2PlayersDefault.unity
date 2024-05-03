@@ -1248,7 +1248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7700578422273488247, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9123561807017096737, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: m_SortingOrder
@@ -1405,7 +1405,6 @@ GameObject:
   - component: {fileID: 1475993653}
   - component: {fileID: 1475993654}
   - component: {fileID: 1475993655}
-  - component: {fileID: 1475993656}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1440,6 +1439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855ef7eafda0782449fc2ed4c2b9e785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: 0
+  tankPrefab: {fileID: 7700578422273488247, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+  uiObject: {fileID: 463726713}
   Player1WinsCanvas: {fileID: 1282921134}
   Player2WinsCanvas: {fileID: 1312429229}
 --- !u!61 &1475993654
@@ -1507,28 +1509,6 @@ MonoBehaviour:
   windMinStrength: 50
   windMaxStrength: 150
   isWindActive: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7729a39 (Added color changing)
---- !u!114 &1475993656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475993651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcbfbc5218213c74893482a939a9c642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankPrefab: {fileID: 7700578422273488247, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
-<<<<<<< HEAD
-=======
->>>>>>> master
-=======
->>>>>>> 7729a39 (Added color changing)
 --- !u!1 &1781476409
 GameObject:
   m_ObjectHideFlags: 0
