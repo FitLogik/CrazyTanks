@@ -352,17 +352,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132151571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4290581, y: 1.4290581, z: 1.4290581}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000009701058}
+  m_LocalScale: {x: 0.2185, y: 0.2185, z: 0.2185}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 463726717}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 123, y: -276}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 135, y: -276}
+  m_SizeDelta: {x: 751, y: 504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &132151573
 MonoBehaviour:
@@ -1225,7 +1225,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: tankColor.b
-      value: 0
+      value: 0.80319357
       objectReference: {fileID: 0}
     - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: tankColor.g
@@ -2102,17 +2102,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135160473}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.429058, y: 1.429058, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.21849999, y: 0.21849999, z: 0.15289792}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 463726717}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -123, y: -276}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -135, y: -276}
+  m_SizeDelta: {x: 751, y: 504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135160475
 MonoBehaviour:
@@ -4548,6 +4548,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: tankColor.b
+      value: 0.01966893
+      objectReference: {fileID: 0}
+    - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: tankColor.g
+      value: 0.01966893
+      objectReference: {fileID: 0}
+    - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: tankColor.r
+      value: 0.2901961
+      objectReference: {fileID: 0}
     - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: windStrength
       value: 400
