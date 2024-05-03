@@ -7,9 +7,9 @@ public static class PrefsManager
     private const string BColorKey = "BColor";
     private const string AColorKey = "AColor";
 
-    private const float defaultRColor = 0.133f;
+    private const float defaultRColor = 0.129f;
     private const float defaultGColor = 0.4f;
-    private const float defaultBColor = 0.133f;
+    private const float defaultBColor = 0.129f;
     private const float defaultAColor = 1f;
 
     public static Color GetPlayerColor(int playerNumber)

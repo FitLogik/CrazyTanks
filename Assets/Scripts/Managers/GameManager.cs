@@ -1,4 +1,6 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -8,30 +10,17 @@ public class GameManager : MonoBehaviour
     public enum GameTypes
     {
         Game1Player = 1,
-        Game2Players
+        Game2Players = 2
     }
 
     private GameTypes game;
 
-    [Header("Prefabs")]
-    [SerializeField] GameObject Player1WinsCanvas;
-    [SerializeField] GameObject Player2WinsCanvas;
-
-    [Header("Players Preferences")]
-    [SerializeField] PlayerSpawnProperties player1SpawnProperties;
-    [SerializeField] PlayerSpawnProperties player2SpawnProperties;
+    [SerializeField] SceneAsset[] scenes2Players;
 
 
-    private PlayerController _player1;
-    private PlayerController _player2;
+    public int Player1Score { get; set; }
+    public int Player2Score { get; set; }
 
-    private int Player1Score;
-    private int Player2Score;
-
-    private bool isGameEnded;
-
-    public static Vector2 windDirection = Vector2.right; // Статическое поле для направления ветра
-    public static float windStrength = 0f; // Статическое поле для силы ветра
 
     private void Awake()
     {
@@ -40,72 +29,23 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        // TODO: Временное решение
+        game = GameTypes.Game2Players;
     }
 
-    private void StartGame()
+    
+    public static void LoadRandomScene()
     {
-        _player1 = PlayerSpawner.CreatePlayer(player1SpawnProperties);
-        if (game == GameTypes.Game2Players)
+        if (instance.game == GameTypes.Game2Players)
         {
-            _player2 = PlayerSpawner.CreatePlayer(player2SpawnProperties);
-        }
-    }
-
-    public static Vector2 GetBorder()
-    {
-        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-
-        return stageDimensions;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-
-        if (rb != null)
-        {
-            Vector2 windForce = windDirection * windStrength;
-            rb.AddForce(windForce);
-        }
-    }
-
-    public static void SetWindDirection(Vector2 newWindDirection)
-    {
-        windDirection = newWindDirection;
-    }
-
-    public static void SetWindStrength(float newWindStrength)
-    {
-        windStrength = newWindStrength;
-    }
-
-
-    internal void EndGame(int defeatedPlayerNumber)
-    {
-        if (!isGameEnded)
-        {
-
-            if (defeatedPlayerNumber == 1)
+            int scenesCount = instance.scenes2Players.Length;
+            if (scenesCount > 0)
             {
-                Player2Wins();
-            }
-            else if (defeatedPlayerNumber == 2)
-            {
-                Player1Wins();
+                SceneAsset randomScene = instance.scenes2Players[UnityEngine.Random.Range(0, scenesCount)];
+                string randomSceneString = randomScene.name;
+                SceneManager.LoadSceneAsync(randomSceneString);
             }
         }
-        isGameEnded = true;
-    }
-
-    private void Player1Wins()
-    {
-        Player1WinsCanvas.SetActive(true);
-        Player1Score++;
-    }
-
-    private void Player2Wins()
-    {
-        Player2WinsCanvas.SetActive(true);
-        Player2Score++;
     }
 }

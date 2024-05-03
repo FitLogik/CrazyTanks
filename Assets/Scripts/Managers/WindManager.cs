@@ -81,12 +81,12 @@ public class WindManager : MonoBehaviour
         // Применение ветра к объектам
         if (isWindActive)
         {
-            GameManager.SetWindDirection(windDirection);
-            GameManager.SetWindStrength(windStrength);
+            RoundManager.SetWindDirection(windDirection);
+            RoundManager.SetWindStrength(windStrength);
         }
         else
         {
-            GameManager.SetWindStrength(0);
+            RoundManager.SetWindStrength(0);
         }
     }
 

@@ -42,7 +42,7 @@ public class PlayerSpawner : MonoBehaviour
     private static Vector2 GetPosition(PlayerSpawnProperties.Direction direction)
     {
         // Получаем координаты краёв экрана
-        Vector2 border = GameManager.GetBorder();
+        Vector2 border = RoundManager.GetBorders();
         // Устанавливаем позицию от центра экрана
         Vector2 position = new Vector2(border.x - border.x / 5, 0);
 

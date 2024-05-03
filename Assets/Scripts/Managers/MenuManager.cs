@@ -5,15 +5,16 @@ public class MenuManager : MonoBehaviour
 {
     // TODO: давай по новой, Миша, всё...
 
+    public GameObject gameManagerPrefab;
+
     public GameObject mainMenu;
     public GameObject settingsMenu;
 
 
     public enum GameScenes
     {
-        Game1Player = 1,
-        Game2Players = 2,
-        GeneralScene = 3
+        Game1Player = 0,
+        Game2Players = 3
     }
 
     public void LoadGame1Player()
@@ -24,11 +25,6 @@ public class MenuManager : MonoBehaviour
     public void LoadGame2Players()
     {
         LoadScene(GameScenes.Game2Players);
-    }
-
-    public void LoadGeneralScene()
-    {
-        LoadScene(GameScenes.GeneralScene);
     }
 
     public void OpenSettingsMenu()
@@ -46,6 +42,9 @@ public class MenuManager : MonoBehaviour
 
     public void LoadScene(GameScenes gameScene)
     {
-        SceneManager.LoadSceneAsync((int)gameScene);
+        // Создаем объект GameManager (при создании, к нему применяется DontDestroyOnLoad)
+        GameManager gameManager = Instantiate(gameManagerPrefab).AddComponent<GameManager>();
+
+        GameManager.LoadRandomScene();
     }
 }

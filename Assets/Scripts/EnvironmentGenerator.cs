@@ -35,7 +35,7 @@ public class EnvironmentGenerator : MonoBehaviour
         Generate();
     }
 
-    public void Generate()
+    private void Generate()
     {
         spriteShapeController.spline.Clear();
 
