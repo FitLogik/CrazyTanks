@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 [System.Serializable]
@@ -47,6 +48,20 @@ public class Projectile : MonoBehaviour
                 // TODO: Добавить текст нанесённого урона
 
                 Debug.Log($"Hit!\nDamaged Player: {player.playerNumber}");
+            }
+            else if (collision.gameObject.CompareTag("Enemy"))
+            {
+                EnemyControll enemy = collision.gameObject.GetComponent<EnemyControll>(); // пытаемся получить компонент PlayerController
+                if (enemy != null)
+                {
+                    enemy.TakeDamage();
+                }
+                else
+                {
+                    Debug.LogError("Ошибка обнаружения игрока!");
+                }
+
+                Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
 
             // Удаляем объект, с которым пуля столкнулась
