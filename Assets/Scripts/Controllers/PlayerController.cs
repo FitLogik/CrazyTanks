@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [Header("Tank Properties")]
-    public int playerNumber;
-    public Color tankColor;
+    public int playerNumber = 1;                            // номер игрока
     [SerializeField] float moveSpeed = 12f;                 // скорость движения танка
     [SerializeField] ContactFilter2D contactFilter;         // 
     [SerializeField] float maxSpeed = 12f;                  // максимальная скорость движения танка
@@ -41,30 +40,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Gradient bulletSpeedBarGradient;       // Градиент, цвета которого устанавливаются от 0 до 100
     [SerializeField] Image healthBarImage;                  // Прогрессбар здоровья игрока
 
-    float health;
+    private float health;
 
-    string _movementAxisName;
-    string _rotateAxisName;
-    string _fireAxisName;
-    Rigidbody2D _rb;
-    SkinManager _skinManager;
-
+    private string _movementAxisName;
+    private string _rotateAxisName;
+    private string _fireAxisName;
+    private Rigidbody2D _rb;
 
 
 
 
-    bool isGrounded => _rb.IsTouching(contactFilter);
 
+    private bool isGrounded => _rb.IsTouching(contactFilter);
 
-    bool _isFirePressed = false;
-
-    private float _bulletSpeed = 0f;
-    private float _bulletDamage = 0f;
+    private bool _isFirePressed = false;
+    [SerializeField] private float _bulletSpeed = 0f;
+    [SerializeField] private float _bulletDamage = 0f;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _skinManager = GetComponent<SkinManager>();
     }
 
     private void OnEnable()
@@ -86,17 +81,14 @@ public class PlayerController : MonoBehaviour
 
         health = maxHealth;
 
-        _skinManager.SetColor(tankColor);
+        Vector2 border = GameManager.GetBorder();
+        Vector2 playerTransform = new Vector2(border.x - border.x / 5, -0.75f);
+        if (playerNumber == 1)
+        {
+            playerTransform.x *= -1;
+        }
 
-        // TODO: Удалить этот кусок кода, он заменён PlayerSpawner'ом\
-        //Vector2 border = GameManager.GetBorder();
-        //Vector2 playerTransform = new Vector2(border.x - border.x / 5, -0.75f);
-        //if (playerNumber == 1)
-        //{
-        //    playerTransform.x *= -1;
-        //}
-
-        //transform.position = playerTransform;
+        transform.position = playerTransform;
     }
 
     private void FixedUpdate()
@@ -178,6 +170,8 @@ public class PlayerController : MonoBehaviour
         {
             // Добавляем силу в направлении танка для увеличения скорости
             _rb.AddForce(transform.right * moveInput * moveSpeed);
+
+            Debug.Log($"Grounded\nPlayer{playerNumber}");
         }
 
 
@@ -205,7 +199,6 @@ public class PlayerController : MonoBehaviour
         muzzleTransform.localRotation = Quaternion.Euler(0, 0, muzzleRotation);
     }
 
-    // Стабилизация переворота танка, чтобы он не упал на голову
     private void StabilizeRotate()
     {
         // Получаем угол наклона танка
