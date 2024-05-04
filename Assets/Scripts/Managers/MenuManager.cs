@@ -43,7 +43,7 @@ public class MenuManager : MonoBehaviour
     public void LoadScene(GameScenes gameScene)
     {
         // Создаем объект GameManager (при создании, к нему применяется DontDestroyOnLoad)
-        GameManager gameManager = Instantiate(gameManagerPrefab).AddComponent<GameManager>();
+        Instantiate(gameManagerPrefab);
 
         GameManager.LoadRandomScene();
     }

@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
     void SetPosition(int playerNumber)
     {
-        Vector2 border = RoundManager.GetBorders();
+        Vector2 border = GameManager.GetBorders();
         Vector2 playerTransform = new Vector2(border.x - border.x / 5, -0.75f);
         if (playerNumber == 1)
         {

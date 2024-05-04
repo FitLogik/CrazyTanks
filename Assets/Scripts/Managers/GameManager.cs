@@ -5,47 +5,69 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance { get; private set; }
 
-    public enum GameTypes
-    {
-        Game1Player = 1,
-        Game2Players = 2
-    }
 
-    private GameTypes game;
-
+    [SerializeField] GameTypes gameType;
+    [SerializeField] ScoreManager scoreManager;
     [SerializeField] SceneAsset[] scenes2Players;
 
-
-    public int Player1Score { get; set; }
-    public int Player2Score { get; set; }
+    public static GameTypes GameType => Instance.gameType;
+    public static ScoreManager ScoreManager => Instance.scoreManager;
 
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-        // TODO: Временное решение
-        game = GameTypes.Game2Players;
+        if (GameType == GameTypes.None)
+        {
+            gameType = GameTypes.Game2Players;
+        }
+
+        if (scoreManager == null)
+        {
+            scoreManager = gameObject.AddComponent<ScoreManager>();
+        }
+
     }
 
-    
+    public static Vector2 GetBorders()
+    {
+        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+
+        return stageDimensions;
+    }
+
     public static void LoadRandomScene()
     {
-        if (instance.game == GameTypes.Game2Players)
+        if (Instance.gameType == GameTypes.Game2Players)
         {
-            int scenesCount = instance.scenes2Players.Length;
+            int scenesCount = Instance.scenes2Players.Length;
             if (scenesCount > 0)
             {
-                SceneAsset randomScene = instance.scenes2Players[UnityEngine.Random.Range(0, scenesCount)];
+                SceneAsset randomScene = Instance.scenes2Players[Random.Range(0, scenesCount)];
                 string randomSceneString = randomScene.name;
-                SceneManager.LoadSceneAsync(randomSceneString);
+                Instance.LoadScene(randomSceneString);
             }
         }
+    }
+
+    private void LoadScene(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName);
+    }
+
+    public static void PlayerRoundWin(int playerNumber)
+    {
+        ScoreManager.PlayerRoundWin(playerNumber);
     }
 }

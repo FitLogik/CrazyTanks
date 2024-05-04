@@ -39,7 +39,7 @@ public class RoundManager : MonoBehaviour
             walls = gameObject.AddComponent<EdgeCollider2D>();
         }
 
-        Vector2 borders = GetBorders();
+        Vector2 borders = GameManager.GetBorders();
 
         walls.points = new Vector2[]
         {
@@ -48,13 +48,6 @@ public class RoundManager : MonoBehaviour
             new Vector2(borders.x + 0.33f, borders.y * 5),  // и пули не уничтожались при попадании в потолок
             new Vector2(borders.x + 0.33f, -borders.y)
         };
-    }
-
-    public static Vector2 GetBorders()
-    {
-        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-
-        return stageDimensions;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -87,26 +80,28 @@ public class RoundManager : MonoBehaviour
 
             if (defeatedPlayerNumber == 1)
             {
-                Player2Wins();
+                PlayerRoundWin(2); // Раунд выиграл 2 игрок
             }
             else if (defeatedPlayerNumber == 2)
             {
-                Player1Wins();
+                PlayerRoundWin(1); // Раунд выиграл 1 игрок
             }
         }
         isRoundEnded = true;
     }
 
-    private void Player1Wins()
+    private void PlayerRoundWin(int playerNumber)
     {
-        Player1WinsCanvas.SetActive(true);
-        GameManager.instance.Player1Score++;
+        GameManager.PlayerRoundWin(playerNumber);
+        if (playerNumber == 1)
+        {
+            Player1WinsCanvas.SetActive(true);
+        }
+        else if (playerNumber == 2)
+        {
+            Player2WinsCanvas.SetActive(true);
+        }
     }
 
-    private void Player2Wins()
-    {
-        Player2WinsCanvas.SetActive(true);
-        GameManager.instance.Player2Score++;
-    }
 
 }
