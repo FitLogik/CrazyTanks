@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,10 +36,15 @@ public class MenuManager : MonoBehaviour
 
     public void CloseSettingsMenu()
     {
+        SaveSettings();
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
     }
 
+    private void SaveSettings()
+    {
+        AudioManager.SaveSettings();
+    }
 
     public void LoadScene(GameScenes gameScene)
     {

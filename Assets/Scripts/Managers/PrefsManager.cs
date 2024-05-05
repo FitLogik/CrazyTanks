@@ -2,22 +2,32 @@
 
 public static class PrefsManager
 {
-    private const string RColorKey = "RColor";
-    private const string GColorKey = "GColor";
-    private const string BColorKey = "BColor";
-    private const string AColorKey = "AColor";
+    #region Keys
+    private const string RColorKey = "rColor";
+    private const string GColorKey = "gColor";
+    private const string BColorKey = "bColor";
+    private const string AColorKey = "aColor";
 
+    private const string musicKey = "musicVolume";
+    private const string SFXKey = "SFXVolume";
+    #endregion
+
+    #region Default Values
     private const float defaultRColor = 0.129f;
     private const float defaultGColor = 0.4f;
     private const float defaultBColor = 0.129f;
     private const float defaultAColor = 1f;
 
-    private const string musicKey = "musicVolume";
-    private const string SFXKey = "SFXVolume";
-
     private const float defaultMusicVolume = 0.5f;
     private const float defaultSFXVolume = 0.5f;
+    #endregion
 
+    private static string GetPlayerKey(string key, int playerNumber)
+    {
+        return $"{key}_Player{playerNumber}";
+    }
+
+    #region Color
     public static Color GetPlayerColor(int playerNumber)
     {
         float r = PlayerPrefs.GetFloat(GetPlayerKey(RColorKey, playerNumber), defaultRColor);
@@ -37,21 +47,21 @@ public static class PrefsManager
         PlayerPrefs.SetFloat(GetPlayerKey(BColorKey, playerNumber), color.b);
         PlayerPrefs.SetFloat(GetPlayerKey(AColorKey, playerNumber), color.a);
     }
+    #endregion
 
-    private static string GetPlayerKey(string key, int playerNumber)
-    {
-        return $"{key}_Player{playerNumber}";
-    }
-
+    #region Audio
     public static void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat(musicKey, volume);
+
+        Debug.Log("UpdateMusicVolume");
     }
 
     public static float GetMusicVolume()
     {
         return PlayerPrefs.GetFloat(musicKey, defaultMusicVolume);
     }
+
     public static void SetSFXVolume(float volume)
     {
         PlayerPrefs.SetFloat(SFXKey, volume);
@@ -61,5 +71,6 @@ public static class PrefsManager
     {
         return PlayerPrefs.GetFloat(SFXKey, defaultSFXVolume);
     }
+    #endregion
 
 }
