@@ -12,6 +12,12 @@ public static class PrefsManager
     private const float defaultBColor = 0.129f;
     private const float defaultAColor = 1f;
 
+    private const string musicKey = "musicVolume";
+    private const string SFXKey = "SFXVolume";
+
+    private const float defaultMusicVolume = 0.5f;
+    private const float defaultSFXVolume = 0.5f;
+
     public static Color GetPlayerColor(int playerNumber)
     {
         float r = PlayerPrefs.GetFloat(GetPlayerKey(RColorKey, playerNumber), defaultRColor);
@@ -36,4 +42,24 @@ public static class PrefsManager
     {
         return $"{key}_Player{playerNumber}";
     }
+
+    public static void SetMusicVolume(float volume)
+    {
+        PlayerPrefs.SetFloat(musicKey, volume);
+    }
+
+    public static float GetMusicVolume()
+    {
+        return PlayerPrefs.GetFloat(musicKey, defaultMusicVolume);
+    }
+    public static void SetSFXVolume(float volume)
+    {
+        PlayerPrefs.SetFloat(SFXKey, volume);
+    }
+
+    public static float GetSFXVolume()
+    {
+        return PlayerPrefs.GetFloat(SFXKey, defaultSFXVolume);
+    }
+
 }
