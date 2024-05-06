@@ -77,7 +77,6 @@ public class RoundManager : MonoBehaviour
     {
         if (!isRoundEnded)
         {
-
             if (defeatedPlayerNumber == 1)
             {
                 PlayerRoundWin(2); // Раунд выиграл 2 игрок

@@ -19,8 +19,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        FindScoreUIController();
-
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;   // SceneManager_sceneLoaded будет выполняться каждый раз,
                                                                 // когда будет загружаться новая сцена
     }
@@ -31,6 +29,7 @@ public class ScoreManager : MonoBehaviour
 
     private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
+        Debug.Log("Scene loaded");
         FindScoreUIController();
     }
 
@@ -45,7 +44,6 @@ public class ScoreManager : MonoBehaviour
                            "Не удалось найти объект ScoreUIController в текущей сцене.");
         }
 
-        Debug.Log("SceneManager_sceneLoaded() function invoked");
         scoreUIController.UpdateUI(GetScoreText());
     }
 

@@ -35,7 +35,7 @@ public class ScoreUIController : MonoBehaviour
         scoreText.rectTransform.anchorMax = uiSettings.rectTransformAnchorMax;
 
         Debug.Log(uiSettings.scorePosition);
-        scoreText.rectTransform.anchoredPosition = uiSettings.scorePosition;                     // позиция относительно якоря, установленного выше   
+        scoreText.rectTransform.anchoredPosition = uiSettings.scorePosition;    // позиция относительно якоря, установленного выше   
     }
 
 }

@@ -12,20 +12,18 @@ public class MenuManager : MonoBehaviour
     public GameObject settingsMenu;
 
 
-    public enum GameScenes
-    {
-        Game1Player = 0,
-        Game2Players = 3
-    }
 
     public void LoadGame1Player()
     {
-        LoadScene(GameScenes.Game1Player);
+        Debug.LogError("Не реализовано!");
     }
 
     public void LoadGame2Players()
     {
-        LoadScene(GameScenes.Game2Players);
+        // Создаем объект GameManager (при создании, к нему применяется DontDestroyOnLoad)
+        Instantiate(gameManagerPrefab);
+
+        GameManager.LoadRandomScene();
     }
 
     public void OpenSettingsMenu()
@@ -44,13 +42,5 @@ public class MenuManager : MonoBehaviour
     private void SaveSettings()
     {
         AudioManager.SaveSettings();
-    }
-
-    public void LoadScene(GameScenes gameScene)
-    {
-        // Создаем объект GameManager (при создании, к нему применяется DontDestroyOnLoad)
-        Instantiate(gameManagerPrefab);
-
-        GameManager.LoadRandomScene();
     }
 }

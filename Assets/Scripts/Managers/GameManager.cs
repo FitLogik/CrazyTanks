@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameTypes gameType;
     [SerializeField] ScoreManager scoreManager;
-    [SerializeField] SceneAsset[] scenes2Players;
+    [SerializeField] string[] scenes2PlayersNames;
 
     public static GameTypes GameType => Instance.gameType;
     public static ScoreManager ScoreManager => Instance.scoreManager;
@@ -51,12 +51,11 @@ public class GameManager : MonoBehaviour
     {
         if (Instance.gameType == GameTypes.Game2Players)
         {
-            int scenesCount = Instance.scenes2Players.Length;
+            int scenesCount = Instance.scenes2PlayersNames.Length;
             if (scenesCount > 0)
             {
-                SceneAsset randomScene = Instance.scenes2Players[Random.Range(0, scenesCount)];
-                string randomSceneString = randomScene.name;
-                Instance.LoadScene(randomSceneString);
+                string randomScene = Instance.scenes2PlayersNames[Random.Range(0, scenesCount)];
+                Instance.LoadScene(randomScene);
             }
         }
     }
