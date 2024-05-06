@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameTypes gameType;
     [SerializeField] ScoreManager scoreManager;
     [SerializeField] string[] scenes2PlayersNames;
-
     public static GameTypes GameType => Instance.gameType;
     public static ScoreManager ScoreManager => Instance.scoreManager;
 
