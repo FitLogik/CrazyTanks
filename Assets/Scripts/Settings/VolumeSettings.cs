@@ -6,9 +6,10 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] Slider sliderVolumeMusic;
     [SerializeField] Slider sliderVolumeSFX;
 
+
     private void Start()
     {
-        LoadVolume();
+        Init();
     }
 
     public void SetMusicVolume(float value)
@@ -21,7 +22,7 @@ public class VolumeSettings : MonoBehaviour
         AudioManager.SFXVolume = value;
     }
 
-    private void LoadVolume()
+    private void Init()
     {
         float musicVolume = AudioManager.MusicVolume;
         float sfxVolume = AudioManager.SFXVolume;

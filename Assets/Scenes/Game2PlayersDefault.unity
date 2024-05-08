@@ -4898,10 +4898,6 @@ PrefabInstance:
       propertyPath: bulletsContainer
       value: 
       objectReference: {fileID: 229449337}
-    - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
-      propertyPath: setPlayerPrefsColor
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4250594996503956214, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.32

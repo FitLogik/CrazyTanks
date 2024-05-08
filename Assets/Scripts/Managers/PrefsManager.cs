@@ -33,9 +33,10 @@ public static class PrefsManager
         float r = PlayerPrefs.GetFloat(GetPlayerKey(RColorKey, playerNumber), defaultRColor);
         float g = PlayerPrefs.GetFloat(GetPlayerKey(GColorKey, playerNumber), defaultGColor);
         float b = PlayerPrefs.GetFloat(GetPlayerKey(BColorKey, playerNumber), defaultBColor);
-        float a = PlayerPrefs.GetFloat(GetPlayerKey(AColorKey, playerNumber), defaultAColor);
-        
-        Color color = new Color(r, g, b, a);
+        //float a = PlayerPrefs.GetFloat(GetPlayerKey(AColorKey, playerNumber), defaultAColor);
+
+        //Color color = new Color(r, g, b, a);
+        Color color = new Color(r, g, b);
 
         return color;
     }
@@ -45,7 +46,7 @@ public static class PrefsManager
         PlayerPrefs.SetFloat(GetPlayerKey(RColorKey, playerNumber), color.r);
         PlayerPrefs.SetFloat(GetPlayerKey(GColorKey, playerNumber), color.g);
         PlayerPrefs.SetFloat(GetPlayerKey(BColorKey, playerNumber), color.b);
-        PlayerPrefs.SetFloat(GetPlayerKey(AColorKey, playerNumber), color.a);
+        //PlayerPrefs.SetFloat(GetPlayerKey(AColorKey, playerNumber), color.a);
     }
     #endregion
 

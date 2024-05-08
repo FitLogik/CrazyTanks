@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 4250594996503956214}
   - component: {fileID: 8604496690810314289}
   - component: {fileID: 416074358349805400}
-  - component: {fileID: 952031215840227853}
+  - component: {fileID: 5777702202125773605}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -908,6 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
+  setPlayerPrefsColor: 1
   tankColor: {r: 1, g: 0.5518868, b: 0.5518868, a: 1}
   moveSpeed: 15
   contactFilter:
@@ -978,7 +979,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   healthBarImage: {fileID: 0}
---- !u!114 &952031215840227853
+--- !u!114 &5777702202125773605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -987,10 +988,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7700578422273488247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 079563da96ef53c45a338d96712eecd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 21ab1cfc4ccf9fd4ba093384c4847082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankColor: {r: 1, g: 1, b: 1, a: 1}
   muzzleSpriteMask: {fileID: 5042019916973954811}
   headerSpriteMask: {fileID: 5785541852967913052}
   footerSpriteMask: {fileID: 7426325109928500012}

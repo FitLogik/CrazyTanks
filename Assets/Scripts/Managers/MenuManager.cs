@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
 
     public GameObject mainMenu;
     public GameObject settingsMenu;
+    public GameObject colorMenu;
 
 
 
@@ -37,6 +38,24 @@ public class MenuManager : MonoBehaviour
         SaveSettings();
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
+    }
+
+    public void OpenColorMenu()
+    {
+        mainMenu.SetActive(false);
+        colorMenu.SetActive(true);
+    }
+
+    public void CloseColorMenu()
+    {
+        SaveColors();
+        mainMenu.SetActive(true);
+        colorMenu.SetActive(false);
+    }
+
+    private void SaveColors()
+    {
+        ColorManager.SaveColors();
     }
 
     private void SaveSettings()

@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     string _rotateAxisName;
     string _fireAxisName;
     Rigidbody2D _rb;
-    SkinManager _skinManager;
+    ColorController _colorController;
 
 
 
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _skinManager = GetComponent<SkinManager>();
+        _colorController = GetComponent<ColorController>();
     }
 
     private void OnEnable()
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             tankColor = PrefsManager.GetPlayerColor(playerNumber);
         }
 
-        _skinManager.SetColor(tankColor);
+        _colorController.SetColor(tankColor);
     }
 
     void SetPosition(int playerNumber)
