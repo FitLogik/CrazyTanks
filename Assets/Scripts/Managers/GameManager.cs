@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameTypes gameType;
     [SerializeField] ScoreManager scoreManager;
     [SerializeField] string[] scenes2PlayersNames;
+
+    [SerializeField] string mainMenuSceneName;
+    [SerializeField] string gameOverSceneName;
+
     public static GameTypes GameType => Instance.gameType;
     public static ScoreManager ScoreManager => Instance.scoreManager;
 
@@ -46,6 +50,23 @@ public class GameManager : MonoBehaviour
         return stageDimensions;
     }
 
+    public static void RoundOver()
+    {
+        if (ScoreManager.IsGameOver)
+        {
+            Instance.LoadGameOverScene();
+        }
+        else
+        {
+            LoadRandomScene();
+        }
+    }
+
+    private void LoadGameOverScene()
+    {
+        LoadScene(gameOverSceneName);
+    }
+
     public static void LoadRandomScene()
     {
         if (Instance.gameType == GameTypes.Game2Players)
@@ -67,5 +88,11 @@ public class GameManager : MonoBehaviour
     public static void PlayerRoundWin(int playerNumber)
     {
         ScoreManager.PlayerRoundWin(playerNumber);
+    }
+
+    public static void ReturnToMainMenu()
+    {
+        Instance.LoadScene(Instance.mainMenuSceneName);
+        Destroy(Instance.gameObject);
     }
 }

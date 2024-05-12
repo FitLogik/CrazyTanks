@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game2PlayersWinter.unity
     guid: 60d67ba80593555468e9eb2047e5b9a2
+  - enabled: 1
+    path: Assets/Scenes/GameEnd2Players.unity
+    guid: d47dd3dbde7b1f642b9a1c947018aa4f
   m_configObjects: {}
