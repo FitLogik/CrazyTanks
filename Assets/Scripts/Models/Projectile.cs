@@ -9,7 +9,15 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody2D _rb;
     private bool _canCollide = true;
+    private Score combo;
 
+    private void Start()
+    {
+        if (GameManager.GameType != GameTypes.Game2Players)
+        {
+            combo = FindObjectOfType<Score>();
+        }
+    }
 
     private void Awake()
     {
@@ -25,7 +33,13 @@ public class Projectile : MonoBehaviour
             if (collision.gameObject.CompareTag("Ground"))
             {
                 Instantiate(properties.groundHitPrefab, transform.position, Quaternion.identity);
+                if (GameManager.GameType != GameTypes.Game2Players)
+                {
+                    combo.ResetCombo();
+
+                }
             }
+    
             // Проверяем, столкнулась ли пуля с объектом Player
             else if (collision.gameObject.CompareTag("Player"))
             {

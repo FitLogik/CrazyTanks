@@ -49,6 +49,7 @@ MonoBehaviour:
   scoreManager: {fileID: 7940924705835874977}
   scenes2PlayersNames:
   - Game2PlayersDefault
+  game1PlayerSceneName: Game1Player
   mainMenuSceneName: MenuScene
   gameOverSceneName: GameEnd2Players
 --- !u!114 &7940924705835874977

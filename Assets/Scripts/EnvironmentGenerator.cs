@@ -6,6 +6,7 @@ public class EnvironmentGenerator : MonoBehaviour
     public static EnvironmentGenerator instance;
 
     [SerializeField] SpriteShapeController spriteShapeController;
+    [SerializeField] SpriteShape[] spriteShapes;
 
     [SerializeField, Range(3, 100)] int levelLength = 50;
     [SerializeField, Range(1, 50)] float xMultiplier = 2;
@@ -31,8 +32,18 @@ public class EnvironmentGenerator : MonoBehaviour
         {
             noiseStep = Random.Range(0, 20f);
         }
-
+        if (GameManager.GameType == GameTypes.Game1Player)
+        {
+            SetRandomProfile();
+        }
         Generate();
+    }
+
+
+    private void SetRandomProfile()
+    {
+        spriteShapeController.spriteShape = spriteShapes[Random.Range(0, spriteShapes.Length)];
+        Debug.Log("Выбрали локацию...");
     }
 
     private void Generate()

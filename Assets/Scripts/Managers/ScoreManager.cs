@@ -40,7 +40,10 @@ public class ScoreManager : MonoBehaviour
     private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         Debug.Log("Scene loaded");
-        FindScoreUIController();
+        if (GameManager.GameType == GameTypes.Game2Players)
+        {
+            FindScoreUIController();
+        }
     }
 
     private void FindScoreUIController()

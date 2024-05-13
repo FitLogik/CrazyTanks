@@ -6,6 +6,8 @@ public class MenuManager : MonoBehaviour
 {
     // TODO: давай по новой, Миша, всё...
 
+    public string game1PlayerSceneName;
+
     public GameObject gameManagerPrefab;
 
     public GameObject mainMenu;
@@ -16,14 +18,16 @@ public class MenuManager : MonoBehaviour
 
     public void LoadGame1Player()
     {
-        Debug.LogError("Не реализовано!");
+        Instantiate(gameManagerPrefab);
+        GameManager.GameType = GameTypes.Game1Player;
+        GameManager.LoadScene1Player();
     }
 
     public void LoadGame2Players()
     {
         // Создаем объект GameManager (при создании, к нему применяется DontDestroyOnLoad)
         Instantiate(gameManagerPrefab);
-
+        GameManager.GameType = GameTypes.Game2Players;
         GameManager.LoadRandomScene();
     }
 

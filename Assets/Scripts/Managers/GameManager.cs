@@ -12,10 +12,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] ScoreManager scoreManager;
     [SerializeField] string[] scenes2PlayersNames;
 
+    [SerializeField] string game1PlayerSceneName;
+
     [SerializeField] string mainMenuSceneName;
     [SerializeField] string gameOverSceneName;
 
-    public static GameTypes GameType => Instance.gameType;
+
+
+    public static GameTypes GameType
+    {
+        get {return Instance.gameType;}
+        set { Instance.gameType = value;}
+    }
     public static ScoreManager ScoreManager => Instance.scoreManager;
 
 
@@ -31,10 +39,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (GameType == GameTypes.None)
-        {
-            gameType = GameTypes.Game2Players;
-        }
+        //if (GameType == GameTypes.None)
+        //{
+        //    gameType = GameTypes.Game2Players;
+        //}
 
         if (scoreManager == null)
         {
@@ -45,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public static Vector2 GetBorders()
     {
-        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width - 20, Screen.height));
 
         return stageDimensions;
     }
@@ -69,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadRandomScene()
     {
+        
         if (Instance.gameType == GameTypes.Game2Players)
         {
             int scenesCount = Instance.scenes2PlayersNames.Length;
@@ -77,6 +86,14 @@ public class GameManager : MonoBehaviour
                 string randomScene = Instance.scenes2PlayersNames[Random.Range(0, scenesCount)];
                 Instance.LoadScene(randomScene);
             }
+        }
+    }
+
+    public static void LoadScene1Player()
+    {
+        if (Instance.gameType == GameTypes.Game1Player)
+        {
+            Instance.LoadScene(Instance.game1PlayerSceneName);
         }
     }
 
