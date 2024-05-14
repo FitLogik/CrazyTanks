@@ -7,6 +7,9 @@ public class PlayerWinsController : MonoBehaviour
     [SerializeField] TMP_Text playerWinsText;
     [SerializeField] TankUIController tankUIController;
 
+    public GameObject player1Win;
+    public GameObject player2Win;
+
     private void Start()
     {
         int? winningPlayerNumber = ScoreManager.GetWinningPlayer();
@@ -31,7 +34,16 @@ public class PlayerWinsController : MonoBehaviour
     {
         if (winningPlayerNumber != null)
         {
-            playerWinsText.text = $"Player {winningPlayerNumber} wins!";
+            if (winningPlayerNumber == 1)
+            {
+                player1Win.SetActive(true);
+                player2Win.SetActive(false);
+            }
+            else
+            {
+                player1Win.SetActive(false);
+                player2Win.SetActive(true);
+            }
         }
         else
         {

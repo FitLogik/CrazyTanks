@@ -10,6 +10,8 @@ public static class PrefsManager
 
     private const string musicKey = "musicVolume";
     private const string SFXKey = "SFXVolume";
+
+    private const string languageKey = "language";
     #endregion
 
     #region Default Values
@@ -20,6 +22,8 @@ public static class PrefsManager
 
     private const float defaultMusicVolume = 0.5f;
     private const float defaultSFXVolume = 0.5f;
+
+    private const int defaultLanguage = 1;
     #endregion
 
     private static string GetPlayerKey(string key, int playerNumber)
@@ -73,5 +77,19 @@ public static class PrefsManager
         return PlayerPrefs.GetFloat(SFXKey, defaultSFXVolume);
     }
     #endregion
+
+
+    #region Language
+    public static void SetLanguage(int languageID)
+    {
+        PlayerPrefs.SetInt(languageKey, languageID);
+    }
+
+    public static int GetLanguage()
+    {
+        return PlayerPrefs.GetInt(languageKey, defaultLanguage);
+    }
+    #endregion
+
 
 }

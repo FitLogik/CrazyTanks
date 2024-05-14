@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
     public GameObject colorMenu;
+    public GameObject levelMenu;
 
 
 
@@ -65,5 +66,18 @@ public class MenuManager : MonoBehaviour
     private void SaveSettings()
     {
         AudioManager.SaveSettings();
+    }
+
+    public void OpenLevelMenu()
+    {
+        mainMenu.SetActive(false);
+        levelMenu.SetActive(true);
+
+    }
+
+    public void CloseLevelMenu()
+    {
+        mainMenu.SetActive(true);
+        levelMenu.SetActive(false);
     }
 }
