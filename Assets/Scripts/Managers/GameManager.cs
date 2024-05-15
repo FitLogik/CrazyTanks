@@ -10,11 +10,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameTypes gameType;
     [SerializeField] ScoreManager scoreManager;
-    [SerializeField] string[] scenes2PlayersNames;
 
-    [SerializeField] string game1PlayerSceneName;
-
+    [Header("Scene names")]
     [SerializeField] string mainMenuSceneName;
+    [SerializeField] string game1PlayerSceneName;
+    [SerializeField] string[] scenes2PlayersNames;
     [SerializeField] string gameOverSceneName;
 
 

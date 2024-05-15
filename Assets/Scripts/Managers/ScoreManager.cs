@@ -31,6 +31,11 @@ public class ScoreManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;   // SceneManager_sceneLoaded будет выполняться каждый раз,
                                                                 // когда будет загружаться новая сцена
+
+        if (scoreUIController == null)
+        {
+            FindScoreUIController();
+        }
     }
     private void OnDestroy()
     {

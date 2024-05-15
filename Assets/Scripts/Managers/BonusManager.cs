@@ -7,16 +7,28 @@ public class BonusManager : MonoBehaviour
 {
     public static BonusManager instance;
 
-    public GameObject froze;
+    public GameObject freeze;
     public GameObject shield;
     public GameObject health;
 
     private GameObject activeBonus;
 
-    public Image shieldImage1;
-    public Image shieldImage2;
+    public GameObject shieldImage1;
+    public GameObject shieldImage2;
+
+    public float shieldDuration;
+    public float healthDuration;
+    public float freezeDuration;
 
     [SerializeField] bool isSpawning = false;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
 
     private void Start()
@@ -24,32 +36,35 @@ public class BonusManager : MonoBehaviour
         StartCoroutine(SpawnObjects());
     }
 
-    public static void DestroyBonus(int playerID)
+    public static void ApplyBonus(int playerID, GameObject collisionBonus)
     {
-        if (instance.activeBonus == instance.shield)
+        if (collisionBonus == instance.shield)
         {
-           instance.SetShieldPlayer(playerID);
+            Debug.Log($"Shield applied\nPlayer owner: {playerID}");
+            instance.SetShield(playerID);
         }
-        else if (instance.activeBonus == instance.health)
+        else if (collisionBonus == instance.health)
         {
-            //Я не знаю как увелчить показатель самого игрока
+            Debug.Log($"Health applied\nPlayer owner: {playerID}");
+            // TODO: Увеличить здоровье игрока
         }
-        else if (instance.activeBonus == instance.froze)
+        else if (collisionBonus == instance.freeze)
         {
-            //Как заморозить игрока тоже хз
+            Debug.Log($"Freeze applied\nPlayer owner: {playerID}");
+            // TODO: Заморозить противника
         }
     }
 
-    public void SetShieldPlayer(int playerID)
+    public void SetShield(int playerID)
     {
         if (playerID == 1)
         {
-            shieldImage1.enabled = true;
+            shieldImage1.SetActive(true);
 
         }
         else
         {
-            shieldImage2.enabled = true;
+            shieldImage2.SetActive(true);
         }
     }
 
@@ -58,12 +73,12 @@ public class BonusManager : MonoBehaviour
     {
         if (playerID == 1)
         {
-            shieldImage1.enabled = false;
+            shieldImage1.SetActive(false);
 
         }
         else
         {
-            shieldImage2.enabled = false;
+            shieldImage2.SetActive(false);
         }
     }
 
@@ -81,23 +96,23 @@ public class BonusManager : MonoBehaviour
                 int rand = Random.Range(1, 3);
                 if (rand == 0) // Решаем, какой объект появится
                 {
-                    froze.SetActive(true);
-                    activeBonus = froze;
-                    yield return new WaitForSeconds(5.0f);
-                    froze.SetActive(false);
+                    freeze.SetActive(true);
+                    activeBonus = freeze;
+                    yield return new WaitForSeconds(freezeDuration);
+                    freeze.SetActive(false);
                 }
                 else if (rand == 1)
                 {
                     shield.SetActive(true);
                     activeBonus = shield;
-                    yield return new WaitForSeconds(5.0f);
+                    yield return new WaitForSeconds(shieldDuration);
                     shield.SetActive(false);
                 }
                 else
                 {
                     health.SetActive(true);
                     activeBonus = health;
-                    yield return new WaitForSeconds(5.0f);
+                    yield return new WaitForSeconds(healthDuration);
                     health.SetActive(false);
                 }
                 activeBonus = null;

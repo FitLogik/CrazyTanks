@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class RoundManager : MonoBehaviour
     public static Vector2 windDirection = Vector2.right; // Статическое поле для направления ветра
     public static float windStrength = 0f; // Статическое поле для силы ветра
 
+    [Header("Players GameObjects")]
+    public GameObject player1;
+    public GameObject player2;
     
     [Header("Prefabs")]
     [SerializeField] GameObject Player1WinsCanvas;
@@ -102,5 +106,24 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+
+    public static PlayerController GetPlayer(int playerNumber)
+    {
+        GameObject playerGO;
+        if (playerNumber == 1)
+        {
+            playerGO = instance.player1;
+        }
+        else if (playerNumber == 2)
+        {
+            playerGO = instance.player2;
+        }
+        else
+        {
+            throw new ArgumentException("Указан неверный playerNumber!");
+        }
+
+        return playerGO.GetComponent<PlayerController>();
+    }
 
 }

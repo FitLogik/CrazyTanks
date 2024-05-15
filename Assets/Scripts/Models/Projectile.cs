@@ -77,10 +77,12 @@ public class Projectile : MonoBehaviour
 
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
-            else if (collision.gameObject.CompareTag("Bonus"))
-            {
-                BonusManager.DestroyBonus(properties.owner); // тут тоже проблема нарисовалась
-            }
+            //else if (collision.gameObject.CompareTag("Bonus"))
+            //{
+            //    BonusManager.ApplyBonus(properties.owner, collision.gameObject); // тут тоже проблема нарисовалась
+            //}
+
+            // TODO: Переделать
 
             // Удаляем объект, с которым пуля столкнулась
             Destroy(gameObject);
@@ -113,5 +115,5 @@ public class ProjectileProperties
     public GameObject targetHitPrefab;
     public int damage = 50;
     public float disableColliderTime = 0.1f;
-    public int owner = 1;
+    [HideInInspector] public int owner = 1;
 }

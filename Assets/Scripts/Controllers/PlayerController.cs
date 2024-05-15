@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,12 +53,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     ColorController _colorController;
 
+    
 
+    bool IsGrounded => _rb.IsTouching(contactFilter);
 
-
-
-    bool isGrounded => _rb.IsTouching(contactFilter);
-
+    bool _hasShield = false;
 
     bool _isFirePressed = false;
 
@@ -69,16 +70,6 @@ public class PlayerController : MonoBehaviour
         _colorController = GetComponent<ColorController>();
     }
 
-    private void OnEnable()
-    {
-        _rb.isKinematic = false;
-    }
-
-    private void OnDisable()
-    {
-        _rb.isKinematic = true;
-    }
-
     private void Start()
     {
         // Присваиваем названия осей для ввода (Horizontal1/2, Vertical1/2, Fire1/2), где 1/2 - один из номеров игрока
@@ -86,11 +77,19 @@ public class PlayerController : MonoBehaviour
         _rotateAxisName = "Vertical" + playerNumber;
         _fireAxisName = "Fire" + playerNumber;
 
-        health = maxHealth;
+        IncreaseHealth(maxHealth);
 
         SetColor();
 
         SetPosition(playerNumber);
+    }
+
+    public void IncreaseHealth(int increaseHealth)
+    {
+        float lastHealth = health;
+        health = Mathf.Min(maxHealth, health + increaseHealth);
+        healthBarImage.fillAmount = health / maxHealth;
+        Debug.Log($"Increase Health Player{playerNumber} ({lastHealth} => {health})");
     }
 
     private void SetColor()
@@ -190,7 +189,7 @@ public class PlayerController : MonoBehaviour
         float moveInput = Input.GetAxis(_movementAxisName); // движение влево (-1), вправо (1), или стоим на месте (0)
 
         // Проверка, находится ли танк на поверхности
-        if (isGrounded)
+        if (IsGrounded)
         {
             // Добавляем силу в направлении танка для увеличения скорости
             _rb.AddForce(transform.right * moveInput * moveSpeed);
@@ -285,13 +284,47 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        healthBarImage.fillAmount = health / maxHealth; // float написан чтобы вернуло значение float, а не int
-
-        if (health <= 0)
+        if (!_hasShield)
         {
-            RoundManager.instance.EndRound(playerNumber);
+            health -= damage;
+            healthBarImage.fillAmount = health / maxHealth; // float написан чтобы вернуло значение float, а не int
+
+            if (health <= 0)
+            {
+                _rb.isKinematic = false;
+                RoundManager.instance.EndRound(playerNumber);
+                enabled = false;
+            }
         }
+    }
+
+    public void Freeze(float freezeDuration)
+    {
+        Debug.Log($"Freeze Player{playerNumber}");
+        StartCoroutine(FreezeCoroutine(freezeDuration));
+    }
+
+    private IEnumerator FreezeCoroutine(float freezeTime)
+    {
+        _rb.isKinematic = true;
+        _rb.velocity = Vector2.zero;
+        enabled = false;
+        yield return new WaitForSeconds(freezeTime);
+        _rb.isKinematic = false;
+        enabled = true;
+    }
+
+    public void ActivateShield(float shieldDuration)
+    {
+        Debug.Log($"Shield Player{playerNumber}");
+        StartCoroutine(ShieldCoroutine(shieldDuration));
+    }
+
+    private IEnumerator ShieldCoroutine(float shieldDuration)
+    {
+        _hasShield = true;
+        yield return new WaitForSeconds(shieldDuration);
+        _hasShield = false;
     }
 
     #endregion
