@@ -261,7 +261,7 @@ public class PlayerController : MonoBehaviour
         _rb.AddForce(-bulletDirection * recoilMultiplier * _bulletSpeed);
 
 
-        Debug.Log($"Fire\nPlayer{playerNumber}");
+        Debug.Log($"Fire\nPlayer {playerNumber}");
     }
 
     private Projectile CreateProjectile()
@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour
         Projectile projectile = projectileGameObject.AddComponent<Projectile>();
         projectile.properties = projectileProperties;
         projectile.properties.damage = (int)_bulletDamage;
-
+        projectile.properties.owner = playerNumber;
 
         return projectile;
     }
