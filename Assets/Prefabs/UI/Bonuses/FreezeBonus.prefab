@@ -145,6 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusType: 2
   healthIncrease: 50
-  shieldDuration: 5
   freezeDuration: 5
   lifeTime: 5

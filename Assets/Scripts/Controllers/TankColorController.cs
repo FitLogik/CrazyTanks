@@ -17,7 +17,7 @@ public class TankColorController : MonoBehaviour
     [SerializeField] Material iceMaterial;
     [SerializeField] Material defaultMaterial;
 
-    public void SetColor(Color color)
+    public void SetMaskColor(Color color)
     {
         muzzleSpriteMask.color = color;
         headerSpriteMask.color = color;
@@ -38,14 +38,16 @@ public class TankColorController : MonoBehaviour
         footerSpriteMask.material = material;
     }
 
-    public void SetIceMaterial()
+    public void SetIce()
     {
+        SetMaskColor(Color.white);
         SetFrameMaterial(iceMaterial);
         SetMaskMaterial(iceMaterial);
     }
 
-    public void SetDefaultMaterial()
+    public void SetDefaultMaterial(Color color)
     {
+        SetMaskColor(color);
         SetFrameMaterial(defaultMaterial);
         SetMaskMaterial(defaultMaterial);
     }

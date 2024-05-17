@@ -6,7 +6,6 @@ public class Bonus : MonoBehaviour
 {
     public BonusType bonusType;
     public int healthIncrease = 50;         // значение увеличения здоровья
-    public float shieldDuration = 5f;       // время действия щита
     public float freezeDuration = 5f;       // время действия заморозки
     public float lifeTime = 5f;             // время жизни бонуса в секундах
 
@@ -38,7 +37,7 @@ public class Bonus : MonoBehaviour
                 IncreaseHealth(playerID, healthIncrease);   // увеличение здоровья
                 break;
             case BonusType.Shield:
-                ActivateShield(playerID, shieldDuration);   // активация щита
+                ActivateShield(playerID);                   // активация щита
                 break;
             case BonusType.Freeze:
                 ActivateFreeze(playerID, freezeDuration);   // заморозка противника
@@ -53,11 +52,11 @@ public class Bonus : MonoBehaviour
         player.IncreaseHealth(healthIncrease);
     }
 
-    private void ActivateShield(int playerID, float shieldDuration)
+    private void ActivateShield(int playerID)
     {
         PlayerController player = RoundManager.GetPlayer(playerID);
 
-        player.ActivateShield(shieldDuration);
+        player.ActivateShield();
 
         BonusUIController.SetShield(playerID);
     }

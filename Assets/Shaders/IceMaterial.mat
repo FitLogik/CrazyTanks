@@ -74,7 +74,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _IceColor: {r: 0.14684942, g: 0.73059916, b: 0.9433962, a: 1}
+    - _IceColor: {r: 0, g: 0.7303922, b: 1, a: 1}
     - _Ice_Color: {r: 0, g: 1, b: 1, a: 1}
     - _MaxColor: {r: 0, g: 0.7058821, b: 1, a: 1}
     - _Max_Color: {r: 0, g: 1, b: 1, a: 1}

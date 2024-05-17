@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             tankColor = PrefsManager.GetPlayerColor(playerNumber);
         }
 
-        _colorController.SetColor(tankColor);
+        _colorController.SetMaskColor(tankColor);
     }
 
     void SetPosition(int playerNumber)
@@ -297,7 +297,7 @@ public class PlayerController : MonoBehaviour
                 RoundManager.instance.EndRound(playerNumber);
                 enabled = false;
 
-                _colorController.SetDefaultMaterial();
+                _colorController.SetDefaultMaterial(tankColor);
                 bulletSpeedCanvas.SetActive(false);
             }
         }
@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
         _isFirePressed = false;
         bulletSpeedCanvas.SetActive(false);
 
-        _colorController.SetIceMaterial();
+        _colorController.SetIce();
 
         yield return new WaitForSeconds(freezeTime);
 
@@ -334,11 +334,11 @@ public class PlayerController : MonoBehaviour
             _rb.isKinematic = false;
             enabled = true;
 
-            _colorController.SetDefaultMaterial();
+            _colorController.SetDefaultMaterial(tankColor);
         }
     }
 
-    public void ActivateShield(float shieldDuration)
+    public void ActivateShield()
     {
         if (health > 0)
         {
