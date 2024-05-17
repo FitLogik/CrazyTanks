@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public enum BonusType { Health, Shield, Freeze }
@@ -22,7 +21,10 @@ public class Bonus : MonoBehaviour
         if (collision.collider.CompareTag("Bullet"))
         {
             Debug.Log("Bonus Hit!");
-            int playerID = collision.collider.GetComponent<Projectile>().properties.owner;
+
+            Projectile projectile = collision.collider.GetComponent<Projectile>();
+            int playerID = projectile.properties.owner;
+
             ApplyBonus(playerID);
             Destroy(gameObject);
         }
@@ -30,23 +32,43 @@ public class Bonus : MonoBehaviour
 
     void ApplyBonus(int playerID)
     {
-        PlayerController player = RoundManager.GetPlayer(playerID);
         switch (bonusType)
         {
             case BonusType.Health:
-                player.IncreaseHealth(healthIncrease);          // увеличение здоровья
+                IncreaseHealth(playerID, healthIncrease);   // увеличение здоровья
                 break;
             case BonusType.Shield:
-                player.ActivateShield(shieldDuration);          // активация щита
+                ActivateShield(playerID, shieldDuration);   // активация щита
                 break;
             case BonusType.Freeze:
-                PlayerController enemy = FindEnemy(playerID);
-                enemy.Freeze(freezeDuration);                   // заморозка противника
+                ActivateFreeze(playerID, freezeDuration);   // заморозка противника
                 break;
         }
-
-        BonusUIController.SetBonus(playerID, bonusType, lifeTime);
     }
+
+    private void IncreaseHealth(int playerID, int healthIncrease)
+    {
+        PlayerController player = RoundManager.GetPlayer(playerID);
+
+        player.IncreaseHealth(healthIncrease);
+    }
+
+    private void ActivateShield(int playerID, float shieldDuration)
+    {
+        PlayerController player = RoundManager.GetPlayer(playerID);
+
+        player.ActivateShield(shieldDuration);
+
+        BonusUIController.SetShield(playerID);
+    }
+
+    private void ActivateFreeze(int bonusOwnerID, float freezeDuration)
+    {
+        PlayerController enemy = FindEnemy(bonusOwnerID);
+
+        enemy.Freeze(freezeDuration);
+    }
+
 
 
     private PlayerController FindEnemy(int playerID)

@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 178405545}
   - component: {fileID: 178405544}
   m_Layer: 5
-  m_Name: Bonus
+  m_Name: ShieldBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 247654193}
   - component: {fileID: 247654192}
   m_Layer: 5
-  m_Name: Bonus
+  m_Name: ShieldBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,8 +907,6 @@ MonoBehaviour:
   player1ActiveBonusImage: {fileID: 178405542}
   player2ActiveBonusImage: {fileID: 247654190}
   shieldImage: {fileID: 21300000, guid: 01025b191b73177469c956f663980503, type: 3}
-  healthImage: {fileID: 21300000, guid: c8d2375b95e05424b8652ccc5f8df561, type: 3}
-  freezeImage: {fileID: 21300000, guid: 31880b5ff400d3843965ca4ee7b3bdda, type: 3}
 --- !u!1 &635567035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1693,10 @@ PrefabInstance:
       propertyPath: tankColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: BonusUIImage
+      value: 
+      objectReference: {fileID: 247654192}
     - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: playerNumber
       value: 2
@@ -5355,6 +5357,10 @@ PrefabInstance:
       propertyPath: tankColor.r
       value: 0.2901961
       objectReference: {fileID: 0}
+    - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: BonusUIImage
+      value: 
+      objectReference: {fileID: 178405544}
     - target: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: windStrength
       value: 400

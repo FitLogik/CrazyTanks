@@ -14,34 +14,42 @@ public class BonusUIController : MonoBehaviour
 
     [Header("Bonus Images")]
     [SerializeField] Sprite shieldImage;
-    [SerializeField] Sprite healthImage;
-    [SerializeField] Sprite freezeImage;
 
 
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
 
 
-    public static void SetBonus(int playerID, BonusType bonusType, float lifetime)
+    public static void SetShield(int playerID)
     {
-        GameObject activeBonusImgGO = Instance.GetBonusGameObect(playerID);
+        Image img = Instance.GetPlayerBonusImage(playerID);
 
-        Image activeBonusImg = activeBonusImgGO.GetComponent<Image>();
-
-        //switch (bonusType)
-        //{
-        //    case BonusType.Shield:
-        //        activeBonusImg.
-        //}
-
-        //TODO: Доделать
+        img.gameObject.SetActive(true);
     }
 
-    private GameObject GetBonusGameObect(int playerID)
+    private Image GetPlayerBonusImage(int playerID)
+    {
+        GameObject activeBonusImgGO = Instance.GetBonusGameObject(playerID);
+        Image bonusImg = activeBonusImgGO.GetComponent<Image>();
+
+        return bonusImg;
+    }
+
+    public static void RemoveShield(int playerID)
+    {
+        Image img = Instance.GetPlayerBonusImage(playerID);
+
+        img.gameObject.SetActive(false);
+    }
+
+    private GameObject GetBonusGameObject(int playerID)
     {
         GameObject gameObject;
         if (playerID == 1)

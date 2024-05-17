@@ -77,12 +77,6 @@ public class Projectile : MonoBehaviour
 
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
-            //else if (collision.gameObject.CompareTag("Bonus"))
-            //{
-            //    BonusManager.ApplyBonus(properties.owner, collision.gameObject); // тут тоже проблема нарисовалась
-            //}
-
-            // TODO: Переделать
 
             // Удаляем объект, с которым пуля столкнулась
             Destroy(gameObject);

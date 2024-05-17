@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image bulletSpeedBarImage;             // Прогрессбар ускорения снаряда перед выстрелом
     [SerializeField] Gradient bulletSpeedBarGradient;       // Градиент, цвета которого устанавливаются от 0 до 100
     [SerializeField] Image healthBarImage;                  // Прогрессбар здоровья игрока
+    [SerializeField] Image BonusUIImage;                    // Картинка бонуса на стороне игрока
 
     float health;
 
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
     string _rotateAxisName;
     string _fireAxisName;
     Rigidbody2D _rb;
-    ColorController _colorController;
+    TankColorController _colorController;
 
     
 
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _colorController = GetComponent<ColorController>();
+        _colorController = GetComponent<TankColorController>();
     }
 
     private void Start()
@@ -292,9 +293,18 @@ public class PlayerController : MonoBehaviour
             if (health <= 0)
             {
                 _rb.isKinematic = false;
+
                 RoundManager.instance.EndRound(playerNumber);
                 enabled = false;
+
+                _colorController.SetDefaultMaterial();
+                bulletSpeedCanvas.SetActive(false);
             }
+        }
+        else
+        {
+            _hasShield = false;
+            BonusUIController.RemoveShield(playerNumber);
         }
     }
 
@@ -308,23 +318,33 @@ public class PlayerController : MonoBehaviour
     {
         _rb.isKinematic = true;
         _rb.velocity = Vector2.zero;
+
         enabled = false;
+
+
+        _isFirePressed = false;
+        bulletSpeedCanvas.SetActive(false);
+
+        _colorController.SetIceMaterial();
+
         yield return new WaitForSeconds(freezeTime);
-        _rb.isKinematic = false;
-        enabled = true;
+
+        if (health > 0)
+        {
+            _rb.isKinematic = false;
+            enabled = true;
+
+            _colorController.SetDefaultMaterial();
+        }
     }
 
     public void ActivateShield(float shieldDuration)
     {
-        Debug.Log($"Shield Player{playerNumber}");
-        StartCoroutine(ShieldCoroutine(shieldDuration));
-    }
-
-    private IEnumerator ShieldCoroutine(float shieldDuration)
-    {
-        _hasShield = true;
-        yield return new WaitForSeconds(shieldDuration);
-        _hasShield = false;
+        if (health > 0)
+        {
+            Debug.Log($"Shield Player{playerNumber}");
+            _hasShield = true;
+        }
     }
 
     #endregion

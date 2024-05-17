@@ -946,6 +946,7 @@ MonoBehaviour:
     targetHitPrefab: {fileID: 848971127929549526, guid: a46d9a6f5c25db2498e165636daad19e, type: 3}
     damage: 50
     disableColliderTime: 0.05
+    owner: 1
   bulletSpeedCanvas: {fileID: 3468644882216556996}
   bulletSpeedBarImage: {fileID: 6450956134329230171}
   bulletSpeedBarGradient:
@@ -979,6 +980,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   healthBarImage: {fileID: 0}
+  BonusUIImage: {fileID: 0}
 --- !u!114 &5777702202125773605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,6 +996,11 @@ MonoBehaviour:
   muzzleSpriteMask: {fileID: 5042019916973954811}
   headerSpriteMask: {fileID: 5785541852967913052}
   footerSpriteMask: {fileID: 7426325109928500012}
+  muzzleSpriteFrame: {fileID: 1477858020374268756}
+  headerSpriteFrame: {fileID: 4055742384223159971}
+  footerSpriteFrame: {fileID: 9123561807017096737}
+  iceMaterial: {fileID: 2100000, guid: c9a637c8fa7846540a797aab5f9783af, type: 2}
+  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &9105738504936480256
 GameObject:
   m_ObjectHideFlags: 0
