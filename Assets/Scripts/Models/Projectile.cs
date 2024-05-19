@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public ProjectileProperties properties;
 
     private Rigidbody2D _rb;
+    AudioManager _audioManager;
     private bool _canCollide = true;
     private Score combo;
 
@@ -22,6 +23,7 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

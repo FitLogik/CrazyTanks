@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Bonus
   - Bullet
+  - Audio
   layers:
   - Default
   - TransparentFX

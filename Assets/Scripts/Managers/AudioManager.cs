@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip shot1;
     public AudioClip shot2;
     public AudioClip shot3;
+    public AudioClip bonusPickUp;
     public AudioClip hit;
     public AudioClip death;
     public AudioClip wind;
@@ -46,6 +47,10 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -55,6 +60,11 @@ public class AudioManager : MonoBehaviour
         LoadSettings();
         musicSource.clip = background;
         musicSource.Play();
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        SFXSource.PlayOneShot(clip);
     }
 
     private void InitSettings()
@@ -85,5 +95,10 @@ public class AudioManager : MonoBehaviour
     {
         PrefsManager.SetMusicVolume(MusicVolume);
         PrefsManager.SetSFXVolume(SFXVolume);
+    }
+
+    public void PlaySFXClick()
+    {
+        PlaySFX(click2);
     }
 }

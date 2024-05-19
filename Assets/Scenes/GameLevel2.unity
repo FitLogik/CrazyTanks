@@ -631,6 +631,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 360431832}
   totalTime: 60
+  score3star: 50
+  score2star: 36
+  score1star: 20
+  idLevel: 2
   playerScore: {fileID: 771016605}
   star0: {fileID: 704541507}
   star1: {fileID: 280335518}
@@ -1275,9 +1279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameType: 0
   scoreManager: {fileID: 0}
-  scenes2PlayersNames: []
-  game1PlayerSceneName: 
   mainMenuSceneName: 
+  gameLevelName: 
+  scenes2PlayersNames: []
   gameOverSceneName: 
 --- !u!4 &1317715305
 Transform:

@@ -16,13 +16,14 @@ public class MenuManager : MonoBehaviour
     public GameObject levelMenu;
 
 
-
-    public void LoadGame1Player()
+    public void LoadGameLevel(string level)
     {
         Instantiate(gameManagerPrefab);
         GameManager.GameType = GameTypes.Game1Player;
-        GameManager.LoadScene1Player();
+        string sceneName = "GameLevel" + level;
+        GameManager.LoadScene1Player(sceneName);
     }
+    
 
     public void LoadGame2Players()
     {

@@ -13,8 +13,7 @@ public class LocaleSettings : MonoBehaviour
         ChangeLocale(ID);
     }
     public void ChangeLocale(int localeID)
-    {
-        if (active == true)
+    {        if (active == true)
             return;
         StartCoroutine(SetLocale(localeID));
     }

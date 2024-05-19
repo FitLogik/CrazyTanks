@@ -47,10 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameType: 2
   scoreManager: {fileID: 7940924705835874977}
+  mainMenuSceneName: MenuScene
+  game1PlayerSceneName: Game1Player
   scenes2PlayersNames:
   - Game2PlayersDefault
-  game1PlayerSceneName: Game1Player
-  mainMenuSceneName: MenuScene
   gameOverSceneName: GameEnd2Players
 --- !u!114 &7940924705835874977
 MonoBehaviour:

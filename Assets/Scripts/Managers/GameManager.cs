@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Scene names")]
     [SerializeField] string mainMenuSceneName;
-    [SerializeField] string game1PlayerSceneName;
+    [SerializeField] string gameLevelName;
     [SerializeField] string[] scenes2PlayersNames;
     [SerializeField] string gameOverSceneName;
 
@@ -89,11 +89,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void LoadScene1Player()
+    public static void LoadScene1Player(string sceneName)
     {
         if (Instance.gameType == GameTypes.Game1Player)
         {
-            Instance.LoadScene(Instance.game1PlayerSceneName);
+            Instance.gameLevelName = sceneName;   
+            Instance.LoadScene(Instance.gameLevelName);
         }
     }
 

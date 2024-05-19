@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     string _fireAxisName;
     Rigidbody2D _rb;
     TankColorController _colorController;
+    AudioManager _audioManager;
 
     
 
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         _rb = GetComponent<Rigidbody2D>();
         _colorController = GetComponent<TankColorController>();
     }
@@ -78,7 +81,8 @@ public class PlayerController : MonoBehaviour
         _rotateAxisName = "Vertical" + playerNumber;
         _fireAxisName = "Fire" + playerNumber;
 
-        IncreaseHealth(maxHealth);
+        health = maxHealth;
+        healthBarImage.fillAmount = health / maxHealth;
 
         SetColor();
 
@@ -90,6 +94,7 @@ public class PlayerController : MonoBehaviour
         float lastHealth = health;
         health = Mathf.Min(maxHealth, health + increaseHealth);
         healthBarImage.fillAmount = health / maxHealth;
+        _audioManager.PlaySFX(_audioManager.bonusPickUp);
         Debug.Log($"Increase Health Player{playerNumber} ({lastHealth} => {health})");
     }
 
@@ -260,6 +265,7 @@ public class PlayerController : MonoBehaviour
         // Отдача от выстрела
         _rb.AddForce(-bulletDirection * recoilMultiplier * _bulletSpeed);
 
+        _audioManager.PlaySFX(_audioManager.shot1);
 
         Debug.Log($"Fire\nPlayer {playerNumber}");
     }
@@ -311,6 +317,7 @@ public class PlayerController : MonoBehaviour
     public void Freeze(float freezeDuration)
     {
         Debug.Log($"Freeze Player{playerNumber}");
+        _audioManager.PlaySFX(_audioManager.bonusPickUp);
         StartCoroutine(FreezeCoroutine(freezeDuration));
     }
 
@@ -342,6 +349,7 @@ public class PlayerController : MonoBehaviour
     {
         if (health > 0)
         {
+            _audioManager.PlaySFX(_audioManager.bonusPickUp);
             Debug.Log($"Shield Player{playerNumber}");
             _hasShield = true;
         }

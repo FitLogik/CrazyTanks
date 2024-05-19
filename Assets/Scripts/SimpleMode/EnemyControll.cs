@@ -10,8 +10,8 @@ public class EnemyControll : MonoBehaviour
     public float health = 1.0f;
    
 
-    private float minHeight = -1f;
-    private float maxHeight = 1f;
+    private float minHeight = 0f;
+    private float maxHeight = 2f;
     private float targetXPosition = 10.1f; // Задаем целевую позицию по оси X
 
     private Score sp;

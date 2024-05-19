@@ -5277,6 +5277,46 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel1SceneName
+      value: GameLevel1
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel2SceneName
+      value: GameLevel2
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel3SceneName
+      value: GameLevel3
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel4SceneName
+      value: GameLevel4
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel5SceneName
+      value: GameLevel5
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel6SceneName
+      value: GameLevel6
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel7SceneName
+      value: GameLevel7
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel8SceneName
+      value: GameLevel8
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel9SceneName
+      value: GameLevel9
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
+      propertyPath: gameLevel10SceneName
+      value: GameLevel10
+      objectReference: {fileID: 0}
+    - target: {fileID: 261994189034415463, guid: f8b49bed449480e4cac4c4b3643700fa, type: 3}
       propertyPath: scenes2Players.Array.size
       value: 1
       objectReference: {fileID: 0}

@@ -20,8 +20,12 @@ public class WindManager : MonoBehaviour
 
     public bool isWindActive = false;
 
+    AudioManager _audioManager;
+
     private void Awake()
     {
+        _audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
         if (instance == null)
         {
             instance = this;
@@ -45,6 +49,7 @@ public class WindManager : MonoBehaviour
         isWindActive = true;
         ChangeWindParams();
         ApplyWind();
+        _audioManager.PlaySFX(_audioManager.wind);
         if (windDirection.x > 0)
         {
             windImage1.enabled = true;
