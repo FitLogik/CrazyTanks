@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public int playerNumber;
     [SerializeField] bool setPlayerPrefsColor = false;      // будет ли применяться цвет из реестра
     [SerializeField] Color tankColor;                       // цвет танка
-    [SerializeField] float moveSpeed = 12f;                 // скорость движения танка
+    [SerializeField] public float moveSpeed = 12f;                 // скорость движения танка
     [SerializeField] ContactFilter2D contactFilter;         // нужен для обнаружения столкновений с объектами
     [SerializeField] float maxSpeed = 12f;                  // максимальная скорость движения танка
     [SerializeField, Min(1f)] int maxHealth = 100;          // максимальное значение здоровья танка
@@ -245,7 +245,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Боевка
-    private void Fire()
+    public void Fire()
     {
         if (projectilePrefab == null)
         {
