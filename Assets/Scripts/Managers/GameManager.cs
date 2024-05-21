@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public static Vector2 GetBorders()
     {
-        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width - 20, Screen.height));
+        Vector2 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 
         return stageDimensions;
     }
