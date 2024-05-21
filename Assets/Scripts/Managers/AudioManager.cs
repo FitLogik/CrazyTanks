@@ -19,6 +19,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip shot3;
     public AudioClip bonusPickUp;
     public AudioClip hit;
+    public AudioClip hitGround;
+    public AudioClip winRound;
+    public AudioClip winGame;
     public AudioClip death;
     public AudioClip wind;
     public AudioClip click1;

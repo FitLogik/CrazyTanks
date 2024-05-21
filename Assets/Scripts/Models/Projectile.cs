@@ -67,7 +67,7 @@ public class Projectile : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("Enemy"))
             {
-                EnemyControll enemy = collision.gameObject.GetComponent<EnemyControll>(); // пытаемся получить компонент PlayerController
+                EnemyController enemy = collision.gameObject.GetComponent<EnemyController>(); // пытаемся получить компонент PlayerController
                 if (enemy != null)
                 {
                     enemy.TakeDamage();

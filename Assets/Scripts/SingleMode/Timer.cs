@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
     public GameObject star1;
     public GameObject star2;
     public GameObject star3;
+    public EnemyController enemy;
 
 
     void Start()
@@ -53,7 +54,7 @@ public class Timer : MonoBehaviour
 
     private void EndGame()
     {
-        playerScore.SetActive(true);
+        enemy.isActive = false;
         if (Convert.ToUInt32(score.scoreText.text) > score3star)
         {
             star3.SetActive(true);

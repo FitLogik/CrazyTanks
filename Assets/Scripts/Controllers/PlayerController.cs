@@ -288,7 +288,6 @@ public class PlayerController : MonoBehaviour
         return projectile;
     }
 
-
     public void TakeDamage(int damage)
     {
         if (!_hasShield)

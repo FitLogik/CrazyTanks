@@ -12,10 +12,12 @@ public class MenuManager : MonoBehaviour
 
     public GameObject mainMenu;
     public GameObject settingsMenu;
+    public GameObject settingsPanel;
     public GameObject colorMenu;
     public GameObject levelMenu;
     public GameObject controlInformationMenu;
-
+    public GameObject buttonInformation;
+    private bool isSettings;
 
     public void LoadGameLevel(string level)
     {
@@ -38,13 +40,35 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
+        settingsPanel.SetActive(true);
+        controlInformationMenu.SetActive(false);   
+        buttonInformation.SetActive(true);
+        isSettings = true;
     }
 
     public void CloseSettingsMenu()
     {
         SaveSettings();
-        mainMenu.SetActive(true);
-        settingsMenu.SetActive(false);
+        if (isSettings)
+        {
+            mainMenu.SetActive(true);
+            settingsMenu.SetActive(false);
+        }
+        else
+        {
+            settingsPanel.SetActive(true);
+            controlInformationMenu.SetActive(false);
+            buttonInformation.SetActive(true);
+            isSettings = true;
+        }
+    }
+
+    public void OpenGuidePanel()
+    {
+        isSettings = false;
+        settingsPanel.SetActive(false);
+        controlInformationMenu.SetActive(true);
+        buttonInformation.SetActive(false);
     }
 
     public void OpenColorMenu()
@@ -81,16 +105,5 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu.SetActive(true);
         levelMenu.SetActive(false);
-    }
-
-    public void OpenControlInformation()
-    {
-        settingsMenu.SetActive(false);
-        controlInformationMenu.SetActive(true);
-    }
-    public void CloseControlInformation()
-    {
-        settingsMenu.SetActive(true);
-        controlInformationMenu.SetActive(false);
     }
 }
