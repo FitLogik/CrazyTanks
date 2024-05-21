@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject colorMenu;
     public GameObject levelMenu;
+    public GameObject controlInformationMenu;
 
 
     public void LoadGameLevel(string level)
@@ -80,5 +81,16 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu.SetActive(true);
         levelMenu.SetActive(false);
+    }
+
+    public void OpenControlInformation()
+    {
+        settingsMenu.SetActive(false);
+        controlInformationMenu.SetActive(true);
+    }
+    public void CloseControlInformation()
+    {
+        settingsMenu.SetActive(true);
+        controlInformationMenu.SetActive(false);
     }
 }
