@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] string[] scenes2PlayersNames;
     [SerializeField] string gameOverSceneName;
 
-
+    AudioManager _audioManager;
 
     public static GameTypes GameType
     {
@@ -49,6 +49,16 @@ public class GameManager : MonoBehaviour
             scoreManager = gameObject.AddComponent<ScoreManager>();
         }
 
+        GameObject audioManagerGO = GameObject.FindGameObjectWithTag("Audio");
+        if (audioManagerGO != null)
+        {
+            _audioManager = audioManagerGO.GetComponent<AudioManager>();
+        }
+        else
+        {
+            Debug.LogError("Не удалось найти объект Audio!");
+        }
+
     }
 
     public static Vector2 GetBorders()
@@ -73,6 +83,7 @@ public class GameManager : MonoBehaviour
     private void LoadGameOverScene()
     {
         LoadScene(gameOverSceneName);
+        _audioManager.PlaySFX(_audioManager.winGame);
     }
 
     public static void LoadRandomScene()

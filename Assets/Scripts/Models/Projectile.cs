@@ -23,7 +23,16 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        GameObject audioManagerGO = GameObject.FindGameObjectWithTag("Audio");
+        if (audioManagerGO != null)
+        {
+            _audioManager = audioManagerGO.GetComponent<AudioManager>();
+        }
+        else
+        {
+            Debug.LogError("Не удалось найти объект Audio!");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -79,7 +88,7 @@ public class Projectile : MonoBehaviour
 
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
-
+            _audioManager.PlaySFX(_audioManager.hit);
             // Удаляем объект, с которым пуля столкнулась
             Destroy(gameObject);
         }

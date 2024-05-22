@@ -842,7 +842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4250594996503956214}
   - component: {fileID: 8604496690810314289}
-  - component: {fileID: 416074358349805400}
+  - component: {fileID: 6068784725516169577}
   - component: {fileID: 5777702202125773605}
   m_Layer: 0
   m_Name: Tank
@@ -895,7 +895,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &416074358349805400
+--- !u!114 &6068784725516169577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -907,10 +907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b272ed1c7ba6aa4b960080e2610f2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 1
-  setPlayerPrefsColor: 1
-  tankColor: {r: 1, g: 0.5518868, b: 0.5518868, a: 1}
+  _rigidbody: {fileID: 8604496690810314289}
   moveSpeed: 15
+  maxSpeed: 5
+  maxHealth: 100
   contactFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -925,21 +925,19 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  maxSpeed: 5
-  maxHealth: 100
   stabilizationForce: 0.025
   moveRotationMultiplier: 1
   muzzleTransform: {fileID: 2772068699327018368}
   muzzleRotationSpeed: 180
   minMuzzleRotation: -10
   maxMuzzleRotation: 60
+  muzzleSpawnDistance: 0.7
   projectilePrefab: {fileID: 5528492389518991426, guid: 1e0a96c315aa08045b3becef8947bea5, type: 3}
   bulletsContainer: {fileID: 0}
   minBulletSpeed: 3
   maxBulletSpeed: 15
   bulletSpeedMultiplier: 10
   maxBulletDamage: 75
-  muzzleSpawnDistance: 0.7
   recoilMultiplier: 10
   projectileProperties:
     groundHitPrefab: {fileID: 1276751111080731683, guid: 21470f548da25654195c2f58735f8144, type: 3}
@@ -947,12 +945,13 @@ MonoBehaviour:
     damage: 50
     disableColliderTime: 0.05
     owner: 1
+  tankColor: {r: 0.7264151, g: 0, b: 0, a: 1}
   bulletSpeedCanvas: {fileID: 3468644882216556996}
   bulletSpeedBarImage: {fileID: 6450956134329230171}
   bulletSpeedBarGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0.7529305, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 0, a: 1}
     key2: {r: 0, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -960,7 +959,7 @@ MonoBehaviour:
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 31804
+    ctime1: 32768
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -981,6 +980,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthBarImage: {fileID: 0}
   BonusUIImage: {fileID: 0}
+  playerNumber: 0
 --- !u!114 &5777702202125773605
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,30 +47,30 @@ public class Bonus : MonoBehaviour
 
     private void IncreaseHealth(int playerID, int healthIncrease)
     {
-        PlayerController player = RoundManager.GetPlayer(playerID);
+        TankController tank = RoundManager.GetPlayer(playerID);
 
-        player.IncreaseHealth(healthIncrease);
+        tank.IncreaseHealth(healthIncrease);
     }
 
     private void ActivateShield(int playerID)
     {
-        PlayerController player = RoundManager.GetPlayer(playerID);
+        TankController tank = RoundManager.GetPlayer(playerID);
 
-        player.ActivateShield();
+        tank.ActivateShield();
 
         BonusUIController.SetShield(playerID);
     }
 
     private void ActivateFreeze(int bonusOwnerID, float freezeDuration)
     {
-        PlayerController enemy = FindEnemy(bonusOwnerID);
+        TankController enemy = FindEnemy(bonusOwnerID);
 
         enemy.Freeze(freezeDuration);
     }
 
 
 
-    private PlayerController FindEnemy(int playerID)
+    private TankController FindEnemy(int playerID)
     {
         int enemyID = playerID == 1 ? 2 : 1;
         return RoundManager.GetPlayer(enemyID);

@@ -18,6 +18,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] GameObject Player1WinsCanvas;
     [SerializeField] GameObject Player2WinsCanvas;
 
+    AudioManager _audioManager;
+
     bool isRoundEnded;
 
     private void Awake()
@@ -27,6 +29,16 @@ public class RoundManager : MonoBehaviour
             Destroy(instance);
         }
         instance = this;
+
+        GameObject audioManagerGO = GameObject.FindGameObjectWithTag("Audio");
+        if (audioManagerGO != null)
+        {
+            _audioManager = audioManagerGO.GetComponent<AudioManager>();
+        }
+        else
+        {
+            Debug.LogError("Не удалось найти объект Audio!");
+        }
     }
 
 
@@ -89,8 +101,14 @@ public class RoundManager : MonoBehaviour
             {
                 PlayerRoundWin(1); // Раунд выиграл 1 игрок
             }
+            Invoke("StartMusic", 0.4f);
         }
         isRoundEnded = true;
+    }
+
+    private void StartMusic()
+    {
+        _audioManager.PlaySFX(_audioManager.winRound);
     }
 
     private void PlayerRoundWin(int playerNumber)
