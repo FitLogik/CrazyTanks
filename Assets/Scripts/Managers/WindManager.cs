@@ -24,8 +24,6 @@ public class WindManager : MonoBehaviour
 
     private void Awake()
     {
-        _audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
         if (instance == null)
         {
             instance = this;
@@ -33,6 +31,16 @@ public class WindManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        GameObject audioManagerGO = GameObject.FindGameObjectWithTag("Audio");
+        if (audioManagerGO != null)
+        {
+            _audioManager = audioManagerGO.GetComponent<AudioManager>();
+        }
+        else
+        {
+            Debug.LogError("Не удалось найти объект Audio!");
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Localization.Plugins.XLIFF.V12;
+using UnityEngine;
 
 public static class PrefsManager
 {
@@ -50,6 +51,19 @@ public static class PrefsManager
 
     #endregion
 
+    public static Color DefaultColor
+    {
+        get
+        {
+            Color color = new Color(defaultRColor,
+                                    defaultGColor,
+                                    defaultBColor,
+                                    defaultAColor);
+
+            return color;
+        }
+    }
+
     private static string GetPlayerKey(string key, int playerNumber)
     {
         return $"{key}_Player{playerNumber}";
@@ -82,8 +96,6 @@ public static class PrefsManager
     public static void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat(musicKey, volume);
-
-        Debug.Log("UpdateMusicVolume");
     }
 
     public static float GetMusicVolume()

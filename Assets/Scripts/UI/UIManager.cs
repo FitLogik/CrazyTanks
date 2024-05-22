@@ -20,16 +20,12 @@ public class UIManager : MonoBehaviour
         {
             if (GameManager.GameType == GameTypes.Game1Player)
             {
-                Debug.Log("Selected 1 player score UI settings");
                 return Instance.scoreUISettings1Player;
             }
             else if (GameManager.GameType == GameTypes.Game2Players)
             {
-                Debug.Log("Selected 2 players score UI settings");
                 return Instance.scoreUISettings2Players;
             }
-
-            Debug.Log("Selected default score UI settings");
             return Instance.scoreUISettingsDefault;
         }
     }

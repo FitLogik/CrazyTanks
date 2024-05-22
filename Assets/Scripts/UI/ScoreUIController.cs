@@ -26,15 +26,11 @@ public class ScoreUIController : MonoBehaviour
 
     private void SetPosition(ScoreUISettings uiSettings)
     {
-        Debug.Log(uiSettings.textAlignmentOptions);
         scoreText.alignment = uiSettings.textAlignmentOptions;                  // выравнивание текста по центру справа
 
-        Debug.Log(uiSettings.rectTransformAnchorMin);
-        Debug.Log(uiSettings.rectTransformAnchorMax);
         scoreText.rectTransform.anchorMin = uiSettings.rectTransformAnchorMin;  // ставим якорь относительно точки от краев Canvas
         scoreText.rectTransform.anchorMax = uiSettings.rectTransformAnchorMax;
 
-        Debug.Log(uiSettings.scorePosition);
         scoreText.rectTransform.anchoredPosition = uiSettings.scorePosition;    // позиция относительно якоря, установленного выше   
     }
 
