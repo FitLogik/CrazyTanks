@@ -17,6 +17,7 @@ public abstract class TankController : TankBehaviour
     [SerializeField] Image healthBarImage;                  // Прогрессбар здоровья игрока
     [SerializeField] Image BonusUIImage;                    // Картинка бонуса на стороне игрока
 
+    private bool isDeath = false;
 
     TankColorController _colorController;
     AudioManager _audioManager;
@@ -137,9 +138,10 @@ public abstract class TankController : TankBehaviour
         {
             _colorController.SetDefaultMaterial(tankColor);
             bulletSpeedCanvas.SetActive(false);
-            if (_audioManager != null)
+            if (_audioManager != null && isDeath == false)
             {
                 _audioManager.PlaySFX(_audioManager.death);
+                isDeath = true;
             }
 
             RoundManager.instance.EndRound(playerNumber);

@@ -31,6 +31,22 @@ MonoBehaviour:
     m_Key: win2Key
     m_Metadata:
       m_Items: []
+  - m_Id: 3270291514183680
+    m_Key: botKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270381075156992
+    m_Key: youKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270470036344832
+    m_Key: botWinKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270521819222016
+    m_Key: youWinKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -22,7 +22,14 @@ public class MenuManager : MonoBehaviour
     public void LoadGameLevel(string level)
     {
         Instantiate(gameManagerPrefab);
-        GameManager.GameType = GameType.Game1Player;
+        if (Convert.ToInt32(level) <= 3)
+        {
+            GameManager.GameType = GameType.Game1Player;
+        }
+        else
+        {
+            GameManager.GameType = GameType.Game1PlayerWithBot;
+        }
         string sceneName = "GameLevel" + level;
         GameManager.LoadScene1Player(sceneName);
     }

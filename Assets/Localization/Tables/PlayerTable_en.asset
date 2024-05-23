@@ -27,11 +27,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6763193815040
-    m_Localized: Player 1 win!
+    m_Localized: Player 1 wins!
     m_Metadata:
       m_Items: []
   - m_Id: 6886359552000
-    m_Localized: Player 2 win!
+    m_Localized: Player 2 wins!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270291514183680
+    m_Localized: Bot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270381075156992
+    m_Localized: You
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270470036344832
+    m_Localized: You lose!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270521819222016
+    m_Localized: You win!
     m_Metadata:
       m_Items: []
   references:

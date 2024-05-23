@@ -5,7 +5,7 @@ public enum BonusType { Health, Shield, Freeze }
 public class Bonus : MonoBehaviour
 {
     public BonusType bonusType;
-    public int healthIncrease = 50;         // значение увеличения здоровья
+    public int healthIncrease = 100;         // значение увеличения здоровья
     public float freezeDuration = 5f;       // время действия заморозки
     public float lifeTime = 5f;             // время жизни бонуса в секундах
 

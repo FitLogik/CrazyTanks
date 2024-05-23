@@ -983,6 +983,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -5146598855088605778, guid: fc42be38b7c92b34f8a382ecb10008c7, type: 3}
+      propertyPath: maxHealth
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -5146598855088605778, guid: fc42be38b7c92b34f8a382ecb10008c7, type: 3}
       propertyPath: BonusUIImage
       value: 
       objectReference: {fileID: 247654192}
@@ -994,6 +998,10 @@ PrefabInstance:
       propertyPath: healthBarImage
       value: 
       objectReference: {fileID: 1200243557}
+    - target: {fileID: -5146598855088605778, guid: fc42be38b7c92b34f8a382ecb10008c7, type: 3}
+      propertyPath: maxBulletDamage
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: -5146598855088605778, guid: fc42be38b7c92b34f8a382ecb10008c7, type: 3}
       propertyPath: bulletsContainer
       value: 
@@ -1866,7 +1874,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4b5f1eb1aa27e554f975186bba15532e
     m_TableEntryReference:
-      m_KeyId: 17729572864
+      m_KeyId: 3270381075156992
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -2092,7 +2100,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4b5f1eb1aa27e554f975186bba15532e
     m_TableEntryReference:
-      m_KeyId: 6886359552000
+      m_KeyId: 3270470036344832
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -2267,7 +2275,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4b5f1eb1aa27e554f975186bba15532e
     m_TableEntryReference:
-      m_KeyId: 247619375104
+      m_KeyId: 3270291514183680
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -2442,7 +2450,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4b5f1eb1aa27e554f975186bba15532e
     m_TableEntryReference:
-      m_KeyId: 6763193815040
+      m_KeyId: 3270521819222016
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
