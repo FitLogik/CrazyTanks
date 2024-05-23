@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlSystem
+public class ControlSystem : MonoBehaviour
 {
     // Обозначения для 1 игрока
     private static KeyCode right1p = KeyCode.D;

@@ -39,8 +39,6 @@ public class PlayerController : TankController
 
     protected override void Update()
     {
-        base.Update();
-
         #region Стрельба
 
         moveInput = Input.GetAxisRaw(_movementAxisName);
@@ -48,6 +46,9 @@ public class PlayerController : TankController
         fireInput = Input.GetAxisRaw(_fireAxisName);
         
         #endregion
+
+        base.Update();
+
     }
 
     internal override void IncreaseHealth(int value)

@@ -6,6 +6,6 @@ public class InputButton : MonoBehaviour
 {
   public void StartCoroutineButton()
     {
-        GameObject.Find("InputManager").GetComponent<InputManager>().StartCoroutine("SetButton", gameObject);
+       // GameObject.Find("InputManager").GetComponent<InputManager>().StartCoroutine("SetButton", gameObject);
     }
 }

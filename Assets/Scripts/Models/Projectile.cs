@@ -54,7 +54,7 @@ public class Projectile : MonoBehaviour
             // Проверяем, столкнулась ли пуля с объектом Player
             else if (collision.gameObject.CompareTag("Player"))
             {
-                PlayerController player = collision.gameObject.GetComponent<PlayerController>(); // пытаемся получить компонент PlayerController
+                TankController player = collision.gameObject.GetComponent<TankController>(); // пытаемся получить компонент PlayerController
                 if (player != null)
                 {
                     player.TakeDamage(properties.damage);
@@ -65,14 +65,6 @@ public class Projectile : MonoBehaviour
                 }
 
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
-                //textToDisplay = $"{damageBullet}";
-                //GameObject DamageTextInstance = Instantiate(damageTextPrefab, Enemy.transform);
-                //DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
-                //Debug.Log(damageBullet);
-
-                // TODO: Добавить текст нанесённого урона
-
-                Debug.Log($"Hit!\nDamaged Player: {player.playerNumber}");
             }
             else if (collision.gameObject.CompareTag("Enemy"))
             {

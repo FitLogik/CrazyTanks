@@ -80,7 +80,7 @@ public abstract class TankController : TankBehaviour
         // Чтобы находящийся внутри объекта progressbar не переворачивался вместе с ним
         bulletSpeedCanvas.transform.rotation = Quaternion.identity;
     }
-
+    
     #region UI
     private void UpdateBulletSpeedBar(float speed)
     {
@@ -89,7 +89,6 @@ public abstract class TankController : TankBehaviour
         bulletSpeedBarImage.color = bulletSpeedBarGradient.Evaluate(speedAmount);
     }
     #endregion
-
     #region Движение танка
 
     protected virtual void SetPosition(Vector2 direction)
@@ -103,7 +102,6 @@ public abstract class TankController : TankBehaviour
     }
 
     #endregion
-
     #region Боевка
     protected override void Fire()
     {

@@ -197,13 +197,18 @@ public class TankBehaviour : MonoBehaviour
 
 
     // Поворот дула
-    private void MuzzleTurn()
+    protected virtual void MuzzleTurn()
+    {
+        float rotationAmount = rotationInput * muzzleRotationSpeed * Time.deltaTime;
+        RotateMuzzle(rotationAmount);
+    }
+
+    protected void RotateMuzzle(float value)
     {
         float muzzleAngle = muzzleTransform.localEulerAngles.z % 360;
         if (muzzleAngle > 180) muzzleAngle -= 360;
 
-        float rotationAmount = rotationInput * muzzleRotationSpeed * Time.deltaTime;
-        float muzzleRotation = Mathf.Clamp(muzzleAngle + rotationAmount, minMuzzleRotation, maxMuzzleRotation);
+        float muzzleRotation = Mathf.Clamp(muzzleAngle + value, minMuzzleRotation, maxMuzzleRotation);
 
         muzzleTransform.localRotation = Quaternion.Euler(0, 0, muzzleRotation);
     }
