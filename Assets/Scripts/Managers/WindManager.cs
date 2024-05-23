@@ -57,7 +57,10 @@ public class WindManager : MonoBehaviour
         isWindActive = true;
         ChangeWindParams();
         ApplyWind();
-        _audioManager.PlaySFX(_audioManager.wind);
+        if (_audioManager != null)
+        {
+            _audioManager.PlaySFX(_audioManager.wind);
+        }
         if (windDirection.x > 0)
         {
             windImage1.enabled = true;

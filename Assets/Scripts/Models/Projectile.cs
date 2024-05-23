@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.GameType != GameTypes.Game2Players)
+        if (GameManager.GameType == GameType.Game1Player)
         {
             combo = FindObjectOfType<Score>();
         }
@@ -40,21 +40,23 @@ public class Projectile : MonoBehaviour
         // Проверяем, произошёл ли выстрел только что
         if (_canCollide)
         {
+            // Удаляем объект, с которым пуля столкнулась
+            Destroy(gameObject);
+
             // Проверяем, столкнулась ли пуля с объектом Ground
             if (collision.gameObject.CompareTag("Ground"))
             {
                 Instantiate(properties.groundHitPrefab, transform.position, Quaternion.identity);
-                if (GameManager.GameType != GameTypes.Game2Players)
+                if (GameManager.GameType == GameType.Game1Player)
                 {
                     combo.ResetCombo();
-
                 }
             }
     
             // Проверяем, столкнулась ли пуля с объектом Player
             else if (collision.gameObject.CompareTag("Player"))
             {
-                TankController player = collision.gameObject.GetComponent<TankController>(); // пытаемся получить компонент PlayerController
+                TankController player = collision.gameObject.GetComponent<TankController>(); // пытаемся получить компонент TankController
                 if (player != null)
                 {
                     player.TakeDamage(properties.damage);
@@ -68,7 +70,7 @@ public class Projectile : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("Enemy"))
             {
-                EnemyController enemy = collision.gameObject.GetComponent<EnemyController>(); // пытаемся получить компонент PlayerController
+                EnemyController enemy = collision.gameObject.GetComponent<EnemyController>(); // пытаемся получить компонент EnemyController
                 if (enemy != null)
                 {
                     enemy.TakeDamage();
@@ -80,9 +82,10 @@ public class Projectile : MonoBehaviour
 
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
-            _audioManager.PlaySFX(_audioManager.hit);
-            // Удаляем объект, с которым пуля столкнулась
-            Destroy(gameObject);
+            if (_audioManager != null)
+            {
+                _audioManager.PlaySFX(_audioManager.hit);
+            }
         }
     }
 

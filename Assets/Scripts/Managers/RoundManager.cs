@@ -108,7 +108,10 @@ public class RoundManager : MonoBehaviour
 
     private void StartMusic()
     {
-        _audioManager.PlaySFX(_audioManager.winRound);
+        if (_audioManager != null)
+        {
+            _audioManager.PlaySFX(_audioManager.winRound);
+        }
     }
 
     private void PlayerRoundWin(int playerNumber)
@@ -125,7 +128,7 @@ public class RoundManager : MonoBehaviour
     }
 
 
-    public static PlayerController GetPlayer(int playerNumber)
+    public static TankController GetPlayer(int playerNumber)
     {
         GameObject playerGO;
         if (playerNumber == 1)
@@ -141,7 +144,7 @@ public class RoundManager : MonoBehaviour
             throw new ArgumentException("”казан неверный playerNumber!");
         }
 
-        return playerGO.GetComponent<PlayerController>();
+        return playerGO.GetComponent<TankController>();
     }
 
 }

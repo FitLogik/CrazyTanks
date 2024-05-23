@@ -1,6 +1,7 @@
-﻿public enum GameTypes
+﻿public enum GameType
 {
     None = 0,
     Game1Player = 1,
-    Game2Players = 2
+    Game1PlayerWithBot = 2,
+    Game2Players = 3
 }

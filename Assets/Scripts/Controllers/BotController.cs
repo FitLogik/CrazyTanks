@@ -36,12 +36,15 @@ public class BotController : TankController
 
             // Simulate movement input
             StartCoroutine(ApplyMoveInput(moveInput, moveDuration));
+            yield return new WaitForSeconds(moveDuration);
 
             // Simulate rotation input
             StartCoroutine(ApplyRotateInput(finalRotation, rotateDuration));
+            yield return new WaitForSeconds(rotateDuration);
 
             // Simulate firing input
-                StartCoroutine(ApplyFireInput(fireDuration));
+            StartCoroutine(ApplyFireInput(fireDuration));
+            yield return new WaitForSeconds(fireDuration);
 
             // Wait for a short random duration before the next action
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
@@ -61,11 +64,11 @@ public class BotController : TankController
     private IEnumerator ApplyRotateInput(float finalRotation, float duration)
     {
         float currentRotation = muzzleTransform.localEulerAngles.z;
-        float deltaRotation = finalRotation - currentRotation;
+        float deltaRotation = Mathf.DeltaAngle(currentRotation, finalRotation);
 
         rotationInput = deltaRotation > 0f ? 1f : -1f;
 
-        muzzleRotationSpeed = deltaRotation / duration;
+        muzzleRotationSpeed = Mathf.Abs(deltaRotation) / duration;
 
         yield return new WaitForSeconds(duration);
 

@@ -641,7 +641,6 @@ MonoBehaviour:
   star1: {fileID: 280335518}
   star2: {fileID: 1383813126}
   star3: {fileID: 1699937097}
-  player: {fileID: 2093168253}
   enemy: {fileID: 2118309662}
 --- !u!1 &704541507
 GameObject:
@@ -2092,6 +2091,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6068784725516169577, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: playerNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068784725516169577, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: bulletsContainer
+      value: 
+      objectReference: {fileID: 162555664}
     - target: {fileID: 6727932831555811733, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2113,17 +2120,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
---- !u!114 &2093168253 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 416074358349805400, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
-  m_PrefabInstance: {fileID: 2093168252}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b272ed1c7ba6aa4b960080e2610f2b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2118309660
 PrefabInstance:
   m_ObjectHideFlags: 0

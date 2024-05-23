@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerController : TankController
 {
-    [Header("Player Properties")]
-    public int playerNumber;
     
     
 
@@ -32,8 +30,6 @@ public class PlayerController : TankController
         _rotateAxisName = "Vertical" + playerNumber;
         _fireAxisName = "Fire" + playerNumber;
 
-        SetColor(PrefsManager.GetPlayerColor(playerNumber));
-
         SetPosition(playerNumber == 1 ? Vector2.left : Vector2.right);
     }
 
@@ -51,39 +47,6 @@ public class PlayerController : TankController
 
     }
 
-    internal override void IncreaseHealth(int value)
-    {
-        float lastHealth = health;
-
-        base.IncreaseHealth(value);
-
-        Debug.Log($"Increase Health Player{playerNumber} ({lastHealth} => {health})");
-    }
-
-    internal override void TakeDamage(int value)
-    {
-        base.TakeDamage(value);
-
-        if (health <= 0)
-        {
-            RoundManager.instance.EndRound(playerNumber);
-        }
-
-        BonusUIController.RemoveShield(playerNumber);
-    }
-
-    internal override void Freeze(float freezeDuration)
-    {
-        Debug.Log($"Freeze Player{playerNumber}");
-        base.Freeze(freezeDuration);
-    }
-
-    protected override void Fire()
-    {
-        base.Fire();
-
-        Debug.Log($"Fire\nPlayer{playerNumber}");
-    }
 
     protected override Projectile CreateProjectile()
     {
@@ -92,13 +55,6 @@ public class PlayerController : TankController
         projectile.properties.owner = playerNumber;
 
         return projectile;
-    }
-
-    public override void ActivateShield()
-    {
-        base.ActivateShield();
-
-        Debug.Log($"Shield Player{playerNumber}");
     }
 
 

@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public abstract class TankController : TankBehaviour
 {
     [Header("Tank Properties")]
+    public int playerNumber;
     [SerializeField] Color tankColor;                       // цвет танка
-    
+
     [Header("Misc")]
     [SerializeField] GameObject bulletSpeedCanvas;          // Холст, который имеет элемент, показывающий ускорение снаряда перед выстрелом
     [SerializeField] Image bulletSpeedBarImage;             // Прогрессбар ускорения снаряда перед выстрелом
@@ -42,7 +43,7 @@ public abstract class TankController : TankBehaviour
     {
         base.Start();
 
-        SetColor(tankColor);
+        SetColor(PrefsManager.GetPlayerColor(playerNumber));
     }
 
 
@@ -57,10 +58,18 @@ public abstract class TankController : TankBehaviour
 
     internal override void IncreaseHealth(int value)
     {
+        float lastHealth = health;
+
         base.IncreaseHealth(value);
 
         healthBarImage.fillAmount = health / maxHealth;
-        _audioManager.PlaySFX(_audioManager.bonusPickUp);
+        if (_audioManager != null)
+        {
+            _audioManager.PlaySFX(_audioManager.bonusPickUp);
+        }
+
+
+        Debug.Log($"Increase Health Player{playerNumber} ({lastHealth} => {health})");
     }
 
     // Для более плавного изменения значений применяем Update вместо FixedUpdate
@@ -105,6 +114,8 @@ public abstract class TankController : TankBehaviour
     #region Боевка
     protected override void Fire()
     {
+        Debug.Log($"Fire\nPlayer{playerNumber}");
+
         base.Fire();
 
         // Выключаем объект с холстом прогрессбара
@@ -126,15 +137,27 @@ public abstract class TankController : TankBehaviour
         {
             _colorController.SetDefaultMaterial(tankColor);
             bulletSpeedCanvas.SetActive(false);
-            _audioManager.PlaySFX(_audioManager.death);
+            if (_audioManager != null)
+            {
+                _audioManager.PlaySFX(_audioManager.death);
+            }
+
+            RoundManager.instance.EndRound(playerNumber);
         }
+
+        BonusUIController.RemoveShield(playerNumber);
     }
 
     internal override void Freeze(float freezeDuration)
     {
+        Debug.Log($"Freeze Player{playerNumber}");
+
         bulletSpeedCanvas.SetActive(false);
 
-        _audioManager.PlaySFX(_audioManager.bonusPickUp);
+        if (_audioManager != null)
+        {
+            _audioManager.PlaySFX(_audioManager.bonusPickUp);
+        }
 
         base.Freeze(freezeDuration);
 
@@ -156,10 +179,15 @@ public abstract class TankController : TankBehaviour
 
     public override void ActivateShield()
     {
+        Debug.Log($"Shield Player{playerNumber}");
+
         if (health > 0)
         {
             base.ActivateShield();
-            _audioManager.PlaySFX(_audioManager.bonusPickUp);
+            if (_audioManager != null)
+            {
+                _audioManager.PlaySFX(_audioManager.bonusPickUp);
+            }
         }
     }
 

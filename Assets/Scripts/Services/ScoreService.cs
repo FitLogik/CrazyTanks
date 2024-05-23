@@ -27,13 +27,13 @@ public class ScoreService
         return null;
     }
 
-    public string GetScore(GameTypes gameType)
+    public string GetScore(GameType gameType)
     {
-        if (gameType == GameTypes.Game1Player)
+        if (gameType == GameType.Game1Player)
         {
             return Player1Score.ToString();
         }
-        else if (gameType == GameTypes.Game2Players)
+        else if (gameType == GameType.Game2Players)
         {
             return $"{Player1Score}:{Player2Score}";
         }

@@ -18,11 +18,11 @@ public class UIManager : MonoBehaviour
     {
         get
         {
-            if (GameManager.GameType == GameTypes.Game1Player)
+            if (GameManager.GameType == GameType.Game1Player)
             {
                 return Instance.scoreUISettings1Player;
             }
-            else if (GameManager.GameType == GameTypes.Game2Players)
+            else if (GameManager.GameType == GameType.Game2Players)
             {
                 return Instance.scoreUISettings2Players;
             }

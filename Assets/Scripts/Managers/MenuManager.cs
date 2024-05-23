@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
     public void LoadGameLevel(string level)
     {
         Instantiate(gameManagerPrefab);
-        GameManager.GameType = GameTypes.Game1Player;
+        GameManager.GameType = GameType.Game1Player;
         string sceneName = "GameLevel" + level;
         GameManager.LoadScene1Player(sceneName);
     }
@@ -32,7 +32,7 @@ public class MenuManager : MonoBehaviour
     {
         // Создаем объект GameManager (при создании, к нему применяется DontDestroyOnLoad)
         Instantiate(gameManagerPrefab);
-        GameManager.GameType = GameTypes.Game2Players;
+        GameManager.GameType = GameType.Game2Players;
         GameManager.LoadRandomScene();
     }
 

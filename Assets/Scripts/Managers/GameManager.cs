@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
 
-    [SerializeField] GameTypes gameType;
+    [SerializeField] GameType gameType;
     [SerializeField] ScoreManager scoreManager;
 
     [Header("Scene names")]
@@ -19,10 +19,10 @@ public class GameManager : MonoBehaviour
 
     AudioManager _audioManager;
 
-    public static GameTypes GameType
+    public static GameType GameType
     {
-        get {return Instance.gameType;}
-        set { Instance.gameType = value;}
+        get { return Instance.gameType; }
+        set { Instance.gameType = value; }
     }
     public static ScoreManager ScoreManager => Instance.scoreManager;
 
@@ -39,11 +39,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //if (GameType == GameTypes.None)
-        //{
-        //    gameType = GameTypes.Game2Players;
-        //}
-
         if (scoreManager == null)
         {
             scoreManager = gameObject.AddComponent<ScoreManager>();
@@ -56,6 +51,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            _audioManager = AudioManager.Instance;
             Debug.LogError("Не удалось найти объект Audio!");
         }
 
@@ -70,13 +66,16 @@ public class GameManager : MonoBehaviour
 
     public static void RoundOver()
     {
-        if (ScoreManager.IsGameOver)
+        if (GameType == GameType.Game2Players)
         {
-            Instance.LoadGameOverScene();
-        }
-        else
-        {
-            LoadRandomScene();
+            if (ScoreManager.IsGameOver)
+            {
+                Instance.LoadGameOverScene();
+            }
+            else
+            {
+                LoadRandomScene();
+            }
         }
     }
 
@@ -89,7 +88,7 @@ public class GameManager : MonoBehaviour
     public static void LoadRandomScene()
     {
         
-        if (Instance.gameType == GameTypes.Game2Players)
+        if (Instance.gameType == GameType.Game2Players)
         {
             int scenesCount = Instance.scenes2PlayersNames.Length;
             if (scenesCount > 0)
@@ -102,7 +101,8 @@ public class GameManager : MonoBehaviour
 
     public static void LoadScene1Player(string sceneName)
     {
-        if (Instance.gameType == GameTypes.Game1Player)
+        if (Instance.gameType == GameType.Game1Player 
+            || Instance.gameType == GameType.Game1PlayerWithBot)
         {
             Instance.gameLevelName = sceneName;   
             Instance.LoadScene(Instance.gameLevelName);
@@ -116,7 +116,10 @@ public class GameManager : MonoBehaviour
 
     public static void PlayerRoundWin(int playerNumber)
     {
-        ScoreManager.PlayerRoundWin(playerNumber);
+        if (GameType == GameType.Game2Players)
+        {
+            ScoreManager.PlayerRoundWin(playerNumber);
+        }
     }
 
     public static void ReturnToMainMenu()

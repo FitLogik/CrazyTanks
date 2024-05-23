@@ -965,7 +965,8 @@ MonoBehaviour:
     damage: 50
     disableColliderTime: 0.05
     owner: 1
-  tankColor: {r: 0, g: 0, b: 0, a: 0}
+  playerNumber: 2
+  tankColor: {r: 0.09656461, g: 0.6603774, b: 0.23151352, a: 0}
   bulletSpeedCanvas: {fileID: 3468644882216556996}
   bulletSpeedBarImage: {fileID: 6450956134329230171}
   bulletSpeedBarGradient:
@@ -1000,9 +1001,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   healthBarImage: {fileID: 0}
   BonusUIImage: {fileID: 0}
-  minMoveDuration: 0
+  minMoveDuration: 0.2
   maxMoveDuration: 1
-  minRotateDuration: 0
+  minRotateDuration: 0.5
   maxRotateDuration: 3
 --- !u!1 &9105738504936480256
 GameObject:

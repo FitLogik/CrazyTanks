@@ -635,11 +635,13 @@ MonoBehaviour:
   score2star: 36
   score1star: 20
   idLevel: 2
+  result: 0
   playerScore: {fileID: 771016605}
   star0: {fileID: 704541507}
   star1: {fileID: 280335518}
   star2: {fileID: 1383813126}
   star3: {fileID: 1699937097}
+  enemy: {fileID: 0}
 --- !u!1 &704541507
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2091,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6068784725516169577, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: playerNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068784725516169577, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
+      propertyPath: bulletsContainer
+      value: 
+      objectReference: {fileID: 162555664}
     - target: {fileID: 6727932831555811733, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: m_Camera
       value: 

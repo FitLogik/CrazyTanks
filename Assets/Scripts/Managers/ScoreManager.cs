@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+
+
     [SerializeField] ScoreService scoreService;
 
 
@@ -25,18 +27,11 @@ public class ScoreManager : MonoBehaviour
         {
             scoreService = new ScoreService();
         }
-    }
 
-    private void Start()
-    {
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;   // SceneManager_sceneLoaded будет выполняться каждый раз,
                                                                 // когда будет загружаться новая сцена
-
-        if (scoreUIController == null)
-        {
-            FindScoreUIController();
-        }
     }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
@@ -45,7 +40,7 @@ public class ScoreManager : MonoBehaviour
     private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         Debug.Log("Scene loaded");
-        if (GameManager.GameType == GameTypes.Game2Players)
+        if (GameManager.GameType == GameType.Game2Players)
         {
             FindScoreUIController();
         }

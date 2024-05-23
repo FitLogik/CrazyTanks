@@ -32,7 +32,7 @@ public class EnvironmentGenerator : MonoBehaviour
         {
             noiseStep = Random.Range(0, 20f);
         }
-        if (GameManager.GameType == GameTypes.Game1Player)
+        if (GameManager.GameType == GameType.Game1Player)
         {
             SetRandomProfile();
         }
