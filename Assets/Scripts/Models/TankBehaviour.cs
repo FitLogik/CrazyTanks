@@ -11,6 +11,7 @@ public class TankBehaviour : MonoBehaviour
     [SerializeField] ContactFilter2D contactFilter;                     // нужен для обнаружения столкновений с объектами
     [SerializeField] float stabilizationForce = 0.1f;                   // сила стабилизации кручения танка (чтобы он старался не переворачиваться)
     [SerializeField] float moveRotationMultiplier = 0.05f;              // множитель переворота при нажатии на кнопку движения (поднимается перед)
+    [SerializeField] GroundChecker groundChecker;                       // для обнаружения столкновения с землей
 
 
 
@@ -33,7 +34,7 @@ public class TankBehaviour : MonoBehaviour
     [SerializeField] ProjectileProperties projectileProperties;         // настройки снаряда
 
 
-    
+
     protected float health;
     protected bool _hasShield = false;
     protected float _bulletSpeed = 0f;
@@ -50,7 +51,8 @@ public class TankBehaviour : MonoBehaviour
 
 
 
-    bool IsGrounded => _rigidbody.IsTouching(contactFilter);
+    bool IsGrounded => _rigidbody.IsTouching(contactFilter) && groundChecker.IsGrounded;
+
 
 
     protected virtual void Awake()
@@ -124,6 +126,7 @@ public class TankBehaviour : MonoBehaviour
             if (health <= 0)
             {
                 _rigidbody.isKinematic = false;
+                _rigidbody.freezeRotation = false;
 
                 enabled = false;
             }
@@ -144,6 +147,7 @@ public class TankBehaviour : MonoBehaviour
     {
         _rigidbody.isKinematic = true;
         _rigidbody.velocity = Vector2.zero;
+        _rigidbody.freezeRotation = true;
 
         enabled = false;
 
@@ -157,6 +161,7 @@ public class TankBehaviour : MonoBehaviour
         {
             _rigidbody.isKinematic = false;
             enabled = true;
+            _rigidbody.freezeRotation = false;
         }
     }
 
