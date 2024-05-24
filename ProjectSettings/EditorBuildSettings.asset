@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game2PlayersDefault.unity
     guid: 62e91cd5bc614a94ab5b3eaecc9b7431
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game2PlayersWinter.unity
-    guid: 60d67ba80593555468e9eb2047e5b9a2
+    guid: 3a843b73673dedf45a542f8d270e427c
   - enabled: 1
     path: Assets/Scenes/GameEnd2Players.unity
     guid: d47dd3dbde7b1f642b9a1c947018aa4f
@@ -22,13 +22,31 @@ EditorBuildSettings:
     guid: b83ee17cafebb8d4dad92beb1d2b4bb5
   - enabled: 1
     path: Assets/Scenes/Levels/GameLevel2.unity
-    guid: 1eab14f7da8df16439499feabffaaf4d
+    guid: be8f1a1c3d9d43149a617a74696d836e
   - enabled: 1
     path: Assets/Scenes/Levels/GameLevel3.unity
-    guid: ee6a994b473a49c488dd63649f145176
+    guid: 56ef9216e49f2fe4389b6fd10a7dbd1a
   - enabled: 1
     path: Assets/Scenes/Levels/GameLevel4.unity
-    guid: be8f1a1c3d9d43149a617a74696d836e
+    guid: ea03554c2907bb64593b86eb5d8e6b51
+  - enabled: 1
+    path: Assets/Scenes/Levels/GameLevel5.unity
+    guid: ac2d9a39d7b83d64d8847dcfea72b718
+  - enabled: 1
+    path: Assets/Scenes/Levels/GameLevel6.unity
+    guid: a97eeb83710bf184fa9e16dc555c9bec
+  - enabled: 1
+    path: Assets/Scenes/Levels/GameLevel7.unity
+    guid: 93251f4c4e018f64cb3c240aae2b31d3
+  - enabled: 1
+    path: Assets/Scenes/Levels/GameLevel8.unity
+    guid: 724b3f5371367ab44bc30fd8cd7b7aa1
+  - enabled: 1
+    path: Assets/Scenes/Levels/GameLevel9.unity
+    guid: 85252022646d72545aa9c82827a64157
+  - enabled: 1
+    path: Assets/Scenes/Levels/GameLevel10.unity
+    guid: e682e99e326f6cb4bbdff133c31c5592
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 7610550122eccb348a94e4b41bdfb05e, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: d2387217524e58d409d136b238c90c4e, type: 2}

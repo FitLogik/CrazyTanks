@@ -63,6 +63,16 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SetLevels();
+        Debug.Log($"Уровень 1 - {statusLvl1}");
+        Debug.Log($"Уровень 2 - {statusLvl2}");
+        Debug.Log($"Уровень 3 - {statusLvl3}");
+        Debug.Log($"Уровень 4 - {statusLvl4}");
+        Debug.Log($"Уровень 5 - {statusLvl5}");
+        Debug.Log($"Уровень 6 - {statusLvl6}");
+        Debug.Log($"Уровень 7 - {statusLvl7}");
+        Debug.Log($"Уровень 8 - {statusLvl8}");
+        Debug.Log($"Уровень 9 - {statusLvl9}");
+        Debug.Log($"Уровень 10 - {statusLvl10}");
     }
 
     public void SetLevels()
@@ -146,11 +156,13 @@ public class LevelManager : MonoBehaviour
         {
             panelLevel3.SetActive(true);
             imageLevel3.sprite = star2;
+
         }
         else if (statusLvl3 == 3)
         {
             panelLevel3.SetActive(true);
             imageLevel3.sprite = star3;
+
         }
         #endregion
         #region Level 4
@@ -266,7 +278,6 @@ public class LevelManager : MonoBehaviour
         {
             panelLevel8.SetActive(false);
             buttonLevel8.interactable = false;
-
         }
         else if (statusLvl8 == 0)
         {

@@ -81,17 +81,37 @@ public class Timer : MonoBehaviour
         if (idLevel == 1)
         {
             int curResult = PrefsManager.GetLevel1();
-            if (curResult < result)
+            if (curResult <= result)
             {
                 PrefsManager.SetLevel1(result);
+                if (PrefsManager.GetLevel2() == -1)
+                {
+                    PrefsManager.SetLevel2(0);
+                }
             }
         }
-        else if (idLevel == 2)
+        else if (idLevel == 3)
         {
-            int curResult = PrefsManager.GetLevel2();
-            if (curResult < result)
+            int curResult = PrefsManager.GetLevel3();
+            if (curResult <= result)
             {
-                PrefsManager.SetLevel1(result);
+                PrefsManager.SetLevel3(result);
+                if (PrefsManager.GetLevel4() == -1)
+                {
+                    PrefsManager.SetLevel4(0);
+                }
+            }
+        }
+        else if (idLevel == 5)
+        {
+            int curResult = PrefsManager.GetLevel5();
+            if (curResult <= result)
+            {
+                PrefsManager.SetLevel5(result);
+                if (PrefsManager.GetLevel6() == -1)
+                {
+                    PrefsManager.SetLevel6(0);
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class TankBehaviour : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class TankBehaviour : MonoBehaviour
 
 
 
-    bool IsGrounded => _rigidbody.IsTouching(contactFilter) && groundChecker.IsGrounded;
+    bool IsGrounded => _rigidbody.IsTouching(contactFilter); // && groundChecker.IsGrounded;
 
 
 
@@ -115,6 +116,11 @@ public class TankBehaviour : MonoBehaviour
     internal virtual void IncreaseHealth(int value)
     {
         health = Mathf.Min(maxHealth, health + value);
+    }
+
+    internal virtual float GetHealth()
+    {
+        return health;
     }
 
     internal virtual void TakeDamage(int value)

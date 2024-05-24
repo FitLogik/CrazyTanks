@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5716222808905532976}
   - component: {fileID: 1596024532887819908}
   - component: {fileID: 2918080699828905110}
-  - component: {fileID: 3748896794936972215}
+  - component: {fileID: 2574030848013736506}
   m_Layer: 6
   m_Name: helicopter
   m_TagString: player
@@ -172,7 +172,7 @@ PolygonCollider2D:
       - {x: -0.515, y: -1.18}
       - {x: -2.075, y: -1.18}
   m_UseDelaunayMesh: 0
---- !u!114 &3748896794936972215
+--- !u!114 &2574030848013736506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,15 +181,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 556620174429870729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23a8798d960a90845ab7af812a14f14f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a1c926ae715b6b4b945b05bea9262ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 0.5
   health: 1
-  vericalSpeed: 0.5
-  upperBound: 0
-  lowerBound: 0
-  delayTime: 1
+  isActive: 1
+  ComboScore: 0
 --- !u!1 &1009372693877718372
 GameObject:
   m_ObjectHideFlags: 0

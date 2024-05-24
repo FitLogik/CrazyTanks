@@ -48,9 +48,10 @@ MonoBehaviour:
   gameType: 2
   scoreManager: {fileID: 7940924705835874977}
   mainMenuSceneName: MenuScene
-  game1PlayerSceneName: Game1Player
+  gameLevelName: 
   scenes2PlayersNames:
   - Game2PlayersDefault
+  - Game2PlayersWinter
   gameOverSceneName: GameEnd2Players
 --- !u!114 &7940924705835874977
 MonoBehaviour:

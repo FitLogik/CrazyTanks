@@ -1,5 +1,4 @@
-﻿using UnityEditor.Localization.Plugins.XLIFF.V12;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class PrefsManager
 {
@@ -113,7 +112,7 @@ public static class PrefsManager
         return PlayerPrefs.GetFloat(SFXKey, defaultSFXVolume);
     }
     #endregion
-
+     
     #region Language
     public static void SetLanguage(int languageID)
     {
@@ -131,10 +130,6 @@ public static class PrefsManager
     public static void SetLevel1(int result)
     {
         PlayerPrefs.SetInt(level1Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level2Key, 0);
-        }
     }
     public static int GetLevel1()
     {
@@ -145,10 +140,6 @@ public static class PrefsManager
     public static void SetLevel2(int result)
     {
         PlayerPrefs.SetInt(level2Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level3Key, 0);
-        }
     }
     public static int GetLevel2()
     {
@@ -159,10 +150,6 @@ public static class PrefsManager
     public static void SetLevel3(int result)
     {
         PlayerPrefs.SetInt(level3Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level4Key, 0);
-        }
     }
     public static int GetLevel3()
     {
@@ -173,11 +160,6 @@ public static class PrefsManager
     public static void SetLevel4(int result)
     {
         PlayerPrefs.SetInt(level4Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level5Key, 0);
-
-        }
     }
     public static int GetLevel4()
     {
@@ -188,10 +170,6 @@ public static class PrefsManager
     public static void SetLevel5(int result)
     {
         PlayerPrefs.SetInt(level5Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level6Key, 0);
-        }
     }
     public static int GetLevel5()
     {
@@ -202,10 +180,6 @@ public static class PrefsManager
     public static void SetLevel6(int result)
     {
         PlayerPrefs.SetInt(level6Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level7Key, 0);
-        }
     }
     public static int GetLevel6()
     {
@@ -216,10 +190,6 @@ public static class PrefsManager
     public static void SetLevel7(int result)
     {
         PlayerPrefs.SetInt(level7Key, result);
-        if(result > 0)
-        {
-            PlayerPrefs.SetInt(level8Key, 0);
-        }
     }
     public static int GetLevel7()
     {
@@ -230,10 +200,6 @@ public static class PrefsManager
     public static void SetLevel8(int result)
     {
         PlayerPrefs.SetInt(level8Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level9Key, 0);
-        }
     }
     public static int GetLevel8()
     {
@@ -244,10 +210,6 @@ public static class PrefsManager
     public static void SetLevel9(int result)
     {
         PlayerPrefs.SetInt(level9Key, result);
-        if (result > 0)
-        {
-            PlayerPrefs.SetInt(level10Key, 0);
-        }
     }
     public static int GetLevel9()
     {

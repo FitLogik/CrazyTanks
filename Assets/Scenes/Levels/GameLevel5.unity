@@ -630,11 +630,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 360431832}
-  totalTime: 40
-  score3star: 25
-  score2star: 15
-  score1star: 7
-  idLevel: 1
+  totalTime: 99
+  score3star: 120
+  score2star: 80
+  score1star: 40
+  idLevel: 5
   result: 0
   playerScore: {fileID: 771016605}
   star0: {fileID: 704541507}
@@ -2123,10 +2123,6 @@ PrefabInstance:
       propertyPath: bulletsContainer
       value: 
       objectReference: {fileID: 162555664}
-    - target: {fileID: 6450956134329230171, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6727932831555811733, guid: 1b0dbdbcf757b2c4ebf07498481a5bfb, type: 3}
       propertyPath: m_Camera
       value: 
