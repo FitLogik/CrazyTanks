@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemyController : MonoBehaviour
     public bool isActive = true;
 
     private Score sp;
+    private Timer timer;
 
     public bool ComboScore = false;
 
@@ -21,17 +23,24 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         sp = FindObjectOfType<Score>();
+        timer = FindFirstObjectByType<Timer>();
+
     }
     void Update()
     {
         if (isActive)
         {
             transform.Translate(Vector3.right * -horizontalSpeed * Time.deltaTime);
-
+            if (transform.position.x <= Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x)
+            {
+                EnemyDestroyed();
+                timer.currentTime = 0;
+                timer.UpdateTimerText();
+            }
         }
         else
         {
-            transform.Translate(Vector3.right * 0);
+            transform.Translate(Vector3.zero);
         }
     }
 

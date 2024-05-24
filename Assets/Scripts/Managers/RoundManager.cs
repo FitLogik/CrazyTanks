@@ -114,7 +114,6 @@ public class RoundManager : MonoBehaviour
             {
                 PlayerRoundWin(1); // Раунд выиграл 1 игрок
             }
-            Invoke("StartMusic", 0.4f);
         }
         isRoundEnded = true;
     }
@@ -131,6 +130,7 @@ public class RoundManager : MonoBehaviour
     {
         if (GameManager.GameType == GameType.Game2Players)
         {
+            Invoke("StartMusic", 0.4f);
             GameManager.PlayerRoundWin(playerNumber);
             if (playerNumber == 1)
             {
@@ -151,23 +151,27 @@ public class RoundManager : MonoBehaviour
                 {
                     star3.SetActive(true);
                     resultLevel = 3;
+                    _audioManager.PlaySFX(_audioManager.winGame);
                 }
                 else if (player.GetHealth() >= 30)
                 {
                     star2.SetActive(true);
                     resultLevel = 2;
+                    _audioManager.PlaySFX(_audioManager.winRound);
+
                 }
                 else if (player.GetHealth() < 30)
                 {
                     star1.SetActive(true);
                     resultLevel = 1;
+                    _audioManager.PlaySFX(_audioManager.winRound);
                 }
                 WinCanvas.SetActive(true);
 
                 if (idLevel == 2)
                 {
                     int curResult = PrefsManager.GetLevel2();
-                    if (curResult <= resultLevel)
+                    if (curResult <= resultLevel && curResult != 0)
                     {
                         PrefsManager.SetLevel2(resultLevel);
                         if (PrefsManager.GetLevel3() == -1)
@@ -179,7 +183,7 @@ public class RoundManager : MonoBehaviour
                 else if(idLevel == 4)
                 {
                     int curResult = PrefsManager.GetLevel4();
-                    if (curResult <= resultLevel)
+                    if (curResult <= resultLevel && curResult != 0)
                     {
                         PrefsManager.SetLevel4(resultLevel);
                         if (PrefsManager.GetLevel5() == -1)
@@ -191,7 +195,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 6)
                 {
                     int curResult = PrefsManager.GetLevel6();
-                    if (curResult <= resultLevel)
+                    if (curResult <= resultLevel && curResult != 0)
                     {
                         PrefsManager.SetLevel6(resultLevel);
                         if (PrefsManager.GetLevel7() == -1)
@@ -203,7 +207,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 7)
                 {
                     int curResult = PrefsManager.GetLevel7();
-                    if (curResult <= resultLevel)
+                    if (curResult <= resultLevel && curResult != 0)
                     {
                         PrefsManager.SetLevel7(resultLevel);
                         if (PrefsManager.GetLevel8() == -1)
@@ -215,7 +219,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 8)
                 {
                     int curResult = PrefsManager.GetLevel8();
-                    if (curResult <= resultLevel)
+                    if (curResult <= resultLevel && curResult != 0)
                     {
                         PrefsManager.SetLevel8(resultLevel);
                         if (PrefsManager.GetLevel9() == -1)
@@ -227,7 +231,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 9)
                 {
                     int curResult = PrefsManager.GetLevel9();
-                    if (curResult <= resultLevel)
+                    if (curResult <= resultLevel && curResult != 0)
                     {
                         PrefsManager.SetLevel9(resultLevel);
                         if (PrefsManager.GetLevel10() == -1)
@@ -239,7 +243,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 10)
                 {
                     int curResult = PrefsManager.GetLevel10();
-                    if (curResult <= resultLevel)
+                    if (curResult <= resultLevel && curResult != 0)
                     {
                         PrefsManager.SetLevel10(resultLevel);
                     }
@@ -253,6 +257,7 @@ public class RoundManager : MonoBehaviour
             {
                 star0.SetActive(true);
                 resultLevel = 0;
+                _audioManager.PlaySFX(_audioManager.loseGame);
                 WinCanvas.SetActive(true);
             }
         }

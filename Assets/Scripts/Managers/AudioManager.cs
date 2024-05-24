@@ -15,18 +15,14 @@ public class AudioManager : MonoBehaviour
     [Header("------- Audio Clip -------")]
     public AudioClip background;
     public AudioClip shot1;
-    public AudioClip shot2;
-    public AudioClip shot3;
     public AudioClip bonusPickUp;
     public AudioClip hit;
-    public AudioClip hitGround;
     public AudioClip winRound;
     public AudioClip winGame;
+    public AudioClip loseGame;
     public AudioClip death;
     public AudioClip wind;
     public AudioClip click1;
-    public AudioClip click2;
-    public AudioClip click3;
 
     public static float MusicVolume
     {
@@ -102,6 +98,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFXClick()
     {
-        PlaySFX(click2);
+        PlaySFX(click1);
     }
 }

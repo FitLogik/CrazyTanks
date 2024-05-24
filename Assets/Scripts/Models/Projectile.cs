@@ -51,8 +51,11 @@ public class Projectile : MonoBehaviour
                 {
                     combo.ResetCombo();
                 }
+                if (_audioManager != null)
+                {
+                    _audioManager.PlaySFX(_audioManager.hit);
+                }
             }
-    
             // Проверяем, столкнулась ли пуля с объектом Player
             else if (collision.gameObject.CompareTag("Player"))
             {
@@ -65,7 +68,10 @@ public class Projectile : MonoBehaviour
                 {
                     Debug.LogError("Ошибка обнаружения игрока!");
                 }
-
+                if (_audioManager != null)
+                {
+                    _audioManager.PlaySFX(_audioManager.hit);
+                }
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
             else if (collision.gameObject.CompareTag("Enemy"))
@@ -79,12 +85,11 @@ public class Projectile : MonoBehaviour
                 {
                     Debug.LogError("Ошибка обнаружения игрока!");
                 }
-
+                if (_audioManager != null)
+                {
+                    _audioManager.PlaySFX(_audioManager.hit);
+                }
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
-            }
-            if (_audioManager != null)
-            {
-                _audioManager.PlaySFX(_audioManager.hit);
             }
         }
     }

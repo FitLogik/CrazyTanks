@@ -17740,18 +17740,14 @@ MonoBehaviour:
   SFXSource: {fileID: 1328024457}
   background: {fileID: 8300000, guid: 8e77fe1a0e5f15d4e9e60d4626c262aa, type: 3}
   shot1: {fileID: 8300000, guid: 36f216d2ac41994499e3d2c2b006de2b, type: 3}
-  shot2: {fileID: 0}
-  shot3: {fileID: 0}
   bonusPickUp: {fileID: 8300000, guid: f6f34089ebd4c8341963b01894851fcc, type: 3}
   hit: {fileID: 8300000, guid: b4114a3d380365c45986063aa1719a47, type: 3}
-  hitGround: {fileID: 0}
   winRound: {fileID: 8300000, guid: a1e85bd0460b5f74290297892f61ea3d, type: 3}
   winGame: {fileID: 8300000, guid: d11c0fd9726affc49ba3f4e741c3fd3b, type: 3}
+  loseGame: {fileID: 8300000, guid: 8c2ec38d34140a14d9da194670ed08b6, type: 3}
   death: {fileID: 8300000, guid: 502dfcc3e92469740b6ba3bb5cb367ed, type: 3}
   wind: {fileID: 8300000, guid: 4e8f9ac821d93b843981b0bee263c0ba, type: 3}
-  click1: {fileID: 8300000, guid: 61afa347ea993ed42a7d40725f972ba7, type: 3}
-  click2: {fileID: 8300000, guid: 60ba0d72e381ffd41b522bd69f5ef159, type: 3}
-  click3: {fileID: 0}
+  click1: {fileID: 8300000, guid: 60ba0d72e381ffd41b522bd69f5ef159, type: 3}
 --- !u!1 &1988594946
 GameObject:
   m_ObjectHideFlags: 0

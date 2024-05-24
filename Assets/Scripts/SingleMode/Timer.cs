@@ -15,8 +15,9 @@ public class Timer : MonoBehaviour
     public float score1star = 0f;
     public int idLevel;
     public int result;
-    private float currentTime;
+    public float currentTime;
     [SerializeField] GameObject playerScore;
+    
     private Score score;
     public GameObject star0;
     public GameObject star1;
@@ -24,6 +25,7 @@ public class Timer : MonoBehaviour
     public GameObject star3;
     public EnemyController enemy;
 
+    AudioManager _audioManager;
 
     void Start()
     {
@@ -31,6 +33,19 @@ public class Timer : MonoBehaviour
         currentTime = totalTime;
         UpdateTimerText();
         InvokeRepeating("UpdateTimer", 1f, 1f); // Запускаем метод UpdateTimer() каждую секунду
+    }
+
+    private void Awake()
+    {
+        GameObject audioManagerGO = GameObject.FindGameObjectWithTag("Audio");
+        if (audioManagerGO != null)
+        {
+            _audioManager = audioManagerGO.GetComponent<AudioManager>();
+        }
+        else
+        {
+            Debug.LogError("Не удалось найти объект Audio!");
+        }
     }
 
     void UpdateTimer()
@@ -47,33 +62,42 @@ public class Timer : MonoBehaviour
         }
     }
 
-    void UpdateTimerText()
+    public void UpdateTimerText()
     {
         timerText.text = currentTime.ToString();
     }
 
-    private void EndGame()
+    public void EndGame()
     {
         enemy.isActive = false;
+        currentTime = 0f;
+        UpdateTimerText();
         if (Convert.ToUInt32(score.scoreText.text) > score3star)
         {
             star3.SetActive(true);
             result = 3;
+            _audioManager.PlaySFX(_audioManager.winGame);
         }
         else if (Convert.ToUInt32(score.scoreText.text) > score2star)
         {
             star2.SetActive(true);
             result = 2;
+            _audioManager.PlaySFX(_audioManager.winRound);
+
         }
         else if (Convert.ToUInt32(score.scoreText.text) > score1star)
         {
             star1.SetActive(true);  
             result = 1;
+            _audioManager.PlaySFX(_audioManager.winRound);
         }
         else
         {
             star0.SetActive(true);
             result = 0;
+            _audioManager.PlaySFX(_audioManager.loseGame);
+            Debug.Log("Тестим звук");
+
         }
 
         playerScore.SetActive(true);
@@ -81,7 +105,7 @@ public class Timer : MonoBehaviour
         if (idLevel == 1)
         {
             int curResult = PrefsManager.GetLevel1();
-            if (curResult <= result)
+            if (curResult <= result && curResult != 0)
             {
                 PrefsManager.SetLevel1(result);
                 if (PrefsManager.GetLevel2() == -1)
@@ -93,7 +117,7 @@ public class Timer : MonoBehaviour
         else if (idLevel == 3)
         {
             int curResult = PrefsManager.GetLevel3();
-            if (curResult <= result)
+            if (curResult <= result && curResult != 0)
             {
                 PrefsManager.SetLevel3(result);
                 if (PrefsManager.GetLevel4() == -1)
@@ -105,7 +129,7 @@ public class Timer : MonoBehaviour
         else if (idLevel == 5)
         {
             int curResult = PrefsManager.GetLevel5();
-            if (curResult <= result)
+            if (curResult <= result && curResult != 0)
             {
                 PrefsManager.SetLevel5(result);
                 if (PrefsManager.GetLevel6() == -1)
