@@ -40,8 +40,7 @@ public class Projectile : MonoBehaviour
         // Проверяем, произошёл ли выстрел только что
         if (_canCollide)
         {
-            // Удаляем объект, с которым пуля столкнулась
-            Destroy(gameObject);
+            _canCollide = false; // если OnCollisionEnter2D вызовется ещё раз, пока не уничтожился объект
 
             // Проверяем, столкнулась ли пуля с объектом Ground
             if (collision.gameObject.CompareTag("Ground"))
@@ -91,6 +90,9 @@ public class Projectile : MonoBehaviour
                 }
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
+
+            // Удаляем объект, с которым пуля столкнулась
+            Destroy(gameObject);
         }
     }
 

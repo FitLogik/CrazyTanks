@@ -52,7 +52,7 @@ public class TankBehaviour : MonoBehaviour
 
 
 
-    bool IsGrounded => _rigidbody.IsTouching(contactFilter); // && groundChecker.IsGrounded;
+    bool IsGrounded => _rigidbody.IsTouching(contactFilter) && groundChecker.IsGrounded;
 
 
 

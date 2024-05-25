@@ -16,7 +16,6 @@ public class BotController : TankController
     {
         base.Start();
         SetColor(PrefsManager.DefaultColor);
-        SetPosition(Vector2.right);
 
 
         StartCoroutine(SimulateInput()); 

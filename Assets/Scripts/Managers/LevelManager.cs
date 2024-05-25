@@ -91,7 +91,7 @@ public class LevelManager : MonoBehaviour
         if (statusLvl1 == 0)
         {
             buttonLevel1.interactable = true;
-            panelLevel1.SetActive (false);
+            panelLevel1.SetActive(false);
         }
         else if (statusLvl1 == 1)
         {

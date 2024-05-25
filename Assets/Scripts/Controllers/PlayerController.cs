@@ -7,10 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerController : TankController
 {
-    
-    
-
-
     #region Axis
     string _movementAxisName;
     string _rotateAxisName;
@@ -29,8 +25,6 @@ public class PlayerController : TankController
         _movementAxisName = "Horizontal" + playerNumber;
         _rotateAxisName = "Vertical" + playerNumber;
         _fireAxisName = "Fire" + playerNumber;
-
-        SetPosition(playerNumber == 1 ? Vector2.left : Vector2.right);
     }
 
     protected override void Update()
@@ -46,17 +40,5 @@ public class PlayerController : TankController
         base.Update();
 
     }
-
-
-    protected override Projectile CreateProjectile()
-    {
-        Projectile projectile = base.CreateProjectile();
-
-        projectile.properties.owner = playerNumber;
-
-        return projectile;
-    }
-
-
 }
 

@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 3669980646293721108}
   - component: {fileID: 9123561807017096737}
   - component: {fileID: 6783140065648125955}
+  - component: {fileID: 5965515093527472514}
   m_Layer: 0
   m_Name: TankFooter
   m_TagString: Untagged
@@ -223,6 +224,19 @@ PolygonCollider2D:
       - {x: 0.71999997, y: 0.12}
       - {x: 0.6, y: 0.24}
   m_UseDelaunayMesh: 0
+--- !u!114 &5965515093527472514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197835963204128562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20879025631ce7a4983c00fa7eacc58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 6783140065648125955}
 --- !u!1 &1460057074486434499
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +961,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   stabilizationForce: 0.025
   moveRotationMultiplier: 1
+  groundChecker: {fileID: 5965515093527472514}
   muzzleTransform: {fileID: 2772068699327018368}
   muzzleRotationSpeed: 180
   minMuzzleRotation: -10

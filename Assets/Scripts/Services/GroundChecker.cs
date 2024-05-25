@@ -13,7 +13,7 @@ public class GroundChecker : MonoBehaviour
     {
         if (_collider == null)
         {
-            _collider = GetComponent<Collider2D>();
+            _collider = GetComponent<PolygonCollider2D>();
         }
     }
 

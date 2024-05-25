@@ -74,9 +74,7 @@ public static class PrefsManager
         float r = PlayerPrefs.GetFloat(GetPlayerKey(RColorKey, playerNumber), defaultRColor);
         float g = PlayerPrefs.GetFloat(GetPlayerKey(GColorKey, playerNumber), defaultGColor);
         float b = PlayerPrefs.GetFloat(GetPlayerKey(BColorKey, playerNumber), defaultBColor);
-        //float a = PlayerPrefs.GetFloat(GetPlayerKey(AColorKey, playerNumber), defaultAColor);
 
-        //Color color = new Color(r, g, b, a);
         Color color = new Color(r, g, b);
 
         return color;
@@ -87,7 +85,8 @@ public static class PrefsManager
         PlayerPrefs.SetFloat(GetPlayerKey(RColorKey, playerNumber), color.r);
         PlayerPrefs.SetFloat(GetPlayerKey(GColorKey, playerNumber), color.g);
         PlayerPrefs.SetFloat(GetPlayerKey(BColorKey, playerNumber), color.b);
-        //PlayerPrefs.SetFloat(GetPlayerKey(AColorKey, playerNumber), color.a);
+
+        PlayerPrefs.Save();
     }
     #endregion
 
@@ -95,6 +94,7 @@ public static class PrefsManager
     public static void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat(musicKey, volume);
+        PlayerPrefs.Save();
     }
 
     public static float GetMusicVolume()
@@ -105,6 +105,7 @@ public static class PrefsManager
     public static void SetSFXVolume(float volume)
     {
         PlayerPrefs.SetFloat(SFXKey, volume);
+        PlayerPrefs.Save();
     }
 
     public static float GetSFXVolume()
@@ -117,6 +118,7 @@ public static class PrefsManager
     public static void SetLanguage(int languageID)
     {
         PlayerPrefs.SetInt(languageKey, languageID);
+        PlayerPrefs.Save();
     }
 
     public static int GetLanguage()
@@ -130,6 +132,7 @@ public static class PrefsManager
     public static void SetLevel1(int result)
     {
         PlayerPrefs.SetInt(level1Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel1()
     {
@@ -140,6 +143,7 @@ public static class PrefsManager
     public static void SetLevel2(int result)
     {
         PlayerPrefs.SetInt(level2Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel2()
     {
@@ -150,6 +154,7 @@ public static class PrefsManager
     public static void SetLevel3(int result)
     {
         PlayerPrefs.SetInt(level3Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel3()
     {
@@ -160,6 +165,7 @@ public static class PrefsManager
     public static void SetLevel4(int result)
     {
         PlayerPrefs.SetInt(level4Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel4()
     {
@@ -170,6 +176,7 @@ public static class PrefsManager
     public static void SetLevel5(int result)
     {
         PlayerPrefs.SetInt(level5Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel5()
     {
@@ -180,6 +187,7 @@ public static class PrefsManager
     public static void SetLevel6(int result)
     {
         PlayerPrefs.SetInt(level6Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel6()
     {
@@ -190,6 +198,7 @@ public static class PrefsManager
     public static void SetLevel7(int result)
     {
         PlayerPrefs.SetInt(level7Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel7()
     {
@@ -200,6 +209,7 @@ public static class PrefsManager
     public static void SetLevel8(int result)
     {
         PlayerPrefs.SetInt(level8Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel8()
     {
@@ -210,6 +220,7 @@ public static class PrefsManager
     public static void SetLevel9(int result)
     {
         PlayerPrefs.SetInt(level9Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel9()
     {
@@ -220,6 +231,7 @@ public static class PrefsManager
     public static void SetLevel10(int result)
     {
         PlayerPrefs.SetInt(level10Key, result);
+        PlayerPrefs.Save();
     }
     public static int GetLevel10()
     {

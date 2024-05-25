@@ -44,6 +44,7 @@ public abstract class TankController : TankBehaviour
     {
         base.Start();
 
+        SetPosition(playerNumber == 1 ? Vector2.left : Vector2.right);
         SetColor(PrefsManager.GetPlayerColor(playerNumber));
     }
 
@@ -126,6 +127,15 @@ public abstract class TankController : TankBehaviour
         {
             _audioManager.PlaySFX(_audioManager.shot1);
         }
+    }
+
+    protected override Projectile CreateProjectile()
+    {
+        Projectile projectile = base.CreateProjectile();
+
+        projectile.properties.owner = playerNumber;
+
+        return projectile;
     }
 
     internal override void TakeDamage(int value)
