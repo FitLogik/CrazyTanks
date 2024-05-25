@@ -17,9 +17,33 @@ public class MenuManager : MonoBehaviour
     public GameObject levelMenu;
     public GameObject controlInformationMenu;
     public GameObject buttonInformation;
-    private bool isSettings;
+    private bool isSettings = false;
+    private bool isSettingsPanel = false;
+    private bool isLevel = false;
+    private bool isColor = false; 
 
-    public void LoadGameLevel(string level)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // Можно использовать любую другую клавишу или условие
+        {
+            if (true)
+            {
+
+
+                if (isSettings)
+                {
+                    CloseSettingsMenu(); // Закрыть настройки
+                }
+                else
+                {
+                    Application.Quit(); // Закрыть приложение
+                }
+            }
+        }
+    }
+
+
+public void LoadGameLevel(string level)
     {
         Instantiate(gameManagerPrefab);
         if (Convert.ToInt32(level) == 1 || Convert.ToInt32(level) == 3 || Convert.ToInt32(level) == 5)
@@ -51,6 +75,7 @@ public class MenuManager : MonoBehaviour
         controlInformationMenu.SetActive(false);   
         buttonInformation.SetActive(true);
         isSettings = true;
+        isSettingsPanel = true;
     }
 
     public void CloseSettingsMenu()
@@ -60,6 +85,7 @@ public class MenuManager : MonoBehaviour
         {
             mainMenu.SetActive(true);
             settingsMenu.SetActive(false);
+            isSettingsPanel = false;
         }
         else
         {
@@ -82,6 +108,7 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         colorMenu.SetActive(true);
+        isColor = true;
     }
 
     public void CloseColorMenu()
@@ -89,6 +116,7 @@ public class MenuManager : MonoBehaviour
         SaveColors();
         mainMenu.SetActive(true);
         colorMenu.SetActive(false);
+        isColor = false;    
     }
 
     private void SaveColors()
@@ -105,12 +133,13 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         levelMenu.SetActive(true);
-
+        isLevel = true;
     }
 
     public void CloseLevelMenu()
     {
         mainMenu.SetActive(true);
         levelMenu.SetActive(false);
+        isLevel = false;
     }
 }
