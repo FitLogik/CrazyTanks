@@ -57,7 +57,6 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            CancelInvoke("UpdateTimer"); // Останавливаем таймер, если он достиг нуля
             EndGame();
         }
     }
@@ -69,9 +68,9 @@ public class Timer : MonoBehaviour
 
     public void EndGame()
     {
-        enemy.isActive = false;
-        currentTime = 0f;
         UpdateTimerText();
+        enemy.OnDestroy();
+        CancelInvoke("UpdateTimer");
         if (Convert.ToUInt32(score.scoreText.text) > score3star)
         {
             star3.SetActive(true);
@@ -96,8 +95,6 @@ public class Timer : MonoBehaviour
             star0.SetActive(true);
             result = 0;
             _audioManager.PlaySFX(_audioManager.loseGame);
-            Debug.Log("Тестим звук");
-
         }
 
         playerScore.SetActive(true);
@@ -105,7 +102,7 @@ public class Timer : MonoBehaviour
         if (idLevel == 1)
         {
             int curResult = PrefsManager.GetLevel1();
-            if (curResult <= result && curResult != 0)
+            if (curResult <= result && result != 0)
             {
                 PrefsManager.SetLevel1(result);
                 if (PrefsManager.GetLevel2() == -1)
@@ -117,7 +114,7 @@ public class Timer : MonoBehaviour
         else if (idLevel == 3)
         {
             int curResult = PrefsManager.GetLevel3();
-            if (curResult <= result && curResult != 0)
+            if (curResult <= result && result != 0)
             {
                 PrefsManager.SetLevel3(result);
                 if (PrefsManager.GetLevel4() == -1)
@@ -129,7 +126,7 @@ public class Timer : MonoBehaviour
         else if (idLevel == 5)
         {
             int curResult = PrefsManager.GetLevel5();
-            if (curResult <= result && curResult != 0)
+            if (curResult <= result && result != 0)
             {
                 PrefsManager.SetLevel5(result);
                 if (PrefsManager.GetLevel6() == -1)

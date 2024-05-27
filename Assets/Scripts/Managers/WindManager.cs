@@ -110,9 +110,9 @@ public class WindManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(5f,20f)); // Подождем 1 секунду
+            yield return new WaitForSeconds(Random.Range(5f,20f));
             StartWind();
-            yield return new WaitForSeconds(Random.Range(5f, 20f)); // Подождем 2 секунды
+            yield return new WaitForSeconds(Random.Range(5f, 20f));
             StopWind();
         }
     }

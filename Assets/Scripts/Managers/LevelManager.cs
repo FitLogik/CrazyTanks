@@ -63,16 +63,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SetLevels();
-        Debug.Log($"Уровень 1 - {statusLvl1}");
-        Debug.Log($"Уровень 2 - {statusLvl2}");
-        Debug.Log($"Уровень 3 - {statusLvl3}");
-        Debug.Log($"Уровень 4 - {statusLvl4}");
-        Debug.Log($"Уровень 5 - {statusLvl5}");
-        Debug.Log($"Уровень 6 - {statusLvl6}");
-        Debug.Log($"Уровень 7 - {statusLvl7}");
-        Debug.Log($"Уровень 8 - {statusLvl8}");
-        Debug.Log($"Уровень 9 - {statusLvl9}");
-        Debug.Log($"Уровень 10 - {statusLvl10}");
     }
 
     public void SetLevels()

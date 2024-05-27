@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour
     private float minHeight = 0f;
     private float maxHeight = 2f;
     private float targetXPosition = 10.1f; // Задаем целевую позицию по оси X
-    public bool isActive = true;
 
     private Score sp;
     private Timer timer;
@@ -28,19 +27,11 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        if (isActive)
+        transform.Translate(Vector3.right * -horizontalSpeed * Time.deltaTime);
+        if (transform.position.x <= Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x)
         {
-            transform.Translate(Vector3.right * -horizontalSpeed * Time.deltaTime);
-            if (transform.position.x <= Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x)
-            {
-                EnemyDestroyed();
-                timer.currentTime = 0;
-                timer.UpdateTimerText();
-            }
-        }
-        else
-        {
-            transform.Translate(Vector3.zero);
+            timer.currentTime = 0;
+            timer.UpdateTimerText();
         }
     }
 
@@ -55,5 +46,10 @@ public class EnemyController : MonoBehaviour
         float randomHeight = Random.Range(minHeight, maxHeight);
         Vector3 newPosition = new Vector3(targetXPosition, randomHeight, transform.position.z);
         transform.position = newPosition;
+    }
+
+    public void OnDestroy()
+    {
+        Destroy(gameObject);
     }
 }

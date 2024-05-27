@@ -8,5 +8,6 @@ public class AnimDamage : MonoBehaviour
     {
         GameObject parent = gameObject.transform.parent.gameObject;
         Destroy(parent);
+        Debug.Log("Код используется");
     }
 }

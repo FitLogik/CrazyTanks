@@ -140,24 +140,27 @@ public abstract class TankController : TankBehaviour
 
     internal override void TakeDamage(int value)
     {
-        base.TakeDamage(value);
-
-        healthBarImage.fillAmount = health / maxHealth; // float написан чтобы вернуло значение float, а не int
-
-        if (health <= 0)
+        if (GameManager.GameType != GameType.Game1Player)
         {
-            _colorController.SetDefaultMaterial(tankColor);
-            bulletSpeedCanvas.SetActive(false);
-            if (_audioManager != null && isDeath == false)
+            base.TakeDamage(value);
+
+            healthBarImage.fillAmount = health / maxHealth; // float написан чтобы вернуло значение float, а не int
+
+            if (health <= 0)
             {
-                _audioManager.PlaySFX(_audioManager.death);
-                isDeath = true;
+                _colorController.SetDefaultMaterial(tankColor);
+                bulletSpeedCanvas.SetActive(false);
+                if (_audioManager != null && isDeath == false)
+                {
+                    _audioManager.PlaySFX(_audioManager.death);
+                    isDeath = true;
+                }
+
+                RoundManager.instance.EndRound(playerNumber);
             }
 
-            RoundManager.instance.EndRound(playerNumber);
+            BonusUIController.RemoveShield(playerNumber);
         }
-
-        BonusUIController.RemoveShield(playerNumber);
     }
 
     internal override void Freeze(float freezeDuration)

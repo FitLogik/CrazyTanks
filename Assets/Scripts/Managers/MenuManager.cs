@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    // TODO: давай по новой, Миша, всё...
-
     public string game1PlayerSceneName;
 
     public GameObject gameManagerPrefab;
@@ -17,27 +15,30 @@ public class MenuManager : MonoBehaviour
     public GameObject levelMenu;
     public GameObject controlInformationMenu;
     public GameObject buttonInformation;
+    private bool isGuide = false;
     private bool isSettings = false;
-    private bool isSettingsPanel = false;
     private bool isLevel = false;
     private bool isColor = false; 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) // Можно использовать любую другую клавишу или условие
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (true)
+            if (isSettings || isGuide)
             {
-
-
-                if (isSettings)
-                {
-                    CloseSettingsMenu(); // Закрыть настройки
-                }
-                else
-                {
-                    Application.Quit(); // Закрыть приложение
-                }
+                CloseSettingsMenu(); // Закрыть настройки
+            }
+            else if (isLevel)
+            {
+                CloseLevelMenu();    // Закрыть выбор уровней
+            }
+            else if (isColor)
+            {
+                CloseColorMenu();    // Закрыть выбор цвета
+            }
+            else
+            {
+                Application.Quit();  // Закрыть приложение
             }
         }
     }
@@ -75,7 +76,7 @@ public void LoadGameLevel(string level)
         controlInformationMenu.SetActive(false);   
         buttonInformation.SetActive(true);
         isSettings = true;
-        isSettingsPanel = true;
+        isGuide = false;
     }
 
     public void CloseSettingsMenu()
@@ -85,7 +86,7 @@ public void LoadGameLevel(string level)
         {
             mainMenu.SetActive(true);
             settingsMenu.SetActive(false);
-            isSettingsPanel = false;
+            isSettings = false;
         }
         else
         {
@@ -93,12 +94,14 @@ public void LoadGameLevel(string level)
             controlInformationMenu.SetActive(false);
             buttonInformation.SetActive(true);
             isSettings = true;
+            isGuide = false;
         }
     }
 
     public void OpenGuidePanel()
     {
         isSettings = false;
+        isGuide = true;
         settingsPanel.SetActive(false);
         controlInformationMenu.SetActive(true);
         buttonInformation.SetActive(false);

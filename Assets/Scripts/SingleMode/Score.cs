@@ -11,10 +11,6 @@ public class Score : MonoBehaviour
     private int comboCounter = 0; // Переменная для отслеживания комбо-ударов
     public int baseScoreValue = 1;
 
-    // Start is called before the first frame update
-
-
-    // Update is called once per frame
     private void Update()
     {
         scoreText.text = score.ToString();

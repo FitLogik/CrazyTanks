@@ -33,19 +33,16 @@ public class BotController : TankController
             float moveInput = Random.Range(-1f, 1f);
             float finalRotation = Random.Range(minMuzzleRotation, maxMuzzleRotation);
 
-            // Simulate movement input
+
             StartCoroutine(ApplyMoveInput(moveInput, moveDuration));
             yield return new WaitForSeconds(moveDuration);
 
-            // Simulate rotation input
             StartCoroutine(ApplyRotateInput(finalRotation, rotateDuration));
             yield return new WaitForSeconds(rotateDuration);
 
-            // Simulate firing input
             StartCoroutine(ApplyFireInput(fireDuration));
             yield return new WaitForSeconds(fireDuration);
 
-            // Wait for a short random duration before the next action
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
         }
     }

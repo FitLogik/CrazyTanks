@@ -32,7 +32,7 @@ public class RoundManager : MonoBehaviour
     private int resultLevel;
 
     AudioManager _audioManager;
-
+        
     bool isRoundEnded;
 
     private void Awake()
@@ -171,7 +171,7 @@ public class RoundManager : MonoBehaviour
                 if (idLevel == 2)
                 {
                     int curResult = PrefsManager.GetLevel2();
-                    if (curResult <= resultLevel && curResult != 0)
+                    if (curResult <= resultLevel && resultLevel != 0)
                     {
                         PrefsManager.SetLevel2(resultLevel);
                         if (PrefsManager.GetLevel3() == -1)
@@ -183,7 +183,7 @@ public class RoundManager : MonoBehaviour
                 else if(idLevel == 4)
                 {
                     int curResult = PrefsManager.GetLevel4();
-                    if (curResult <= resultLevel && curResult != 0)
+                    if (curResult <= resultLevel && resultLevel != 0)
                     {
                         PrefsManager.SetLevel4(resultLevel);
                         if (PrefsManager.GetLevel5() == -1)
@@ -195,7 +195,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 6)
                 {
                     int curResult = PrefsManager.GetLevel6();
-                    if (curResult <= resultLevel && curResult != 0)
+                    if (curResult <= resultLevel && resultLevel != 0)
                     {
                         PrefsManager.SetLevel6(resultLevel);
                         if (PrefsManager.GetLevel7() == -1)
@@ -207,7 +207,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 7)
                 {
                     int curResult = PrefsManager.GetLevel7();
-                    if (curResult <= resultLevel && curResult != 0)
+                    if (curResult <= resultLevel && resultLevel != 0)
                     {
                         PrefsManager.SetLevel7(resultLevel);
                         if (PrefsManager.GetLevel8() == -1)
@@ -219,7 +219,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 8)
                 {
                     int curResult = PrefsManager.GetLevel8();
-                    if (curResult <= resultLevel && curResult != 0)
+                    if (curResult <= resultLevel && resultLevel != 0)
                     {
                         PrefsManager.SetLevel8(resultLevel);
                         if (PrefsManager.GetLevel9() == -1)
@@ -231,7 +231,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 9)
                 {
                     int curResult = PrefsManager.GetLevel9();
-                    if (curResult <= resultLevel && curResult != 0)
+                    if (curResult <= resultLevel && resultLevel != 0)
                     {
                         PrefsManager.SetLevel9(resultLevel);
                         if (PrefsManager.GetLevel10() == -1)
@@ -243,7 +243,7 @@ public class RoundManager : MonoBehaviour
                 else if (idLevel == 10)
                 {
                     int curResult = PrefsManager.GetLevel10();
-                    if (curResult <= resultLevel && curResult != 0)
+                    if (curResult <= resultLevel && resultLevel != 0)
                     {
                         PrefsManager.SetLevel10(resultLevel);
                     }
@@ -262,8 +262,6 @@ public class RoundManager : MonoBehaviour
             }
         }
     }
-
-
     public static TankController GetPlayer(int playerNumber)
     {
         GameObject playerGO;
@@ -282,5 +280,4 @@ public class RoundManager : MonoBehaviour
 
         return playerGO.GetComponent<TankController>();
     }
-
 }
