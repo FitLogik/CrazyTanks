@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void MenuAction();
+    public static event MenuAction OnMenuReturn;
+
+
     public static GameManager Instance { get; private set; }
 
 
@@ -124,6 +128,7 @@ public class GameManager : MonoBehaviour
 
     public static void ReturnToMainMenu()
     {
+        OnMenuReturn();
         Instance.LoadScene(Instance.mainMenuSceneName);
         Destroy(Instance.gameObject);
     }

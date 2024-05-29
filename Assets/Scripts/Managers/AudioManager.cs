@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -37,6 +38,7 @@ public class AudioManager : MonoBehaviour
 
     float _musicVolume;
     float _sfxVolume;
+    float _tempMusicVolume;
 
 
     private void Awake()
@@ -99,5 +101,28 @@ public class AudioManager : MonoBehaviour
     public void PlaySFXClick()
     {
         PlaySFX(click1);
+    }
+
+    public static void MuteMusic(float duration)
+    {
+        Instance.MuteMusicStartCoroutine(duration);
+    }
+
+    private void MuteMusicStartCoroutine(float duration)
+    {
+        StartCoroutine(MuteMusicCoroutine(duration));
+    }
+
+    IEnumerator MuteMusicCoroutine(float duration)
+    {
+        _tempMusicVolume = MusicVolume;
+        MusicVolume = 0.0001f;
+        yield return new WaitForSeconds(duration);
+        SetMusicBack();
+    }
+
+    public static void SetMusicBack()
+    {
+        SetMusicVolume(Instance._tempMusicVolume);
     }
 }

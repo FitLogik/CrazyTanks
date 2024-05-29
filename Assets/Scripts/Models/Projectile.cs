@@ -90,7 +90,13 @@ public class Projectile : MonoBehaviour
                 }
                 Instantiate(properties.targetHitPrefab, transform.position, Quaternion.identity);
             }
-
+            else
+            {
+                if (GameManager.GameType == GameType.Game1Player)
+                {
+                    combo.ResetCombo();
+                }
+            }
             // Удаляем объект, с которым пуля столкнулась
             Destroy(gameObject);
         }

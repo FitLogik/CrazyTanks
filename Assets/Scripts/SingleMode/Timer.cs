@@ -26,6 +26,7 @@ public class Timer : MonoBehaviour
     public EnemyController enemy;
 
     AudioManager _audioManager;
+    float musicVolume;
 
     void Start()
     {
@@ -46,6 +47,22 @@ public class Timer : MonoBehaviour
         {
             Debug.LogError("Не удалось найти объект Audio!");
         }
+        if (timerText == null)
+        {
+            timerText = GetComponent<Text>();
+        }
+    }
+
+
+    private void OnEnable()
+    {
+        GameManager.OnMenuReturn += SetMusicBack;
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("Disabled");
+        GameManager.OnMenuReturn -= SetMusicBack;
     }
 
     void UpdateTimer()
@@ -57,6 +74,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            CancelInvoke("UpdateTimer");
             EndGame();
         }
     }
@@ -70,31 +88,35 @@ public class Timer : MonoBehaviour
     {
         UpdateTimerText();
         enemy.OnDestroy();
-        CancelInvoke("UpdateTimer");
+
         if (Convert.ToUInt32(score.scoreText.text) > score3star)
         {
             star3.SetActive(true);
             result = 3;
             _audioManager.PlaySFX(_audioManager.winGame);
+            AudioManager.MuteMusic(Math.Max(0f, _audioManager.winGame.length - 0.5f));
         }
         else if (Convert.ToUInt32(score.scoreText.text) > score2star)
         {
             star2.SetActive(true);
             result = 2;
             _audioManager.PlaySFX(_audioManager.winRound);
+            AudioManager.MuteMusic(Math.Max(0f, _audioManager.winRound.length - 0.5f));
 
         }
         else if (Convert.ToUInt32(score.scoreText.text) > score1star)
         {
-            star1.SetActive(true);  
+            star1.SetActive(true);
             result = 1;
             _audioManager.PlaySFX(_audioManager.winRound);
+            AudioManager.MuteMusic(Math.Max(0f, _audioManager.winRound.length - 0.5f));
         }
         else
         {
             star0.SetActive(true);
             result = 0;
             _audioManager.PlaySFX(_audioManager.loseGame);
+            AudioManager.MuteMusic(Math.Max(0f, _audioManager.loseGame.length - 0.5f));
         }
 
         playerScore.SetActive(true);
@@ -135,5 +157,10 @@ public class Timer : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SetMusicBack()
+    {
+        AudioManager.SetMusicBack();
     }
 }
