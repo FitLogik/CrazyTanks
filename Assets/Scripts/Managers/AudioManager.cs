@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
 
     float _musicVolume;
     float _sfxVolume;
-    float _tempMusicVolume;
+    float _tempMusicVolume = 0.0001f;
 
 
     private void Awake()
@@ -61,6 +61,16 @@ public class AudioManager : MonoBehaviour
         LoadSettings();
         musicSource.clip = background;
         musicSource.Play();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnMenuReturn += SetMusicBack;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnMenuReturn -= SetMusicBack;
     }
 
     public void PlaySFX(AudioClip clip)
@@ -117,12 +127,24 @@ public class AudioManager : MonoBehaviour
     {
         _tempMusicVolume = MusicVolume;
         MusicVolume = 0.0001f;
+
+        duration = Mathf.Max(0f, duration - 0.8f);
+
         yield return new WaitForSeconds(duration);
-        SetMusicBack();
+
+        if (_tempMusicVolume != MusicVolume)
+        {
+            SetMusicVolume(Instance._tempMusicVolume);
+        }
     }
 
-    public static void SetMusicBack()
+    private void SetMusicBack()
     {
-        SetMusicVolume(Instance._tempMusicVolume);
+        if (MusicVolume != Instance._tempMusicVolume)
+        {
+            Debug.Log("Set music back");
+            Instance.SFXSource.Stop();
+            SetMusicVolume(Instance._tempMusicVolume);
+        }
     }
 }

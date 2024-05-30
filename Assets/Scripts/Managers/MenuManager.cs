@@ -38,7 +38,9 @@ public class MenuManager : MonoBehaviour
             }
             else
             {
-                Application.Quit();  // Закрыть приложение
+#if UNITY_STANDALONE_WIN             // Если билд на WebGL, игра полностью зависает при выполнении метода ниже
+                Application.Quit();
+#endif
             }
         }
     }
@@ -77,6 +79,7 @@ public void LoadGameLevel(string level)
         buttonInformation.SetActive(true);
         isSettings = true;
         isGuide = false;
+        AudioManager.Instance.PlaySFXClick();
     }
 
     public void CloseSettingsMenu()
@@ -96,6 +99,7 @@ public void LoadGameLevel(string level)
             isSettings = true;
             isGuide = false;
         }
+        AudioManager.Instance.PlaySFXClick();
     }
 
     public void OpenGuidePanel()
@@ -105,6 +109,7 @@ public void LoadGameLevel(string level)
         settingsPanel.SetActive(false);
         controlInformationMenu.SetActive(true);
         buttonInformation.SetActive(false);
+        AudioManager.Instance.PlaySFXClick();
     }
 
     public void OpenColorMenu()
@@ -112,6 +117,7 @@ public void LoadGameLevel(string level)
         mainMenu.SetActive(false);
         colorMenu.SetActive(true);
         isColor = true;
+        AudioManager.Instance.PlaySFXClick();
     }
 
     public void CloseColorMenu()
@@ -119,7 +125,8 @@ public void LoadGameLevel(string level)
         SaveColors();
         mainMenu.SetActive(true);
         colorMenu.SetActive(false);
-        isColor = false;    
+        isColor = false;
+        AudioManager.Instance.PlaySFXClick();
     }
 
     private void SaveColors()
@@ -137,6 +144,7 @@ public void LoadGameLevel(string level)
         mainMenu.SetActive(false);
         levelMenu.SetActive(true);
         isLevel = true;
+        AudioManager.Instance.PlaySFXClick();
     }
 
     public void CloseLevelMenu()
@@ -144,5 +152,6 @@ public void LoadGameLevel(string level)
         mainMenu.SetActive(true);
         levelMenu.SetActive(false);
         isLevel = false;
+        AudioManager.Instance.PlaySFXClick();
     }
 }

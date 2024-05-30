@@ -53,18 +53,6 @@ public class Timer : MonoBehaviour
         }
     }
 
-
-    private void OnEnable()
-    {
-        GameManager.OnMenuReturn += SetMusicBack;
-    }
-
-    private void OnDisable()
-    {
-        Debug.Log("Disabled");
-        GameManager.OnMenuReturn -= SetMusicBack;
-    }
-
     void UpdateTimer()
     {
         if (currentTime > 0)
@@ -101,7 +89,7 @@ public class Timer : MonoBehaviour
             star2.SetActive(true);
             result = 2;
             _audioManager.PlaySFX(_audioManager.winRound);
-            AudioManager.MuteMusic(Math.Max(0f, _audioManager.winRound.length - 0.5f));
+            AudioManager.MuteMusic(_audioManager.winRound.length);
 
         }
         else if (Convert.ToUInt32(score.scoreText.text) > score1star)
@@ -109,14 +97,14 @@ public class Timer : MonoBehaviour
             star1.SetActive(true);
             result = 1;
             _audioManager.PlaySFX(_audioManager.winRound);
-            AudioManager.MuteMusic(Math.Max(0f, _audioManager.winRound.length - 0.5f));
+            AudioManager.MuteMusic(_audioManager.winRound.length);
         }
         else
         {
             star0.SetActive(true);
             result = 0;
             _audioManager.PlaySFX(_audioManager.loseGame);
-            AudioManager.MuteMusic(Math.Max(0f, _audioManager.loseGame.length - 0.5f));
+            AudioManager.MuteMusic(_audioManager.loseGame.length);
         }
 
         playerScore.SetActive(true);
@@ -157,10 +145,5 @@ public class Timer : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void SetMusicBack()
-    {
-        AudioManager.SetMusicBack();
     }
 }
