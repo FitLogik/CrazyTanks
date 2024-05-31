@@ -1,0 +1,2 @@
+Build path: C:/Users/petuh/Documents/source/Unity/RogozinGames/GameDiplom/Builds/v1.0.0.0/WebGL
+Build number: 1
