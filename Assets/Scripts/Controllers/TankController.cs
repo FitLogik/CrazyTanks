@@ -116,8 +116,6 @@ public abstract class TankController : TankBehaviour
     #region Боевка
     protected override void Fire()
     {
-        Debug.Log($"Fire\nPlayer{playerNumber}");
-
         base.Fire();
 
         // Выключаем объект с холстом прогрессбара

@@ -152,12 +152,14 @@ public class RoundManager : MonoBehaviour
                     star3.SetActive(true);
                     resultLevel = 3;
                     _audioManager.PlaySFX(_audioManager.winGame);
+                    AudioManager.MuteMusic(Math.Max(0f, _audioManager.winGame.length - 0.5f));
                 }
                 else if (player.GetHealth() >= 30)
                 {
                     star2.SetActive(true);
                     resultLevel = 2;
                     _audioManager.PlaySFX(_audioManager.winRound);
+                    AudioManager.MuteMusic(_audioManager.winRound.length);
 
                 }
                 else if (player.GetHealth() < 30)
@@ -165,6 +167,7 @@ public class RoundManager : MonoBehaviour
                     star1.SetActive(true);
                     resultLevel = 1;
                     _audioManager.PlaySFX(_audioManager.winRound);
+                    AudioManager.MuteMusic(_audioManager.winRound.length);
                 }
                 WinCanvas.SetActive(true);
 
@@ -258,6 +261,7 @@ public class RoundManager : MonoBehaviour
                 star0.SetActive(true);
                 resultLevel = 0;
                 _audioManager.PlaySFX(_audioManager.loseGame);
+                AudioManager.MuteMusic(_audioManager.loseGame.length);
                 WinCanvas.SetActive(true);
             }
         }

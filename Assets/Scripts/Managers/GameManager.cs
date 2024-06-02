@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void MenuAction();
+    public static event MenuAction OnMenuReturn = () => Debug.Log("OnMenuReturn Invoke");
+
+
     public static GameManager Instance { get; private set; }
 
 
@@ -37,6 +41,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
 
         if (scoreManager == null)
@@ -54,7 +59,6 @@ public class GameManager : MonoBehaviour
             _audioManager = AudioManager.Instance;
             Debug.LogError("Не удалось найти объект Audio!");
         }
-
     }
 
     public static Vector2 GetBorders()
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         LoadScene(gameOverSceneName);
         _audioManager.PlaySFX(_audioManager.winGame);
+        AudioManager.MuteMusic(_audioManager.winGame.length);
     }
 
     public static void LoadRandomScene()
@@ -124,6 +129,7 @@ public class GameManager : MonoBehaviour
 
     public static void ReturnToMainMenu()
     {
+        OnMenuReturn?.Invoke();
         Instance.LoadScene(Instance.mainMenuSceneName);
         Destroy(Instance.gameObject);
     }
