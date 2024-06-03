@@ -42,6 +42,7 @@
 
 Если вы хотите выразить свою благодарность, вы можете поддержать разработчиков небольшим пожертвованием. Заранее благодарим за вашу поддержку!
 
+[<img alt="Steam donate link" src="https://img.shields.io/badge/Steam-donate-000000?logo=steam" />](https://steamcommunity.com/tradeoffer/new/?partner=879081822&token=3lhX1tPF)
 [<img alt="Steam donate link" src="https://img.shields.io/badge/Steam-donate-000000?logo=steam" />](https://steamcommunity.com/tradeoffer/new/?partner=900122749&token=EccMG2jQ)
 
 ---
